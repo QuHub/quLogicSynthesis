@@ -1,0 +1,10 @@
+*Debug*
+*Release*
+outputs*
+*.sdf
+*.suo
+*.opensdf
+ipch*
+x64*
+out.txt
+result*
