@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Conductors">
+      <UniqueIdentifier>{ac335580-ac24-4168-ada2-55bec8b4d7f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Synthesizers">
+      <UniqueIdentifier>{def6edb7-c04f-4fbd-9134-8957a5d52a10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generators">
+      <UniqueIdentifier>{496e641b-ca48-41e9-ba98-679c83c2f03a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Synthesizers\Ternary">
+      <UniqueIdentifier>{97621264-559e-43c9-81f7-d721028c4b4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generators\Ternary">
+      <UniqueIdentifier>{d3bb4832-8c0e-4562-998f-07be3cacbd2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{c4261ef7-784c-4620-80e7-392d1698775f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="app.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Conductors\GeneticAlgorithm.h">
+      <Filter>Conductors</Filter>
+    </ClInclude>
+    <ClInclude Include="Conductors\ConductorCore.h">
+      <Filter>Conductors</Filter>
+    </ClInclude>
+    <ClInclude Include="Generators\GeneratorCore.h">
+      <Filter>Generators</Filter>
+    </ClInclude>
+    <ClInclude Include="Synthesizers\SynthesizerCore.h">
+      <Filter>Synthesizers</Filter>
+    </ClInclude>
+    <ClInclude Include="Generators\Ternary\Ternary\Basic.h">
+      <Filter>Synthesizers\Ternary</Filter>
+    </ClInclude>
+    <ClInclude Include="Generators\Ternary\OrderedSet.h">
+      <Filter>Generators\Ternary</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequence.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\StopWatch.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="app.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="quLogicSynthesis.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AssemblyInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
