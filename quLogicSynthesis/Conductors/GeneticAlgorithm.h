@@ -47,7 +47,7 @@ namespace Conductor {
 
       for(int i=0; i<m_nRuns; i++)
         for(int g=0; g<m_nGenerations; g++)
-          DoGeneation(g);
+          DoGeneration(g);
 
       s.stopTimer();
     }

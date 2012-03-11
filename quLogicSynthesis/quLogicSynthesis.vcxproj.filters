@@ -57,9 +57,6 @@
     <ClInclude Include="Synthesizers\SynthesizerCore.h">
       <Filter>Synthesizers</Filter>
     </ClInclude>
-    <ClInclude Include="Generators\Ternary\Ternary\Basic.h">
-      <Filter>Synthesizers\Ternary</Filter>
-    </ClInclude>
     <ClInclude Include="Generators\Ternary\OrderedSet.h">
       <Filter>Generators\Ternary</Filter>
     </ClInclude>
@@ -67,6 +64,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Utilities\StopWatch.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Synthesizers\Ternary\Basic.h">
+      <Filter>Synthesizers\Ternary</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Hasse.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Config.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Core.h">
       <Filter>Utilities</Filter>
     </ClInclude>
   </ItemGroup>
@@ -84,6 +93,9 @@
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\Config.cpp">
+      <Filter>Utilities</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

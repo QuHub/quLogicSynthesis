@@ -84,11 +84,14 @@
     <ClInclude Include="Conductors\GeneticAlgorithm.h" />
     <ClInclude Include="Generators\GeneratorCore.h" />
     <ClInclude Include="Generators\Ternary\OrderedSet.h" />
-    <ClInclude Include="Generators\Ternary\Ternary\Basic.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Sequence.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Synthesizers\SynthesizerCore.h" />
+    <ClInclude Include="Synthesizers\Ternary\Basic.h" />
+    <ClInclude Include="Utilities\Config.h" />
+    <ClInclude Include="Utilities\Core.h" />
+    <ClInclude Include="Utilities\Hasse.h" />
     <ClInclude Include="Utilities\StopWatch.h" />
   </ItemGroup>
   <ItemGroup>
@@ -101,6 +104,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Utilities\Config.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

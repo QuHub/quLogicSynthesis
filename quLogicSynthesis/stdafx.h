@@ -4,6 +4,12 @@
 //
 
 #pragma once
+#include <vector>
+#include <algorithm>
+using namespace std;
 
 #include "Utilities/StopWatch.h"
+#include "Utilities/Core.h"
+#include "Utilities/Hasse.h"
+
 // TODO: reference additional headers your program requires here
