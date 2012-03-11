@@ -7,10 +7,10 @@ namespace Utilities {
   namespace Ternary {
     class Hasse {
     public:
-      static int m_nBits;
-      static int m_nTerms;
-      static int m_nBands;
-      static vector<int> *m_pBands;
+      int m_nBits;
+      int m_nTerms;
+      int m_nBands;
+      vector<int> *m_pBands;
 
     public:
       Hasse(int nBits)
@@ -38,7 +38,7 @@ namespace Utilities {
 
         int* p = new int[m_nTerms];       // NOTE: To avoid memory leaks, this needs to be freed by the caller.
         for (int i=0; i<m_nBands; i++) {
-          for (int j=0; j<m_pBands[i].size(); j++) {
+          for (int j=0; j< (int)m_pBands[i].size(); j++) {
             *p++ = m_pBands[i][j];
           }
         }

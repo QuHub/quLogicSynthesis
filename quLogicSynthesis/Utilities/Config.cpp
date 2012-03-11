@@ -3,7 +3,9 @@
 #include "Config.h"
 #include "Core.h"
 
-  static void Config::SetRadix(int r)
+namespace Config {
+  Core *m_pConfig;
+  void SetRadix(int r)
   {
     switch(r) {
     case 2:
@@ -14,3 +16,6 @@
       throw "Unknown Raidx";
     }
   }
+  int RadixDigits(int term) {return m_pConfig->RadixDigits(term);}
+  int BandSum(int term) {return m_pConfig->BandSum(term);}
+}

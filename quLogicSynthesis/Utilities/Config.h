@@ -1,7 +1,6 @@
 #pragma once
 
 namespace Config {
-
   class Core {
   public:
     int m_RadixBits;
@@ -31,8 +30,7 @@ namespace Config {
     }
   };
 
-  static Core *m_pConfig;
-  static void SetRadix(int r);
-  static int RadixDigits(int term) {return m_pConfig->RadixDigits(term);}
-  static int BandSum(int term) {return m_pConfig->BandSum(term);}
+  void SetRadix(int r);
+  int RadixDigits(int term);
+  int BandSum(int term);
 }

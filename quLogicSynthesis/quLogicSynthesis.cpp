@@ -14,8 +14,8 @@ int main(array<System::String ^> ^args)
 
 //  FileSrc fs(nBits, FILE_PATTERN + Convert::ToString(2));
 
-  int * pOut;
-  Config::Core::SetRadix(3);
+  int * pOut=NULL;
+  Config::SetRadix(3);
   Synthesizer::Core *pSyn = new Synthesizer::Ternary::Basic();
   Generator::Core *pGen = new Generator::Ternary::OrderedSet(nBits, pOut);
   Conductor::Core *pAlgo = new Conductor::GeneticAlgorithm(nBits, pGen, pSyn);

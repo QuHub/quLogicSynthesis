@@ -43,18 +43,21 @@ namespace Generator {
         
         pSeq->m_nBits = m_nBits;
         pSeq->m_pIn = m_pHasse->GetSequence();   
-        for(int i=0; i<nTerms(); i++) 
+
+        // Arrange output minterms to match their input minterms according to original specification.
+        pSeq->m_pOut = new int[nTerms()];
+        for(int i=0; i<nTerms(); i++) {
+          pSeq->m_pOut[i] = m_pOut[pSeq->m_pIn[i]];
+        }
 
         m_pSequences.push_back(pSeq);
-
       }
-
     };
   }
 }
 
 
-#if false
+#ifdef WHATEVER
 // any nBits are divided into S|R, where S is the number of covering bits, and R is the remaining Hasse Bits
 #undef M
 #define M Config::PartitionSize
