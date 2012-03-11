@@ -42,7 +42,7 @@ namespace Conductor {
     {
       InitializePopulation();
 
-      CStopWatch s;
+      Utilities::CStopWatch s;
       s.startTimer();
 
       for(int i=0; i<m_nRuns; i++)

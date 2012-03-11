@@ -1,7 +1,7 @@
 #pragma once
 #include <windows.h>
 
-namespace QuLogic
+namespace Utilities
 {
   typedef struct {
     LARGE_INTEGER start;

@@ -1,4 +1,4 @@
-﻿Build started 3/11/2012 7:51:19 AM.
+﻿Build started 3/11/2012 8:23:19 AM.
      1>Project "C:\src\quLogicSynthesis\quLogicSynthesis\quLogicSynthesis.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Touching "Debug\quLogicSynthesis.unsuccessfulbuild".
@@ -10,16 +10,7 @@
          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\quLogicSynthesis.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt AssemblyInfo.cpp quLogicSynthesis.cpp /clr:nostdlib 
          AssemblyInfo.cpp
          quLogicSynthesis.cpp
-     1>c:\src\qulogicsynthesis\qulogicsynthesis\Conductors/GeneticAlgorithm.h(45): error C2065: 'CStopWatch' : undeclared identifier
-     1>c:\src\qulogicsynthesis\qulogicsynthesis\Conductors/GeneticAlgorithm.h(45): error C2146: syntax error : missing ';' before identifier 's'
-     1>c:\src\qulogicsynthesis\qulogicsynthesis\Conductors/GeneticAlgorithm.h(45): error C2065: 's' : undeclared identifier
-     1>c:\src\qulogicsynthesis\qulogicsynthesis\Conductors/GeneticAlgorithm.h(46): error C2065: 's' : undeclared identifier
-     1>c:\src\qulogicsynthesis\qulogicsynthesis\Conductors/GeneticAlgorithm.h(46): error C2228: left of '.startTimer' must have class/struct/union
-                 type is ''unknown-type''
      1>c:\src\qulogicsynthesis\qulogicsynthesis\Conductors/GeneticAlgorithm.h(50): error C3861: 'DoGeneation': identifier not found
-     1>c:\src\qulogicsynthesis\qulogicsynthesis\Conductors/GeneticAlgorithm.h(52): error C2065: 's' : undeclared identifier
-     1>c:\src\qulogicsynthesis\qulogicsynthesis\Conductors/GeneticAlgorithm.h(52): error C2228: left of '.stopTimer' must have class/struct/union
-                 type is ''unknown-type''
      1>c:\src\qulogicsynthesis\qulogicsynthesis\Conductors/GeneticAlgorithm.h(61): error C2039: 'AddSequence' : is not a member of 'Synthesizer::Core'
                  c:\src\qulogicsynthesis\qulogicsynthesis\Synthesizers/SynthesizerCore.h(3) : see declaration of 'Synthesizer::Core'
      1>c:\src\qulogicsynthesis\qulogicsynthesis\Conductors/GeneticAlgorithm.h(63): error C2039: 'Process' : is not a member of 'Synthesizer::Core'
@@ -31,4 +22,4 @@
 
 Build FAILED.
 
-Time Elapsed 00:00:01.58
+Time Elapsed 00:00:01.78
