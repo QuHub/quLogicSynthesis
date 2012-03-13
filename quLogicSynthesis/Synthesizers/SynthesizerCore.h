@@ -2,11 +2,27 @@
 namespace Synthesizer {
   class Core {
   public:
+    vector<Sequence*> m_Sequences;
+    int m_nBits;
+
+  public:
     Core() {}
-    void AddSequence(Sequence *pSequence){}
-    void Process(){}
+    Core(int nBits)
+    {
+      m_nBits = nBits;
+    }
 
+    void AddSequence(Sequence *pSeq){
+      m_Sequences.push_back(pSeq);
+    }
 
+    virtual void Process(){
+#ifdef _DEBUG
+      for(int i=0; i<m_Sequences.size(); i++) {
+        Helper::DumpSequence(m_Sequences[i]->m_pIn, m_Sequences[i]->m_pOut, m_Sequences[i]->m_nTerms);
+      }
+#endif
+    }
   };
 }
 

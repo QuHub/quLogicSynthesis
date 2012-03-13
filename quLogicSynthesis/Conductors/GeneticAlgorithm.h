@@ -19,9 +19,9 @@ namespace Conductor {
     GeneticAlgorithm(int nBits, Generator::Core *pGen, Synthesizer::Core *pSyn) {
       m_pGenerator = pGen;
       m_pSynthesizer = pSyn;
-      m_nRuns = 20;
-      m_nGenerations = 10;
-      m_nPopulation = 100;
+      m_nRuns = 1;
+      m_nGenerations = 1;
+      m_nPopulation = 1;
       m_pSeq = new Sequence *[2*m_nPopulation]; // twice as many to hold children as well.
     }
 
@@ -34,15 +34,17 @@ namespace Conductor {
 
     void InitializePopulation()
     {
-      for(int i=0; i<m_nPopulation; i++)
+      for(int i=0; i<m_nPopulation; i++) {
         m_pSeq[i] = m_pGenerator->GetSequence();
+        Helper::DumpSequence(m_pSeq[i]);
+      }
     }
 
     void Process()
     {
       InitializePopulation();
 
-      Utilities::CStopWatch s;
+      Utility::CStopWatch s;
       s.startTimer();
 
       for(int i=0; i<m_nRuns; i++)

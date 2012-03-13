@@ -16,20 +16,23 @@
     <Filter Include="Conductors">
       <UniqueIdentifier>{ac335580-ac24-4168-ada2-55bec8b4d7f1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Synthesizers">
-      <UniqueIdentifier>{def6edb7-c04f-4fbd-9134-8957a5d52a10}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Generators">
       <UniqueIdentifier>{496e641b-ca48-41e9-ba98-679c83c2f03a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Synthesizers\Ternary">
-      <UniqueIdentifier>{97621264-559e-43c9-81f7-d721028c4b4a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Generators\Ternary">
       <UniqueIdentifier>{d3bb4832-8c0e-4562-998f-07be3cacbd2b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Utilities">
       <UniqueIdentifier>{c4261ef7-784c-4620-80e7-392d1698775f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Synthesizers">
+      <UniqueIdentifier>{def6edb7-c04f-4fbd-9134-8957a5d52a10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Synthesizers\Ternary">
+      <UniqueIdentifier>{97621264-559e-43c9-81f7-d721028c4b4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Synthesizers\Ternary\Cuda">
+      <UniqueIdentifier>{99395a2e-6336-4229-a22d-a7f3f2a0b3e6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -75,8 +78,20 @@
     <ClInclude Include="Utilities\Config.h">
       <Filter>Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="Utilities\Core.h">
+    <ClInclude Include="Utilities\ConfigTernary.h">
       <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Helpers.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Synthesizers\Ternary\Cuda\Basic.h">
+      <Filter>Synthesizers\Ternary\Cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="Synthesizers\Ternary\Cuda\cuda_debug.h">
+      <Filter>Synthesizers\Ternary\Cuda</Filter>
+    </ClInclude>
+    <ClInclude Include="Synthesizers\Ternary\Cuda\CudaSequence.h">
+      <Filter>Synthesizers\Ternary\Cuda</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -97,5 +112,16 @@
     <ClCompile Include="Utilities\Config.cpp">
       <Filter>Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="Utilities\Helpers.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Synthesizers\Ternary\Cuda\cuda_debug.cpp">
+      <Filter>Synthesizers\Ternary\Cuda</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CudaCompile Include="Synthesizers\Ternary\Cuda\BasicKernel.cu">
+      <Filter>Synthesizers\Ternary\Cuda</Filter>
+    </CudaCompile>
   </ItemGroup>
 </Project>

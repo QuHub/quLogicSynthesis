@@ -5,7 +5,7 @@
 namespace Generator {
   namespace Ternary {
 
-    Utilities::Ternary::Hasse *m_pHasse;
+    Utility::Ternary::Hasse *m_pHasse;
     class OrderedSet: public Generator::Core{
     public:
       int *m_pOut;
@@ -19,14 +19,14 @@ namespace Generator {
       {
         m_pOut = pOut;
         m_nBits = nBits;
-        m_pHasse = new Utilities::Ternary::Hasse(nBits);
+        m_pHasse = new Utility::Ternary::Hasse(nBits);
 
         // Allocate array of band boundaries for crossover operations.
         m_BandBoundary = new int[nBands()];
 
-        m_BandBoundary[0] = m_pHasse->m_pBands[0].size();
+        m_BandBoundary[0] = (int)m_pHasse->m_pBands[0].size();
         for (int j=1; j < nBands(); j++) {
-          m_BandBoundary[j] = m_BandBoundary[j-1] + m_pHasse->m_pBands[j].size();
+          m_BandBoundary[j] = m_BandBoundary[j-1] + (int)m_pHasse->m_pBands[j].size();
         }
       }
 
@@ -37,20 +37,19 @@ namespace Generator {
         m_pSequences.clear();
       }
 
-      Sequence *GetSequence()
+      virtual Sequence *GetSequence()
       {
         Sequence *pSeq = new Sequence();
         
         pSeq->m_nBits = m_nBits;
+        pSeq->m_nTerms = nTerms();
         pSeq->m_pIn = m_pHasse->GetSequence();   
+        pSeq->GenerateOutput(m_pOut);
 
-        // Arrange output minterms to match their input minterms according to original specification.
-        pSeq->m_pOut = new int[nTerms()];
-        for(int i=0; i<nTerms(); i++) {
-          pSeq->m_pOut[i] = m_pOut[pSeq->m_pIn[i]];
-        }
 
         m_pSequences.push_back(pSeq);
+
+        return pSeq;
       }
     };
   }

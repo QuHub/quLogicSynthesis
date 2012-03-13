@@ -1,7 +1,7 @@
 #pragma once
 #include <windows.h>
 
-namespace Utilities
+namespace Utility
 {
   typedef struct {
     LARGE_INTEGER start;

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 #include "Config.h"
-#include "Core.h"
+#include "ConfigTernary.h"
 
 namespace Config {
   Core *m_pConfig;
@@ -18,4 +18,5 @@ namespace Config {
   }
   int RadixDigits(int term) {return m_pConfig->RadixDigits(term);}
   int BandSum(int term) {return m_pConfig->BandSum(term);}
+  int Radix() {return m_pConfig->m_Radix;}
 }

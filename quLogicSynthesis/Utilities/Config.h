@@ -33,4 +33,5 @@ namespace Config {
   void SetRadix(int r);
   int RadixDigits(int term);
   int BandSum(int term);
+  int Radix();
 }

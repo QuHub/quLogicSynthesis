@@ -5,6 +5,6 @@
 namespace Generator {
   class Core {
   public:
-    Sequence* GetSequence();
+    virtual Sequence* GetSequence(){return NULL;};
   };
 }

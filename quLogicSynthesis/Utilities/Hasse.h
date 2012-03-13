@@ -2,8 +2,7 @@
 #pragma once
 #include "stdafx.h"
 
-using namespace std;
-namespace Utilities {
+namespace Utility {
   namespace Ternary {
     class Hasse {
     public:
@@ -24,7 +23,10 @@ namespace Utilities {
         // Insert each number into its band based on the sum of its digits
         for (int i=0; i<m_nTerms; i++) {
           int termInRadixDigits = Config::RadixDigits(i);
-          m_pBands[Config::BandSum(termInRadixDigits)].push_back(termInRadixDigits);
+          // Notice that the original number (input index) is added to the band, not the termInRadixDigits.
+          // This is needed so that we can match each input term to its output term correctly.
+          // See Sequence#GenerateOutput().
+          m_pBands[Config::BandSum(termInRadixDigits)].push_back(i);   
         }
       }
 
@@ -37,12 +39,13 @@ namespace Utilities {
         }
 
         int* p = new int[m_nTerms];       // NOTE: To avoid memory leaks, this needs to be freed by the caller.
+        int* s = p;
         for (int i=0; i<m_nBands; i++) {
           for (int j=0; j< (int)m_pBands[i].size(); j++) {
             *p++ = m_pBands[i][j];
           }
         }
-        return p;
+        return s;
       }
 
       ~Hasse()
