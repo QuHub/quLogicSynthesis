@@ -22,7 +22,7 @@ namespace Synthesizer {
           // Allocate contiguous buffers.
           int nTerms = seq.m_nTerms = Helper::BitsToTerms(m_nBits);
           int nTotalTerms = nTerms * (int)m_Sequences.size();
-          int outputBlockSize = 200*1024*seq.m_nSequences;
+          int outputBlockSize = Sequence::OutputBufferSize * seq.m_nSequences;
 
           // Allocate memory for input and output for all m_sequences, each with m_nTerms
 
@@ -32,14 +32,22 @@ namespace Synthesizer {
           seq.m_pTarget     = new int[outputBlockSize];
           seq.m_pControl    = new int[outputBlockSize];
           seq.m_pOperation  = new int[outputBlockSize];
+          seq.m_pnGates     = new int[nTerms];
 
           // Copy input and output buffers to device
           for(int i=0; i<seq.m_nSequences; i++) {
-            CopyMemory(&seq.m_pIn[i*nTerms],  m_Sequences[i]->m_pIn,  nTerms * sizeof(int));
-            CopyMemory(&seq.m_pOut[i*nTerms], m_Sequences[i]->m_pOut, nTerms * sizeof(int));
+            CopyMemory(&seq.m_pIn[i*nTerms],  m_Sequences[i]->InputForRadix(),  nTerms * sizeof(int));
+            CopyMemory(&seq.m_pOut[i*nTerms], m_Sequences[i]->OutputForRadix(), nTerms * sizeof(int));
           }
 
           TransferToCuda(seq);
+          // Copy input and output buffers to device
+          for(int i=0; i<seq.m_nSequences; i++) {
+            int nGates = m_Sequences[i]->m_nGates = seq.m_pnGates[i];
+            CopyMemory(m_Sequences[i]->m_pControl, seq.m_pControl,  nGates * sizeof(int));
+            CopyMemory(m_Sequences[i]->m_pOperation, seq.m_pOperation,  nGates * sizeof(int));
+            CopyMemory(m_Sequences[i]->m_pTarget, seq.m_pTarget,  nGates * sizeof(int));
+          }
         }
 
         void TransferToCuda(CudaSequence &seq)
@@ -78,10 +86,10 @@ namespace Synthesizer {
             printf("My CUDA error: %s\n", cudaGetErrorString(error));
           }
 
-          cudaMemcpy(seq.m_pTarget, seq.m_cuTarget, seq.m_outputBlockSize, cudaMemcpyDeviceToHost);
-          cudaMemcpy(seq.m_pControl, seq.m_cuControl, seq.m_outputBlockSize, cudaMemcpyDeviceToHost);
-          cudaMemcpy(seq.m_pOperation, seq.m_cuOperation, seq.m_outputBlockSize, cudaMemcpyDeviceToHost);
-          cudaMemcpy(seq.m_pnGates, seq.m_cuGates, seq.m_nSequences * sizeof(INT), cudaMemcpyDeviceToHost);
+          cudaMemcpy(seq.m_pTarget, seq.m_cuTarget, outputBlockSize, cudaMemcpyDeviceToHost);
+          cudaMemcpy(seq.m_pControl, seq.m_cuControl, outputBlockSize, cudaMemcpyDeviceToHost);
+          cudaMemcpy(seq.m_pOperation, seq.m_cuOperation, outputBlockSize, cudaMemcpyDeviceToHost);
+          cudaMemcpy(seq.m_pnGates, seq.m_cuGates, seq.m_nSequences * sizeof(int), cudaMemcpyDeviceToHost);
 
           // TODO: free up device memory
           cudaFree(pcuSeq);

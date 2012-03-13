@@ -33,18 +33,9 @@ int gBitMask[] = {3, 3<<2, 3<<4, 3<<6, 3<<8, 3<<10, 3<<12, 3<<14, 3<<16};
 __device__ __constant__ int gcuBitMask[sizeof(gBitMask)];
 __device__ __constant__ int gcuTernaryOps[5][3];
 __device__ __constant__ int gcuOpMap[3][3];
-__device__ void Process(int inTerm, int outTerm, int nBits, PINT gBitMask, PINT pTarget, PINT pControl, PINT pOperation);
-__device__ int Propagate(int outTerm);
-__global__ void cuSynthesizeKernel(CudaSequence *data);
 
-void SynthesizeKernel(CudaSequence *pcuSeq)
-{
-  // Constants are scoped to a file, and cannot use extern..
-  CS( cudaMemcpyToSymbol(gcuBitMask, gBitMask, sizeof(gBitMask)) );
-  CS( cudaMemcpyToSymbol(gcuTernaryOps, gTernaryOps, sizeof(gTernaryOps)) );
-  CS( cudaMemcpyToSymbol(gcuOpMap, gOpMap, sizeof(gOpMap)) );
-  cuSynthesizeKernel<<<1, 1>>>(pcuSeq);
-}
+__device__ void Process(int inTerm, int outTerm, int nBits, PINT gBitMask, PINT pTarget, PINT pControl, PINT pOperation);
+
 
 __global__ void cuSynthesizeKernel(CudaSequence *data)
 {
@@ -55,12 +46,12 @@ __global__ void cuSynthesizeKernel(CudaSequence *data)
 
   for(int i=0; i<seq.m_nTerms; i++) {
     Process(seq.m_cuIn[index+i], 
-            seq.m_cuOut[index+i], 
-            seq.m_nBits,
-            &seq.m_cuGates[index],
-            &seq.m_cuTarget[index], 
-            &seq.m_cuControl[index],
-            &seq.m_cuOperation[index]
+      seq.m_cuOut[index+i], 
+      seq.m_nBits,
+      &seq.m_cuGates[index],
+      &seq.m_cuTarget[index], 
+      &seq.m_cuControl[index],
+      &seq.m_cuOperation[index]
     );
   }
 
@@ -71,11 +62,33 @@ __global__ void cuSynthesizeKernel(CudaSequence *data)
 
 }
 
+void SynthesizeKernel(CudaSequence *pcuSeq)
+{
+  // Constants are scoped to a file, and cannot use extern..
+  CS( cudaMemcpyToSymbol(gcuBitMask, gBitMask, sizeof(gBitMask)) );
+  CS( cudaMemcpyToSymbol(gcuTernaryOps, gTernaryOps, sizeof(gTernaryOps)) );
+  CS( cudaMemcpyToSymbol(gcuOpMap, gOpMap, sizeof(gOpMap)) );
+  cuSynthesizeKernel<<<1, 1>>>(pcuSeq);
+}
+
+__device__ int Propagate(int outTerm, PINT pTarget, PINT pOperation, PINT pControl, int nGates)
+{
+  // Apply current list of gates..
+  for (int i=0; i<nGates; i++) {
+    int mask = gcuBitMask[pTarget[i]];
+    if ( pControl[i] == (~mask & outTerm) ) {               // Control Bits for gate matches All bits in output excluding target bits.
+      int val = (mask & outTerm) >> 2*pTarget[i];           // Bring target bits to lower two bits.
+      val = (gcuTernaryOps[pOperation[i]][val] << 2*pTarget[i]);       // Apply operation on bits.
+      outTerm = (~mask & outTerm) | val;
+    }
+  }
+
+  return outTerm;
+}
+
 __device__ void Process(int inTerm, int outTerm, int nBits, PINT pnGates, PINT pTarget, PINT pControl, PINT pOperation)
 {
-  printf("I am in cuda");
-
-  outTerm = Propagate(outTerm);
+  outTerm = Propagate(outTerm, pTarget, pOperation, pControl, *pnGates);
 
   //  process low (output) to high (input) transitions first then high to low
   for(int dir=1; dir>-2; dir-=2) {
@@ -87,17 +100,12 @@ __device__ void Process(int inTerm, int outTerm, int nBits, PINT pnGates, PINT p
       if ( dir * (inBit - outBit) > 0) {         // Difference? Yes!
         pTarget   [*pnGates] = i;                           // Save index of target bits
         pControl  [*pnGates] = ~gcuBitMask[i] & outTerm;      // For now, it is everything except target bits is a control bit
-        pOperation[*pnGates++] = gcuOpMap[BIT(inTerm,i)][BIT(outTerm,i)];  // Find the appropriate operation. 
+        pOperation[*pnGates] = gcuOpMap[BIT(inTerm,i)][BIT(outTerm,i)];  // Find the appropriate operation. 
+        (*pnGates)++;
         outTerm = (~gcuBitMask[i] & outTerm) | (gcuBitMask[i] & inTerm);
       }
     }
   }
 }
 
-
-__device__ int Propagate(int outTerm)
-{
-
-  return 0;
-}
 
