@@ -19,4 +19,6 @@ namespace Config {
   int RadixDigits(int term) {return m_pConfig->RadixDigits(term);}
   int BandSum(int term) {return m_pConfig->BandSum(term);}
   int Radix() {return m_pConfig->m_Radix;}
+  int RadixBits() {return m_pConfig->m_RadixBits;}
+  int RadixMask() {return m_pConfig->m_RadixMask;}
 }

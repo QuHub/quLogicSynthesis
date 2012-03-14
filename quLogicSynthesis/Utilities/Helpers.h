@@ -8,4 +8,5 @@ namespace Helper {
   void DumpSequence(Sequence *pSeq);
   void DumpSequence(int* pOut, int nCount);
   int inline BitsToTerms(int nBits) {return (int)pow((float)Config::Radix(), nBits);}
+  int InRadixDigits(int term);
 }

@@ -41,7 +41,6 @@ __global__ void cuSynthesizeKernel(CudaSequence *data)
 {
   CudaSequence seq = data[0];
   int index = blockIdx.x * seq.m_outputBlockSize;
-  printf("nTerms: %d", seq.m_nTerms);
   seq.m_cuGates[index] = 0;
 
   for(int i=0; i<seq.m_nTerms; i++) {
@@ -88,7 +87,10 @@ __device__ int Propagate(int outTerm, PINT pTarget, PINT pOperation, PINT pContr
 
 __device__ void Process(int inTerm, int outTerm, int nBits, PINT pnGates, PINT pTarget, PINT pControl, PINT pOperation)
 {
+  printf("\n****** In,out:[%d, %d] ", inTerm, outTerm);
   outTerm = Propagate(outTerm, pTarget, pOperation, pControl, *pnGates);
+
+  printf("After Propgate: %d \n", outTerm);
 
   //  process low (output) to high (input) transitions first then high to low
   for(int dir=1; dir>-2; dir-=2) {
@@ -101,8 +103,10 @@ __device__ void Process(int inTerm, int outTerm, int nBits, PINT pnGates, PINT p
         pTarget   [*pnGates] = i;                           // Save index of target bits
         pControl  [*pnGates] = ~gcuBitMask[i] & outTerm;      // For now, it is everything except target bits is a control bit
         pOperation[*pnGates] = gcuOpMap[BIT(inTerm,i)][BIT(outTerm,i)];  // Find the appropriate operation. 
+        printf("dir(%d) [C,T,O] [%d, %d, %d] ", dir, pControl[*pnGates], i, pOperation[*pnGates]);
         (*pnGates)++;
         outTerm = (~gcuBitMask[i] & outTerm) | (gcuBitMask[i] & inTerm);
+        printf(" => %d \n", outTerm);
       }
     }
   }
