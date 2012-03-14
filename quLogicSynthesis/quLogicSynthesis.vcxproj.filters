@@ -93,6 +93,9 @@
     <ClInclude Include="Synthesizers\Ternary\Cuda\CudaSequence.h">
       <Filter>Synthesizers\Ternary\Cuda</Filter>
     </ClInclude>
+    <ClInclude Include="Utilities\Results.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">

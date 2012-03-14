@@ -4,6 +4,7 @@ namespace Helper {
 }
 
 #include "Config.h"
+#include <windows.h>
 class Sequence {
 public:
   static const int OutputBufferSize = 200*1024;
@@ -11,7 +12,6 @@ public:
   int* m_pOut;
   int  m_nBits;
   int  m_nTerms;
-  int  m_nQuantumCost;
   int  m_nGates;
   int* m_pControl;
   int* m_pTarget;
@@ -19,7 +19,23 @@ public:
   int* m_pInputRadixBuffer;
   int* m_pOutputRadixBuffer;
 
-  Sequence() {
+  Sequence(){Init();}
+
+  Sequence(const Sequence& base) {
+    Init();
+    m_nBits = base.m_nBits;
+    m_nTerms = base.m_nTerms;
+    m_nGates = base.m_nGates;
+    m_pIn = new int[m_nTerms];
+    m_pOut = new int[m_nTerms];
+    CopyMemory(m_pTarget, base.m_pTarget, OutputBufferSize);
+    CopyMemory(m_pControl, base.m_pControl, OutputBufferSize);
+    CopyMemory(m_pOperation, base.m_pOperation, OutputBufferSize);
+    CopyMemory(m_pIn, base.m_pIn, m_nTerms * sizeof(int));
+    CopyMemory(m_pOut, base.m_pOut, m_nTerms * sizeof(int));
+  }
+
+  void Init() {
     m_pInputRadixBuffer = m_pOutputRadixBuffer = NULL;
     m_pControl = new int[OutputBufferSize];
     m_pOperation = new int[OutputBufferSize];
@@ -65,6 +81,11 @@ public:
     return m_pOutputRadixBuffer;
   }
 
+  int QuantumCost()
+  {
+    return m_nGates;
+  }
+
   ~Sequence()
   {
     delete m_pIn;
@@ -72,5 +93,9 @@ public:
     delete m_pControl;
     delete m_pTarget;
     delete m_pOperation;
+    if (m_pInputRadixBuffer != NULL)
+      delete m_pInputRadixBuffer;
+    if (m_pOutputRadixBuffer != NULL)
+      delete m_pOutputRadixBuffer;
   }
 };

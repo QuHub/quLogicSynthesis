@@ -8,3 +8,4 @@ ipch*
 x64*
 out.txt
 result*
+SaveData/*

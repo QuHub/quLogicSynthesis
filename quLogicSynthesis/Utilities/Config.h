@@ -34,4 +34,5 @@ namespace Config {
   int RadixDigits(int term);
   int BandSum(int term);
   int Radix();
+  static int Date= 23;
 }
