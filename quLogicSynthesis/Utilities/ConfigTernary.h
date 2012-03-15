@@ -21,7 +21,7 @@ namespace Config {
 
     class Core : public Config::Core {
     public:
-      Core() : Config::Core() {
+      Core(int nBits) : Config::Core(nBits) {
         m_RadixBits = RadixBits;
         m_RadixMask = RadixMask;
         m_Radix = Radix;

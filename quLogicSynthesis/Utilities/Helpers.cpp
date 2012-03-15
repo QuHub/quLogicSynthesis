@@ -30,7 +30,7 @@ namespace Helper {
   {
     int result = 0;
 
-    for(int i=0; i<sizeof(int)/Config::RadixBits(); i++) {
+    for(int i=0; i<8*sizeof(int)/Config::RadixBits(); i++) {
       int digit = (term >> i*Config::RadixBits()) & Config::RadixMask();
       result += digit * pow(10.0, i);
     }

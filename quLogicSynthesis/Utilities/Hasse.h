@@ -16,8 +16,8 @@ namespace Utility {
       {
         // Allocate space for bands
         m_nBits = nBits;
-        m_nTerms = (int)pow((double)Config::Ternary::Radix, nBits);
-        m_nBands = (Config::Ternary::Radix - 1) * nBits + 1; // see comment below about nBands
+        m_nTerms = (int)pow((double)Config::Radix(), nBits);
+        m_nBands = (Config::Radix() - 1) * nBits + 1; // see comment below about nBands
         m_pBands = new vector<int>[m_nBands];               
 
         // Insert each number into its band based on the sum of its digits
