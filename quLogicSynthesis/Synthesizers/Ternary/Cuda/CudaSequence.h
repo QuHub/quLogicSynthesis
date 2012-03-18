@@ -1,6 +1,6 @@
 #pragma once
 #include <Windows.h>
-#define NUMBER_OF_CUDA_BLOCKS 512
+#define NUMBER_OF_CUDA_BLOCKS 512 
 typedef struct  
 {
   PINT m_pIn, m_pOut, m_pTarget, m_pControl, m_pOperation;
