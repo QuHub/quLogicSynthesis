@@ -85,6 +85,11 @@ namespace Synthesizer {
 
           for(int i=0; i<m_cuSeq.m_nSequences; i++) {
             int nGates = m_Sequences[i]->m_nGates = m_cuSeq.m_pnGates[i];
+            LPBYTE pDst = m_Sequences[i]->m_pTarget;
+            LPBYTE pSrc = &m_cuSeq.m_pTarget   [i*MAX_GATES];
+            ZeroMemory(m_Sequences[i]->m_pControl, by(nGates));
+            ZeroMemory(m_Sequences[i]->m_pTarget, nGates);
+            ZeroMemory(m_Sequences[i]->m_pOperation, nGates);
             CopyMemory(m_Sequences[i]->m_pControl,   &m_cuSeq.m_pControl  [i*MAX_GATES], by(nGates));
             CopyMemory(m_Sequences[i]->m_pTarget,    &m_cuSeq.m_pTarget   [i*MAX_GATES], nGates);
             CopyMemory(m_Sequences[i]->m_pOperation, &m_cuSeq.m_pOperation[i*MAX_GATES], nGates);
@@ -110,8 +115,8 @@ namespace Synthesizer {
           m_cuSeq.m_pOut        = AllocateMemory(by(m_nTotalTransferTerms));
           m_cuSeq.m_pnGates     = AllocateMemory(m_cuSeq.m_nTerms * sizeof(int));
           m_cuSeq.m_pControl    = AllocateMemory(by(m_nTotalTransferGates));
-          m_cuSeq.m_pOperation  = AllocateMemory(m_nTotalTransferGates);
-          m_cuSeq.m_pTarget     = AllocateMemory(m_nTotalTransferGates);
+          m_cuSeq.m_pOperation  = (LPBYTE)AllocateMemory(m_nTotalTransferGates);
+          m_cuSeq.m_pTarget     = (LPBYTE)AllocateMemory(m_nTotalTransferGates);
 
           CS( cudaMalloc( (void**)&m_cuSeq.m_cuIn, by(m_nTotalTransferTerms)) );
           CS( cudaMalloc( (void**)&m_cuSeq.m_cuOut, by(m_nTotalTransferTerms)) );

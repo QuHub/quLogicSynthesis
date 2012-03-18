@@ -3,9 +3,12 @@
 #define NUMBER_OF_CUDA_BLOCKS 512 
 typedef struct  
 {
-  PINT m_pIn, m_pOut, m_pTarget, m_pControl, m_pOperation;
+  PINT m_pIn, m_pOut, m_pControl;
   PINT m_cuIn, m_cuOut, m_cuControl; 
-  PBYTE  m_cuTarget, m_cuOperation;
+
+  LPBYTE m_pTarget, m_pOperation;
+  LPBYTE  m_cuTarget, m_cuOperation;
+
   PINT m_pnGates, m_cuGates;
   PINT m_pgBitMask;
   PINT m_pgOpMapi[3], m_pgTernaryOps[3];
