@@ -44,4 +44,5 @@ namespace Config {
   int Bits();
   int RadixMask();
   static int Date= 23;
+  static int NumberOfCudaBlocks = 100;
 }

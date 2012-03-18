@@ -166,6 +166,7 @@
     <ClInclude Include="Synthesizers\Ternary\Cuda\cuda_debug.h" />
     <ClInclude Include="Utilities\Config.h" />
     <ClInclude Include="Utilities\ConfigTernary.h" />
+    <ClInclude Include="Utilities\FileSrc.h" />
     <ClInclude Include="Utilities\Hasse.h" />
     <ClInclude Include="Utilities\Helpers.h" />
     <ClInclude Include="Utilities\Results.h" />

@@ -7,7 +7,8 @@ namespace Helper {
 #include <windows.h>
 class Sequence {
 public:
-  static const int OutputBufferSize = 200*1024;
+  static const int MaxGatesAllowed = 1024;  // Size of output buffer
+  static const int OutputBufferBytes = sizeof(int) * MaxGatesAllowed;  // Size of output buffer
   int* m_pIn;
   int* m_pOut;
   int  m_nBits;
@@ -28,18 +29,18 @@ public:
     m_nGates = base.m_nGates;
     m_pIn = new int[m_nTerms];
     m_pOut = new int[m_nTerms];
-    CopyMemory(m_pTarget, base.m_pTarget, OutputBufferSize);
-    CopyMemory(m_pControl, base.m_pControl, OutputBufferSize);
-    CopyMemory(m_pOperation, base.m_pOperation, OutputBufferSize);
+    CopyMemory(m_pTarget, base.m_pTarget, OutputBufferBytes);
+    CopyMemory(m_pControl, base.m_pControl, OutputBufferBytes);
+    CopyMemory(m_pOperation, base.m_pOperation, OutputBufferBytes);
     CopyMemory(m_pIn, base.m_pIn, m_nTerms * sizeof(int));
     CopyMemory(m_pOut, base.m_pOut, m_nTerms * sizeof(int));
   }
 
   void Init() {
     m_pInputRadixBuffer = m_pOutputRadixBuffer = NULL;
-    m_pControl = new int[OutputBufferSize];
-    m_pOperation = new int[OutputBufferSize];
-    m_pTarget = new int[OutputBufferSize];
+    m_pControl = (LPINT)VirtualAlloc(NULL,OutputBufferBytes, MEM_COMMIT, PAGE_READWRITE);
+    m_pOperation = (LPINT)VirtualAlloc(NULL,OutputBufferBytes, MEM_COMMIT, PAGE_READWRITE);
+    m_pTarget = (LPINT)VirtualAlloc(NULL,OutputBufferBytes, MEM_COMMIT, PAGE_READWRITE);
   }
 
   void GenerateOutput(int* pOut)
@@ -90,9 +91,9 @@ public:
   {
     delete m_pIn;
     delete m_pOut;
-    delete m_pControl;
-    delete m_pTarget;
-    delete m_pOperation;
+    VirtualFree(m_pControl, OutputBufferBytes,MEM_RELEASE); 
+    VirtualFree(m_pTarget, OutputBufferBytes,MEM_RELEASE); 
+    VirtualFree(m_pOperation, OutputBufferBytes,MEM_RELEASE); 
     if (m_pInputRadixBuffer != NULL)
       delete m_pInputRadixBuffer;
     if (m_pOutputRadixBuffer != NULL)

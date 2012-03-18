@@ -3,6 +3,7 @@
 #include "Generators/GeneratorCore.h"
 #include "Synthesizers/SynthesizerCore.h"
 #include "Sequence.h"
+#include "Synthesizers/Ternary/Cuda/CudaSequence.h"
 using namespace System;
 using namespace System::IO;
 
@@ -24,7 +25,7 @@ namespace Conductor {
       m_pSynthesizer = pSyn;
       m_nRuns = 1;
       m_nGenerations = 1;
-      m_nPopulation = 1;
+      m_nPopulation = NUMBER_OF_CUDA_BLOCKS;
       m_pSeq = new Sequence *[2*m_nPopulation]; // twice as many to hold children as well.
     }
 
@@ -39,7 +40,7 @@ namespace Conductor {
     {
       for(int i=0; i<m_nPopulation; i++) {
         m_pSeq[i] = m_pGenerator->GetSequence();
-        Helper::DumpSequence(m_pSeq[i]);
+        //Helper::DumpSequence(m_pSeq[i]);
       }
     }
 
@@ -58,7 +59,6 @@ namespace Conductor {
       s.stopTimer();
       PrintResult(1, s.getElapsedTime());
     }
-      
 
     void DoGeneration(int gen)
     {
@@ -73,11 +73,11 @@ namespace Conductor {
         int qCost = m_pSeq[i]->QuantumCost();
         m_ParentTotalFitness += qCost;
         if ( (gen % 10) == 0)
-          Console::Write("Gen: {0}, BestCost: {1}\r", gen, m_BestFit);
+          Console::Write("Gen: {0}, BestCost: {1}\n", gen, m_BestFit);
 
         if (m_BestFit > qCost) {
           m_BestFit = qCost;
-          Console::WriteLine("Gen: {0}, BestCost: {1}", gen, m_BestFit);
+          Console::WriteLine("Gen: {0}, BestCost: {1}\n", gen, m_BestFit);
           SaveResult(m_pSeq[i]);
         }
       }

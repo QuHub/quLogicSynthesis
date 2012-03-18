@@ -1,5 +1,6 @@
 #pragma once
 #include <Windows.h>
+#define NUMBER_OF_CUDA_BLOCKS 512
 typedef struct  
 {
   PINT m_pIn, m_pOut, m_pTarget, m_pControl, m_pOperation;
@@ -8,7 +9,7 @@ typedef struct
   PINT m_pgBitMask;
   PINT m_pgOpMapi[3], m_pgTernaryOps[3];
   int m_nTerms, m_nBits;
-  int m_outputBlockSize;
+  int m_maxGatesAllowed;
   int m_nSequences;
   int m_nVectorSizeBytes;
 } CudaSequence;
