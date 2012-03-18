@@ -34,7 +34,7 @@ __device__ __constant__ int gcuBitMask[sizeof(gBitMask)];
 __device__ __constant__ int gcuTernaryOps[5][3];
 __device__ __constant__ int gcuOpMap[3][3];
 
-__device__ void Process(int inTerm, int outTerm, int nBits, PINT gBitMask, PINT pTarget, PINT pControl, PINT pOperation);
+__device__ void Process(int inTerm, int outTerm, int nBits, PINT gBitMask, PINT pControl, PBYTE pTarget, PBYTE pOperation);
 
 
 __global__ void cuSynthesizeKernel(CudaSequence *data)
@@ -49,8 +49,8 @@ __global__ void cuSynthesizeKernel(CudaSequence *data)
       seq.m_cuOut[inputIndex+i], 
       seq.m_nBits,
       &seq.m_cuGates[blockIdx.x],
-      &seq.m_cuTarget[outputIndex], 
       &seq.m_cuControl[outputIndex],
+      &seq.m_cuTarget[outputIndex], 
       &seq.m_cuOperation[outputIndex]
     );
   }
@@ -66,7 +66,7 @@ void SynthesizeKernel(CudaSequence *pcuSeq)
   cuSynthesizeKernel<<<NUMBER_OF_CUDA_BLOCKS, 1>>>(pcuSeq);
 }
 
-__device__ int Propagate(int outTerm, PINT pTarget, PINT pOperation, PINT pControl, int nGates)
+__device__ int Propagate(int outTerm, PINT pControl, PBYTE pTarget, PBYTE pOperation, int nGates)
 {
   // Apply current list of gates..
   for (int i=0; i<nGates; i++) {
@@ -81,10 +81,10 @@ __device__ int Propagate(int outTerm, PINT pTarget, PINT pOperation, PINT pContr
   return outTerm;
 }
 
-__device__ void Process(int inTerm, int outTerm, int nBits, PINT pnGates, PINT pTarget, PINT pControl, PINT pOperation)
+__device__ void Process(int inTerm, int outTerm, int nBits, PINT pnGates, PINT pControl, PBYTE pTarget,  PBYTE pOperation)
 {
   //printf("\n****** In,out:[%d, %d] ", inTerm, outTerm);
-  outTerm = Propagate(outTerm, pTarget, pOperation, pControl, *pnGates);
+  outTerm = Propagate(outTerm, pControl, pTarget, pOperation, *pnGates);
 
   //printf("After Propgate: %d \n", outTerm);
 
@@ -107,5 +107,3 @@ __device__ void Process(int inTerm, int outTerm, int nBits, PINT pnGates, PINT p
     }
   }
 }
-
-

@@ -7,16 +7,14 @@ namespace Helper {
 #include <windows.h>
 class Sequence {
 public:
-  static const int MaxGatesAllowed = 1024;  // Size of output buffer
-  static const int OutputBufferBytes = sizeof(int) * MaxGatesAllowed;  // Size of output buffer
   int* m_pIn;
   int* m_pOut;
   int  m_nBits;
   int  m_nTerms;
   int  m_nGates;
   int* m_pControl;
-  int* m_pTarget;
-  int* m_pOperation;
+  byte* m_pTarget;
+  byte* m_pOperation;
   int* m_pInputRadixBuffer;
   int* m_pOutputRadixBuffer;
 
@@ -29,18 +27,18 @@ public:
     m_nGates = base.m_nGates;
     m_pIn = new int[m_nTerms];
     m_pOut = new int[m_nTerms];
-    CopyMemory(m_pTarget, base.m_pTarget, OutputBufferBytes);
-    CopyMemory(m_pControl, base.m_pControl, OutputBufferBytes);
-    CopyMemory(m_pOperation, base.m_pOperation, OutputBufferBytes);
+    CopyMemory(m_pControl, base.m_pControl, by(MAX_GATES));
+    CopyMemory(m_pTarget, base.m_pTarget, MAX_GATES);
+    CopyMemory(m_pOperation, base.m_pOperation, MAX_GATES);
     CopyMemory(m_pIn, base.m_pIn, m_nTerms * sizeof(int));
     CopyMemory(m_pOut, base.m_pOut, m_nTerms * sizeof(int));
   }
 
   void Init() {
     m_pInputRadixBuffer = m_pOutputRadixBuffer = NULL;
-    m_pControl = (LPINT)VirtualAlloc(NULL,OutputBufferBytes, MEM_COMMIT, PAGE_READWRITE);
-    m_pOperation = (LPINT)VirtualAlloc(NULL,OutputBufferBytes, MEM_COMMIT, PAGE_READWRITE);
-    m_pTarget = (LPINT)VirtualAlloc(NULL,OutputBufferBytes, MEM_COMMIT, PAGE_READWRITE);
+    m_pControl = (LPINT)VirtualAlloc(NULL,by(MAX_GATES), MEM_COMMIT, PAGE_READWRITE);
+    m_pOperation = (LPBYTE)VirtualAlloc(NULL,MAX_GATES, MEM_COMMIT, PAGE_READWRITE);
+    m_pTarget = (LPBYTE)VirtualAlloc(NULL,MAX_GATES, MEM_COMMIT, PAGE_READWRITE);
   }
 
   void GenerateOutput(int* pOut)
@@ -91,9 +89,9 @@ public:
   {
     delete m_pIn;
     delete m_pOut;
-    VirtualFree(m_pControl, OutputBufferBytes,MEM_RELEASE); 
-    VirtualFree(m_pTarget, OutputBufferBytes,MEM_RELEASE); 
-    VirtualFree(m_pOperation, OutputBufferBytes,MEM_RELEASE); 
+    VirtualFree(m_pControl, by(MAX_GATES),MEM_RELEASE); 
+    VirtualFree(m_pTarget, MAX_GATES,MEM_RELEASE); 
+    VirtualFree(m_pOperation, MAX_GATES,MEM_RELEASE); 
     if (m_pInputRadixBuffer != NULL)
       delete m_pInputRadixBuffer;
     if (m_pOutputRadixBuffer != NULL)
