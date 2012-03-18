@@ -36,21 +36,13 @@ namespace Synthesizer {
           m_nTotalTransferGates = MAX_GATES * m_cuSeq.m_nSequences; 
         }
 
-        void Process(int device)
+        void TransferToDevice()
         {
-          // NOTE: This is essential for Parallel Nsight debugging, since GPU1 is used to debug the
-          // code, while GPU0 is used for the display.
-          cudaSetDevice(device);  
-          InitTransferPacket();
-
-          // Allocate memory for input and output for all m_m_cuSequences, each with m_nTerms
-          m_cuSeq.m_nMaxGates = Sequence::MaxGatesAllowed;
           AllocateTransferMemory(m_cuSeq);
 
           // Copy input and output buffers to device
-          CudaSequence *pcuSeq;
-          CS( cudaMalloc( (void**)&pcuSeq, sizeof(CudaSequence)) );
-          CS( cudaMemcpy(pcuSeq, &m_cuSeq, sizeof(m_cuSeq), cudaMemcpyHostToDevice) );
+          CS( cudaMalloc( (void**)&m_pcuPacket, sizeof(CudaSequence)) );
+          CS( cudaMemcpy(m_pcuPacket, &m_cuSeq, sizeof(m_cuSeq), cudaMemcpyHostToDevice) );
 
           int vectorLength = m_nTerms * sizeof(int);
           for(int i=0; i<m_cuSeq.m_nSequences; i++) {
@@ -60,8 +52,17 @@ namespace Synthesizer {
 
           CS( cudaMemcpy(m_cuSeq.m_cuIn, m_cuSeq.m_pIn, by(m_nTotalTransferTerms), cudaMemcpyHostToDevice ));
           CS( cudaMemcpy(m_cuSeq.m_cuOut, m_cuSeq.m_pOut, by(m_nTotalTransferTerms), cudaMemcpyHostToDevice ));
+        }
 
-          SynthesizeKernel(pcuSeq);
+        void Process(int device)
+        {
+          // NOTE: This is essential for Parallel Nsight debugging, since GPU1 is used to debug the
+          // code, while GPU0 is used for the display.
+          cudaSetDevice(device);  
+          InitTransferPacket();
+          TransferToDevice();
+
+          SynthesizeKernel(m_pcuPacket);
           //cudaThreadSynchronize();
 
           // check for error
@@ -71,6 +72,11 @@ namespace Synthesizer {
             printf("My CUDA error: %s\n", cudaGetErrorString(error));
           }
 
+          TransferFromDevice();
+        }
+
+        void TransferFromDevice()
+        {
           // Copy input and output buffers to device
           int outputBufferBytes = Sequence::OutputBufferBytes * m_cuSeq.m_nSequences;
           CS( cudaMemcpy(m_cuSeq.m_pnGates, m_cuSeq.m_cuGates, m_cuSeq.m_nSequences * sizeof(int), cudaMemcpyDeviceToHost) );
@@ -86,7 +92,7 @@ namespace Synthesizer {
             CopyMemory(m_Sequences[i]->m_pOperation, &m_cuSeq.m_pOperation[i*m_cuSeq.m_nMaxGates], nBytes);
           }
 
-          CS( cudaFree(pcuSeq) );
+          CS( cudaFree(m_pcuPacket) );
           FreeTransferMemory(m_cuSeq);
         }
 
