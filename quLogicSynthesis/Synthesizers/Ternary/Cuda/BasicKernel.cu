@@ -41,7 +41,7 @@ __global__ void cuSynthesizeKernel(CudaSequence *data)
 {
   CudaSequence seq = data[0];
   int inputIndex =  blockIdx.x * seq.m_nTerms; 
-  int outputIndex = blockIdx.x * seq.m_maxGatesAllowed; 
+  int outputIndex = blockIdx.x * seq.m_nMaxGates; 
   seq.m_cuGates[blockIdx.x] = 0;
 
   for(int i=0; i<seq.m_nTerms; i++) {

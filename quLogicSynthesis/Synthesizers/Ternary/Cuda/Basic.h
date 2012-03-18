@@ -11,40 +11,55 @@ namespace Synthesizer {
   namespace Ternary {
     namespace Cuda {
       class Basic : public Core {
+        CudaSequence m_cuSeq;
+        CudaSequence* m_pcuPacket;
+        int m_nTotalTransferTerms;
+        int m_nTotalTransferGates;
+        int m_nTerms;
+
       public:
         Basic(int nBits) : Core(nBits) { }
 
+
         void Process()
+        {
+          Process(1);
+        }
+        void InitTransferPacket()
+        {
+          m_nTerms = m_cuSeq.m_nTerms = Helper::BitsToTerms(m_nBits);
+          m_cuSeq.m_nBits = m_nBits;
+          m_cuSeq.m_nSequences = (int)m_Sequences.size();
+          m_cuSeq.m_nMaxGates = MAX_GATES;
+
+          m_nTotalTransferTerms = m_nTerms  * m_cuSeq.m_nSequences;
+          m_nTotalTransferGates = MAX_GATES * m_cuSeq.m_nSequences; 
+        }
+
+        void Process(int device)
         {
           // NOTE: This is essential for Parallel Nsight debugging, since GPU1 is used to debug the
           // code, while GPU0 is used for the display.
-          cudaSetDevice(1);  
+          cudaSetDevice(device);  
+          InitTransferPacket();
 
-          CudaSequence seq;
-          seq.m_nSequences = (int)m_Sequences.size();
-
-          // Allocate contiguous buffers.
-          int nTerms = seq.m_nTerms = Helper::BitsToTerms(m_nBits);
-          int nTotalTerms = nTerms * (int)m_Sequences.size();
-
-          // Allocate memory for input and output for all m_sequences, each with m_nTerms
-          seq.m_nBits = m_nBits;
-          seq.m_maxGatesAllowed = Sequence::MaxGatesAllowed;
-          AllocateTransferMemory(seq);
+          // Allocate memory for input and output for all m_m_cuSequences, each with m_nTerms
+          m_cuSeq.m_nMaxGates = Sequence::MaxGatesAllowed;
+          AllocateTransferMemory(m_cuSeq);
 
           // Copy input and output buffers to device
           CudaSequence *pcuSeq;
           CS( cudaMalloc( (void**)&pcuSeq, sizeof(CudaSequence)) );
-          CS( cudaMemcpy(pcuSeq, &seq, sizeof(seq), cudaMemcpyHostToDevice) );
+          CS( cudaMemcpy(pcuSeq, &m_cuSeq, sizeof(m_cuSeq), cudaMemcpyHostToDevice) );
 
-          int vectorLength = nTerms * sizeof(int);
-          for(int i=0; i<seq.m_nSequences; i++) {
-            CopyMemory(&seq.m_pIn[i*nTerms], m_Sequences[i]->InputForRadix(), vectorLength );
-            CopyMemory(&seq.m_pOut[i*nTerms], m_Sequences[i]->OutputForRadix(), vectorLength );
+          int vectorLength = m_nTerms * sizeof(int);
+          for(int i=0; i<m_cuSeq.m_nSequences; i++) {
+            CopyMemory(&m_cuSeq.m_pIn[i*m_nTerms], m_Sequences[i]->InputForRadix(), vectorLength );
+            CopyMemory(&m_cuSeq.m_pOut[i*m_nTerms], m_Sequences[i]->OutputForRadix(), vectorLength );
           }
 
-          CS( cudaMemcpy(seq.m_cuIn, seq.m_pIn, nTotalTerms * sizeof(int), cudaMemcpyHostToDevice ));
-          CS( cudaMemcpy(seq.m_cuOut, seq.m_pOut, nTotalTerms * sizeof(int), cudaMemcpyHostToDevice ));
+          CS( cudaMemcpy(m_cuSeq.m_cuIn, m_cuSeq.m_pIn, by(m_nTotalTransferTerms), cudaMemcpyHostToDevice ));
+          CS( cudaMemcpy(m_cuSeq.m_cuOut, m_cuSeq.m_pOut, by(m_nTotalTransferTerms), cudaMemcpyHostToDevice ));
 
           SynthesizeKernel(pcuSeq);
           //cudaThreadSynchronize();
@@ -57,22 +72,22 @@ namespace Synthesizer {
           }
 
           // Copy input and output buffers to device
-          int outputBufferBytes = Sequence::OutputBufferBytes * seq.m_nSequences;
-          CS( cudaMemcpy(seq.m_pnGates, seq.m_cuGates, seq.m_nSequences * sizeof(int), cudaMemcpyDeviceToHost) );
-          CS( cudaMemcpy(seq.m_pControl, seq.m_cuControl, outputBufferBytes, cudaMemcpyDeviceToHost) );
-          CS( cudaMemcpy(seq.m_pOperation, seq.m_cuOperation, outputBufferBytes, cudaMemcpyDeviceToHost) );
-          CS( cudaMemcpy(seq.m_pTarget, seq.m_cuTarget, outputBufferBytes, cudaMemcpyDeviceToHost) );
+          int outputBufferBytes = Sequence::OutputBufferBytes * m_cuSeq.m_nSequences;
+          CS( cudaMemcpy(m_cuSeq.m_pnGates, m_cuSeq.m_cuGates, m_cuSeq.m_nSequences * sizeof(int), cudaMemcpyDeviceToHost) );
+          CS( cudaMemcpy(m_cuSeq.m_pControl, m_cuSeq.m_cuControl, outputBufferBytes, cudaMemcpyDeviceToHost) );
+          CS( cudaMemcpy(m_cuSeq.m_pOperation, m_cuSeq.m_cuOperation, outputBufferBytes, cudaMemcpyDeviceToHost) );
+          CS( cudaMemcpy(m_cuSeq.m_pTarget, m_cuSeq.m_cuTarget, outputBufferBytes, cudaMemcpyDeviceToHost) );
 
-          for(int i=0; i<seq.m_nSequences; i++) {
-            int nGates = m_Sequences[i]->m_nGates = seq.m_pnGates[i];
+          for(int i=0; i<m_cuSeq.m_nSequences; i++) {
+            int nGates = m_Sequences[i]->m_nGates = m_cuSeq.m_pnGates[i];
             int nBytes = nGates * sizeof(int);
-            CopyMemory(m_Sequences[i]->m_pControl, &seq.m_pControl[i*seq.m_maxGatesAllowed], nBytes);
-            CopyMemory(m_Sequences[i]->m_pTarget, &seq.m_pTarget[i*seq.m_maxGatesAllowed], nBytes);
-            CopyMemory(m_Sequences[i]->m_pOperation, &seq.m_pOperation[i*seq.m_maxGatesAllowed], nBytes);
+            CopyMemory(m_Sequences[i]->m_pControl, &m_cuSeq.m_pControl[i*m_cuSeq.m_nMaxGates], nBytes);
+            CopyMemory(m_Sequences[i]->m_pTarget, &m_cuSeq.m_pTarget[i*m_cuSeq.m_nMaxGates], nBytes);
+            CopyMemory(m_Sequences[i]->m_pOperation, &m_cuSeq.m_pOperation[i*m_cuSeq.m_nMaxGates], nBytes);
           }
 
           CS( cudaFree(pcuSeq) );
-          FreeTransferMemory(seq);
+          FreeTransferMemory(m_cuSeq);
         }
 
         LPINT AllocateMemory(int size)

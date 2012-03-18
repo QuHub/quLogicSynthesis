@@ -9,6 +9,7 @@
 #include <iostream>
 using namespace std;
 
+#include "constants.h"
 #include "Utilities/Helpers.h"
 #include "Utilities/StopWatch.h"
 #include "Utilities/ConfigTernary.h"
