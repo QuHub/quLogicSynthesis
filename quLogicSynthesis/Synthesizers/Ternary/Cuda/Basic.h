@@ -24,6 +24,8 @@ namespace Synthesizer {
         void Process()
         {
           Process(1);
+          printf("Here we are in the middle of this");
+          Process(0);
         }
 
         void Process(int device)
@@ -143,7 +145,6 @@ namespace Synthesizer {
           cudaFree(m_cuSeq.m_cuGates);
           CS( cudaFree(m_pcuPacket) );
         }
-
       };
     }
   }

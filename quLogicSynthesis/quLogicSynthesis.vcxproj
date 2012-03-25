@@ -100,10 +100,12 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
+      <AdditionalIncludeDirectories>$(SolutionDir)\QRBGLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>cudart.lib</AdditionalDependencies>
+      <AdditionalDependencies>cudart.lib;QRBGLib.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <CudaCompile>
       <TargetMachinePlatform>64</TargetMachinePlatform>
@@ -156,6 +158,7 @@
   <ItemGroup>
     <ClInclude Include="Conductors\ConductorCore.h" />
     <ClInclude Include="Conductors\GeneticAlgorithm.h" />
+    <ClInclude Include="Conductors\GeneticAlgorithmParameters.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="Generators\GeneratorCore.h" />
     <ClInclude Include="Generators\Ternary\OrderedSet.h" />
@@ -172,6 +175,7 @@
     <ClInclude Include="Utilities\FileSrc.h" />
     <ClInclude Include="Utilities\Hasse.h" />
     <ClInclude Include="Utilities\Helpers.h" />
+    <ClInclude Include="Utilities\Rand.h" />
     <ClInclude Include="Utilities\Results.h" />
     <ClInclude Include="Utilities\StopWatch.h" />
   </ItemGroup>
@@ -190,6 +194,7 @@
     <ClCompile Include="Synthesizers\Ternary\Cuda\cuda_debug.cpp" />
     <ClCompile Include="Utilities\Config.cpp" />
     <ClCompile Include="Utilities\Helpers.cpp" />
+    <ClCompile Include="Utilities\Rand.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

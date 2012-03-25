@@ -1,6 +1,7 @@
 #pragma once
 #include "../GeneratorCore.h"
 #include "Utilities/Hasse.h"
+#include "Utilities/Rand.h"
 
 namespace Generator {
   namespace Ternary {
@@ -46,155 +47,52 @@ namespace Generator {
         pSeq->m_pIn = m_pHasse->GetSequence();   
         pSeq->GenerateOutput(m_pOut);
 
-
         m_pSequences.push_back(pSeq);
 
         return pSeq;
       }
-    };
-  }
-}
 
 
-#ifdef WHATEVER
-// any nBits are divided into S|R, where S is the number of covering bits, and R is the remaining Hasse Bits
-#undef M
-#define M Config::PartitionSize
-
-namespace Ternary {
-  namespace Algorithm {
-
-    class OrderedSet :   public QuLogic::QuAlgorithm
-    {
-    public:
-      int m_nBands;
-      QuLogic::CHasse *m_pInput;
-
-      OrderedSet(void)  {}
-      OrderedSet *Copy() {return new OrderedSet(*this);}
-
-      // Copy Constructor;
-      OrderedSet(const OrderedSet& base) : QuLogic::QuAlgorithm(base)
+      Sequence* SinglePointCrossOver(Sequence *p1, Sequence *p2, double prob)
       {
-        m_nBands = base.m_nBands;
-        m_pInput = NULL;
-      }
+        int cost1 = p1->QuantumCost();
+        int cost2 = p2->QuantumCost();
 
-      // <summary>
-      // 
-      // <inputs>
-      //
-      // <outputs>
-      OrderedSet(int nBits) : QuAlgorithm(nBits)
-      {
-        m_nBands = QuLogic::CHasse::nBands(nBits);
-        m_pInput = new QuLogic::CHasse(nBits, 0);
-        m_pIn = new int[m_nTerms];
-        m_pInput->GetSequence(m_pIn, 0);
+        Sequence *p = new Sequence(cost1 < cost2 ? *p1 : *p2);  // Best Fit
 
-        // Allocate array of band boundaries for crossover operations.
-        if(QuLogic::BandBoundary) return;
-        QuLogic::BandBoundary = new int[m_nBands];
+        if (Rand::Double() < prob) {
+          Sequence *q = cost1 < cost2 ? p2 : p1;                // Less Fit
 
-        for (int j=0, n=0; j < m_pInput->m_nBands; j++) {
-          n += (int)m_pInput->m_pBands[j].size();
-          QuLogic::BandBoundary[j] = n; 
-        }
-      }
+          int nFirst = m_BandBoundary[Rand::Integer(nBands())];
 
-      // <summary>
-      // 
-      // <inputs>
-      //
-      // <outputs>
-      ~OrderedSet(void) 
-      {
-        // Delete Hasse Classes;
-        delete m_pInput;
-      }
-
-
-
-      // <summary>
-      // 
-      // <inputs>
-      //
-      // <outputs>
-      void Synthesize(PINT pOut) 
-      {
-        m_pOut = pOut;
-
-        gQueue.Push(this);
-      }
-
-
-      //******************* GA Operators (CrossOver and Mutation) *************************
-      // <summary>
-      // 
-      // <inputs>
-      //
-      // <outputs>
-      QuAlgorithm *SinglePointCrossOver(QuAlgorithm *other, double Prob)
-      {
-        QuAlgorithm *p = m_QuantumCost < other->m_QuantumCost ? Copy() : other->Copy();     // Best Fit
-
-        if (Rand::NextDouble() < Prob) {
-          QuAlgorithm *q = m_QuantumCost < other->m_QuantumCost ? other : this;             // Less Fit
-
-          int nFirst = QuLogic::BandBoundary[Rand::NextInteger(m_nBands)];
-
-          CopyMemory(p->m_pIn + nFirst, q->m_pIn + nFirst, (m_nTerms - nFirst) * sizeof(int));
+          CopyMemory(p->m_pIn + nFirst, q->m_pIn + nFirst, (nTerms() - nFirst) * sizeof(int));
         }
         return p;
       }
 
-      // <summary>
-      // 
-      // <inputs>
-      //
-      // <outputs>
-      QuAlgorithm *TwoPointCrossOver(QuAlgorithm *other, double Prob)
+      Sequence* TwoPointCrossOver(Sequence *p1, Sequence *p2, double prob)
       {
-        QuAlgorithm *p = m_QuantumCost < other->m_QuantumCost ? Copy() : other->Copy();     // Best Fit
 
-
-        if (Rand::NextDouble() < Prob) {
-          QuAlgorithm *q = m_QuantumCost < other->m_QuantumCost ? other : this;             // Less Fit
-
-          int nFirst = QuLogic::BandBoundary[Rand::NextInteger(m_nBands)];
-          int nSecond = QuLogic::BandBoundary[Rand::NextInteger(m_nBands)];
-
-          if(nSecond < nFirst) {
-            int tmp = nSecond;
-            nSecond = nFirst;
-            nFirst = tmp;
-          }
-          CopyMemory(p->m_pIn + nFirst, q->m_pIn + nFirst, (nSecond - nFirst) * sizeof(int));
-        }
-        return p;
+        return NULL;
       }
 
-      // <summary>
-      // 
-      // <inputs>
-      //
-      // <outputs>
-      void Mutate(double Prob)
+      void Mutate(Sequence *p1, double prob)
       {
-        if (Rand::NextDouble() > Prob) return;
+        if (Rand::Double() > prob) return;
 
-        int band = Rand::NextInteger(m_nBands-1);
-        int nStart= QuLogic::BandBoundary[band];
-        int nEnd = QuLogic::BandBoundary[band+1];
-        int nFirst = nStart + Rand::NextInteger(nEnd - nStart);
-        int nSecond = nStart + Rand::NextInteger(nEnd - nStart);
+        int band = Rand::Integer(nBands()-1);
+        int nStart= m_BandBoundary[band];
+        int nEnd = m_BandBoundary[band+1];
+        int nFirst = nStart + Rand::Integer(nEnd - nStart);
+        int nSecond = nStart + Rand::Integer(nEnd - nStart);
 
         // Mutate through swap..
-        int tmp = m_pIn[nFirst];
-        m_pIn[nFirst] = m_pIn[nSecond];
-        m_pIn[nSecond] = tmp;
+        int tmp = p1->m_pIn[nFirst];
+        p1->m_pIn[nFirst] = p1->m_pIn[nSecond];
+        p1->m_pIn[nSecond] = tmp;
       }
     };
   }
 }
-#endif 
+
+

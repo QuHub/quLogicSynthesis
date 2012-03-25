@@ -1,0 +1,1552 @@
+Function: hwt4:4
+block: nGates Index: 81 [158]
+block: nGates Index: 7 [168]
+block: nGates Index: 3 [170]
+block: nGates Index: 28 [174]
+block: nGates Index: 49 [174]
+block: nGates Index: 8 [172]
+block: nGates Index: 1 [176]
+block: nGates Index: 5 [170]
+block: nGates Index: 39 [176]
+block: nGates Index: 56 [170]
+block: nGates Index: 17 [174]
+block: nGates Index: 12 [172]
+block: nGates Index: 33 [180]
+block: nGates Index: 87 [178]
+block: nGates Index: 50 [172]
+block: nGates Index: 42 [178]
+block: nGates Index: 31 [180]
+block: nGates Index: 92 [174]
+block: nGates Index: 21 [178]
+block: nGates Index: 76 [178]
+block: nGates Index: 98 [168]
+block: nGates Index: 38 [166]
+block: nGates Index: 11 [186]
+block: nGates Index: 27 [180]
+block: nGates Index: 40 [172]
+block: nGates Index: 35 [184]
+block: nGates Index: 26 [176]
+block: nGates Index: 63 [176]
+block: nGates Index: 23 [176]
+block: nGates Index: 95 [172]
+block: nGates Index: 22 [186]
+block: nGates Index: 62 [176]
+block: nGates Index: 86 [178]
+block: nGates Index: 51 [190]
+block: nGates Index: 16 [170]
+block: nGates Index: 53 [184]
+block: nGates Index: 9 [180]
+block: nGates Index: 15 [174]
+block: nGates Index: 43 [172]
+block: nGates Index: 60 [184]
+block: nGates Index: 79 [178]
+block: nGates Index: 59 [186]
+block: nGates Index: 47 [184]
+block: nGates Index: 74 [178]
+block: nGates Index: 78 [176]
+block: nGates Index: 44 [186]
+block: nGates Index: 37 [174]
+block: nGates Index: 10 [180]
+block: nGates Index: 88 [176]
+block: nGates Index: 90 [178]
+block: nGates Index: 83 [182]
+block: nGates Index: 55 [186]
+block: nGates Index: 84 [178]
+block: nGates Index: 34 [184]
+block: nGates Index: 19 [190]
+block: nGates Index: 24 [178]
+block: nGates Index: 91 [180]
+block: nGates Index: 85 [186]
+block: nGates Index: 61 [176]
+block: nGates Index: 94 [170]
+block: nGates Index: 114 [178]
+block: nGates Index: 70 [184]
+block: nGates Index: 106 [180]
+block: nGates Index: 67 [184]
+block: nGates Index: 108 [180]
+block: nGates Index: 80 [182]
+block: nGates Index: 6 [194]
+block: nGates Index: 103 [178]
+block: nGates Index: 58 [182]
+block: nGates Index: 120 [176]
+block: nGates Index: 46 [180]
+block: nGates Index: 57 [190]
+block: nGates Index: 30 [182]
+block: nGates Index: 14 [188]
+block: nGates Index: 69 [186]
+block: nGates Index: 2 [172]
+block: nGates Index: 77 [186]
+block: nGates Index: 65 [190]
+block: nGates Index: 13 [190]
+block: nGates Index: 36 [186]
+block: nGates Index: 119 [186]
+block: nGates Index: 71 [186]
+block: nGates Index: 124 [174]
+block: nGates Index: 117 [172]
+block: nGates Index: 126 [176]
+block: nGates Index: 29 [172]
+block: nGates Index: 127 [178]
+block: nGates Index: 73 [178]
+block: nGates Index: 115 [188]
+block: nGates Index: 100 [176]
+block: nGates Index: 101 [184]
+block: nGates Index: 97 [182]
+block: nGates Index: 20 [186]
+block: nGates Index: 111 [192]
+block: nGates Index: 32 [182]
+block: nGates Index: 18 [184]
+block: nGates Index: 72 [188]
+block: nGates Index: 123 [176]
+block: nGates Index: 75 [192]
+block: nGates Index: 121 [184]
+block: nGates Index: 25 [176]
+block: nGates Index: 102 [176]
+block: nGates Index: 99 [186]
+block: nGates Index: 110 [186]
+block: nGates Index: 125 [180]
+block: nGates Index: 113 [188]
+block: nGates Index: 107 [180]
+block: nGates Index: 104 [192]
+block: nGates Index: 66 [182]
+block: nGates Index: 54 [190]
+block: nGates Index: 93 [180]
+block: nGates Index: 109 [174]
+block: nGates Index: 82 [186]
+block: nGates Index: 45 [188]
+block: nGates Index: 96 [186]
+block: nGates Index: 122 [192]
+block: nGates Index: 68 [174]
+block: nGates Index: 118 [188]
+block: nGates Index: 89 [176]
+block: nGates Index: 52 [180]
+block: nGates Index: 0 [190]
+block: nGates Index: 116 [178]
+block: nGates Index: 48 [184]
+block: nGates Index: 4 [182]
+block: nGates Index: 64 [182]
+block: nGates Index: 41 [186]
+block: nGates Index: 112 [182]
+block: nGates Index: 105 [192]
+block: nGates Index: 128 [184]
+block: nGates Index: 129 [182]
+block: nGates Index: 143 [168]
+block: nGates Index: 139 [176]
+block: nGates Index: 132 [182]
+block: nGates Index: 136 [178]
+block: nGates Index: 137 [178]
+block: nGates Index: 148 [170]
+block: nGates Index: 140 [184]
+block: nGates Index: 147 [176]
+block: nGates Index: 133 [174]
+block: nGates Index: 131 [182]
+block: nGates Index: 152 [176]
+block: nGates Index: 208 [170]
+block: nGates Index: 157 [182]
+block: nGates Index: 145 [170]
+block: nGates Index: 160 [184]
+block: nGates Index: 164 [174]
+block: nGates Index: 135 [182]
+block: nGates Index: 138 [182]
+block: nGates Index: 130 [184]
+block: nGates Index: 165 [174]
+block: nGates Index: 161 [176]
+block: nGates Index: 142 [184]
+block: nGates Index: 134 [178]
+block: nGates Index: 155 [178]
+block: nGates Index: 198 [166]
+block: nGates Index: 154 [176]
+block: nGates Index: 156 [184]
+block: nGates Index: 185 [172]
+block: nGates Index: 149 [188]
+block: nGates Index: 162 [180]
+block: nGates Index: 141 [188]
+block: nGates Index: 146 [186]
+block: nGates Index: 189 [166]
+block: nGates Index: 150 [178]
+block: nGates Index: 179 [176]
+block: nGates Index: 151 [188]
+block: nGates Index: 206 [178]
+block: nGates Index: 169 [174]
+block: nGates Index: 177 [178]
+block: nGates Index: 214 [176]
+block: nGates Index: 158 [186]
+block: nGates Index: 173 [180]
+block: nGates Index: 200 [180]
+block: nGates Index: 168 [186]
+block: nGates Index: 171 [178]
+block: nGates Index: 153 [182]
+block: nGates Index: 167 [180]
+block: nGates Index: 195 [178]
+block: nGates Index: 159 [188]
+block: nGates Index: 183 [182]
+block: nGates Index: 184 [184]
+block: nGates Index: 181 [174]
+block: nGates Index: 187 [178]
+block: nGates Index: 166 [178]
+block: nGates Index: 209 [172]
+block: nGates Index: 182 [178]
+block: nGates Index: 175 [184]
+block: nGates Index: 144 [190]
+block: nGates Index: 180 [174]
+block: nGates Index: 174 [180]
+block: nGates Index: 201 [180]
+block: nGates Index: 176 [192]
+block: nGates Index: 186 [188]
+block: nGates Index: 163 [178]
+block: nGates Index: 170 [186]
+block: nGates Index: 228 [180]
+block: nGates Index: 229 [174]
+block: nGates Index: 178 [186]
+block: nGates Index: 204 [182]
+block: nGates Index: 202 [178]
+block: nGates Index: 192 [184]
+block: nGates Index: 196 [174]
+block: nGates Index: 233 [178]
+block: nGates Index: 221 [172]
+block: nGates Index: 222 [178]
+block: nGates Index: 199 [186]
+block: nGates Index: 217 [170]
+block: nGates Index: 172 [186]
+block: nGates Index: 205 [180]
+block: nGates Index: 188 [192]
+block: nGates Index: 220 [184]
+block: nGates Index: 190 [190]
+block: nGates Index: 226 [178]
+block: nGates Index: 211 [178]
+block: nGates Index: 193 [178]
+block: nGates Index: 213 [174]
+block: nGates Index: 245 [168]
+block: nGates Index: 223 [172]
+block: nGates Index: 191 [188]
+block: nGates Index: 197 [192]
+block: nGates Index: 227 [172]
+block: nGates Index: 235 [176]
+block: nGates Index: 207 [180]
+block: nGates Index: 243 [184]
+block: nGates Index: 194 [188]
+block: nGates Index: 203 [180]
+block: nGates Index: 216 [188]
+block: nGates Index: 219 [178]
+block: nGates Index: 231 [182]
+block: nGates Index: 240 [176]
+block: nGates Index: 218 [182]
+block: nGates Index: 224 [182]
+block: nGates Index: 232 [192]
+block: nGates Index: 237 [180]
+block: nGates Index: 225 [186]
+block: nGates Index: 215 [180]
+block: nGates Index: 239 [174]
+block: nGates Index: 210 [182]
+block: nGates Index: 212 [182]
+block: nGates Index: 236 [188]
+block: nGates Index: 230 [176]
+block: nGates Index: 238 [178]
+block: nGates Index: 234 [186]
+block: nGates Index: 252 [186]
+block: nGates Index: 241 [186]
+block: nGates Index: 249 [182]
+block: nGates Index: 251 [176]
+block: nGates Index: 248 [182]
+block: nGates Index: 253 [180]
+block: nGates Index: 242 [184]
+block: nGates Index: 255 [180]
+block: nGates Index: 244 [186]
+block: nGates Index: 246 [176]
+block: nGates Index: 247 [174]
+block: nGates Index: 254 [184]
+block: nGates Index: 250 [194]
+block: nGates Index: 280 [166]
+block: nGates Index: 270 [172]
+block: nGates Index: 265 [178]
+block: nGates Index: 256 [176]
+block: nGates Index: 268 [184]
+block: nGates Index: 259 [178]
+block: nGates Index: 257 [178]
+block: nGates Index: 288 [170]
+block: nGates Index: 267 [172]
+block: nGates Index: 260 [180]
+block: nGates Index: 277 [172]
+block: nGates Index: 264 [182]
+block: nGates Index: 279 [178]
+block: nGates Index: 258 [182]
+block: nGates Index: 278 [178]
+block: nGates Index: 261 [180]
+block: nGates Index: 293 [176]
+block: nGates Index: 294 [176]
+block: nGates Index: 289 [176]
+block: nGates Index: 273 [176]
+block: nGates Index: 311 [176]
+block: nGates Index: 300 [178]
+block: nGates Index: 299 [176]
+block: nGates Index: 272 [186]
+block: nGates Index: 284 [180]
+block: nGates Index: 282 [182]
+block: nGates Index: 317 [174]
+block: nGates Index: 266 [184]
+block: nGates Index: 274 [178]
+block: nGates Index: 295 [182]
+block: nGates Index: 309 [174]
+block: nGates Index: 283 [180]
+block: nGates Index: 271 [184]
+block: nGates Index: 275 [184]
+block: nGates Index: 269 [178]
+block: nGates Index: 276 [182]
+block: nGates Index: 315 [170]
+block: nGates Index: 301 [184]
+block: nGates Index: 324 [170]
+block: nGates Index: 305 [184]
+block: nGates Index: 262 [190]
+block: nGates Index: 292 [178]
+block: nGates Index: 312 [178]
+block: nGates Index: 296 [180]
+block: nGates Index: 285 [178]
+block: nGates Index: 310 [178]
+block: nGates Index: 303 [172]
+block: nGates Index: 332 [170]
+block: nGates Index: 263 [190]
+block: nGates Index: 290 [184]
+block: nGates Index: 297 [182]
+block: nGates Index: 304 [180]
+block: nGates Index: 318 [178]
+block: nGates Index: 286 [182]
+block: nGates Index: 287 [180]
+block: nGates Index: 320 [178]
+block: nGates Index: 321 [180]
+block: nGates Index: 351 [166]
+block: nGates Index: 328 [172]
+block: nGates Index: 291 [188]
+block: nGates Index: 298 [184]
+block: nGates Index: 325 [184]
+block: nGates Index: 313 [184]
+block: nGates Index: 338 [178]
+block: nGates Index: 281 [182]
+block: nGates Index: 302 [184]
+block: nGates Index: 316 [184]
+block: nGates Index: 322 [184]
+block: nGates Index: 319 [194]
+block: nGates Index: 337 [168]
+block: nGates Index: 327 [178]
+block: nGates Index: 340 [182]
+block: nGates Index: 346 [180]
+block: nGates Index: 356 [178]
+block: nGates Index: 331 [180]
+block: nGates Index: 335 [186]
+block: nGates Index: 314 [188]
+block: nGates Index: 308 [188]
+block: nGates Index: 336 [186]
+block: nGates Index: 306 [194]
+block: nGates Index: 333 [188]
+block: nGates Index: 307 [196]
+block: nGates Index: 329 [188]
+block: nGates Index: 334 [184]
+block: nGates Index: 342 [178]
+block: nGates Index: 353 [178]
+block: nGates Index: 347 [182]
+block: nGates Index: 348 [174]
+block: nGates Index: 341 [190]
+block: nGates Index: 330 [190]
+block: nGates Index: 368 [180]
+block: nGates Index: 349 [186]
+block: nGates Index: 354 [180]
+block: nGates Index: 343 [192]
+block: nGates Index: 326 [200]
+block: nGates Index: 352 [180]
+block: nGates Index: 360 [188]
+block: nGates Index: 323 [188]
+block: nGates Index: 365 [186]
+block: nGates Index: 357 [178]
+block: nGates Index: 359 [182]
+block: nGates Index: 364 [182]
+block: nGates Index: 358 [180]
+block: nGates Index: 381 [176]
+block: nGates Index: 363 [180]
+block: nGates Index: 355 [178]
+block: nGates Index: 371 [174]
+block: nGates Index: 366 [186]
+block: nGates Index: 339 [184]
+block: nGates Index: 362 [174]
+block: nGates Index: 377 [172]
+block: nGates Index: 344 [202]
+block: nGates Index: 350 [190]
+block: nGates Index: 345 [170]
+block: nGates Index: 370 [186]
+block: nGates Index: 376 [180]
+block: nGates Index: 374 [172]
+block: nGates Index: 382 [172]
+block: nGates Index: 378 [184]
+block: nGates Index: 369 [190]
+block: nGates Index: 372 [186]
+block: nGates Index: 380 [192]
+block: nGates Index: 383 [176]
+block: nGates Index: 367 [186]
+block: nGates Index: 373 [184]
+block: nGates Index: 379 [174]
+block: nGates Index: 361 [182]
+block: nGates Index: 375 [184]
+block: nGates Index: 384 [174]
+block: nGates Index: 388 [172]
+block: nGates Index: 385 [180]
+block: nGates Index: 386 [176]
+block: nGates Index: 393 [172]
+block: nGates Index: 389 [180]
+block: nGates Index: 392 [184]
+block: nGates Index: 391 [174]
+block: nGates Index: 401 [188]
+block: nGates Index: 416 [172]
+block: nGates Index: 396 [182]
+block: nGates Index: 394 [184]
+block: nGates Index: 395 [178]
+block: nGates Index: 404 [176]
+block: nGates Index: 408 [178]
+block: nGates Index: 402 [180]
+block: nGates Index: 412 [178]
+block: nGates Index: 430 [176]
+block: nGates Index: 400 [178]
+block: nGates Index: 403 [178]
+block: nGates Index: 419 [178]
+block: nGates Index: 428 [176]
+block: nGates Index: 409 [178]
+block: nGates Index: 414 [180]
+block: nGates Index: 417 [174]
+block: nGates Index: 435 [172]
+block: nGates Index: 420 [178]
+block: nGates Index: 422 [180]
+block: nGates Index: 415 [186]
+block: nGates Index: 406 [174]
+block: nGates Index: 397 [192]
+block: nGates Index: 405 [180]
+block: nGates Index: 427 [176]
+block: nGates Index: 390 [176]
+block: nGates Index: 398 [184]
+block: nGates Index: 387 [188]
+block: nGates Index: 429 [180]
+block: nGates Index: 411 [182]
+block: nGates Index: 410 [178]
+block: nGates Index: 407 [180]
+block: nGates Index: 418 [180]
+block: nGates Index: 421 [182]
+block: nGates Index: 446 [168]
+block: nGates Index: 432 [180]
+block: nGates Index: 426 [176]
+block: nGates Index: 436 [184]
+block: nGates Index: 441 [176]
+block: nGates Index: 444 [178]
+block: nGates Index: 399 [186]
+block: nGates Index: 434 [192]
+block: nGates Index: 433 [186]
+block: nGates Index: 424 [184]
+block: nGates Index: 413 [186]
+block: nGates Index: 425 [188]
+block: nGates Index: 447 [182]
+block: nGates Index: 423 [186]
+block: nGates Index: 449 [180]
+block: nGates Index: 461 [182]
+block: nGates Index: 457 [176]
+block: nGates Index: 443 [176]
+block: nGates Index: 452 [180]
+block: nGates Index: 464 [174]
+block: nGates Index: 438 [178]
+block: nGates Index: 431 [184]
+block: nGates Index: 440 [180]
+block: nGates Index: 448 [174]
+block: nGates Index: 445 [188]
+block: nGates Index: 450 [182]
+block: nGates Index: 455 [186]
+block: nGates Index: 437 [190]
+block: nGates Index: 439 [176]
+block: nGates Index: 469 [178]
+block: nGates Index: 468 [182]
+block: nGates Index: 454 [176]
+block: nGates Index: 442 [186]
+block: nGates Index: 451 [176]
+block: nGates Index: 466 [166]
+block: nGates Index: 462 [182]
+block: nGates Index: 456 [188]
+block: nGates Index: 465 [176]
+block: nGates Index: 453 [186]
+block: nGates Index: 463 [184]
+block: nGates Index: 478 [170]
+block: nGates Index: 458 [182]
+block: nGates Index: 470 [176]
+block: nGates Index: 460 [192]
+block: nGates Index: 472 [172]
+block: nGates Index: 480 [168]
+block: nGates Index: 459 [178]
+block: nGates Index: 483 [174]
+block: nGates Index: 481 [178]
+block: nGates Index: 475 [176]
+block: nGates Index: 467 [182]
+block: nGates Index: 473 [186]
+block: nGates Index: 471 [180]
+block: nGates Index: 477 [180]
+block: nGates Index: 492 [178]
+block: nGates Index: 474 [186]
+block: nGates Index: 487 [176]
+block: nGates Index: 485 [178]
+block: nGates Index: 499 [176]
+block: nGates Index: 491 [186]
+block: nGates Index: 484 [178]
+block: nGates Index: 486 [174]
+block: nGates Index: 497 [178]
+block: nGates Index: 476 [190]
+block: nGates Index: 482 [184]
+block: nGates Index: 488 [182]
+block: nGates Index: 489 [178]
+block: nGates Index: 490 [190]
+block: nGates Index: 498 [176]
+block: nGates Index: 496 [186]
+block: nGates Index: 495 [172]
+block: nGates Index: 493 [182]
+block: nGates Index: 504 [172]
+block: nGates Index: 506 [172]
+block: nGates Index: 503 [176]
+block: nGates Index: 505 [170]
+block: nGates Index: 502 [180]
+block: nGates Index: 479 [194]
+block: nGates Index: 500 [182]
+block: nGates Index: 507 [180]
+block: nGates Index: 501 [184]
+block: nGates Index: 508 [178]
+block: nGates Index: 509 [174]
+block: nGates Index: 494 [190]
+block: nGates Index: 511 [182]
+block: nGates Index: 510 [188]
+block: nGates Index: 81 [158]
+block: nGates Index: 7 [168]
+block: nGates Index: 28 [174]
+block: nGates Index: 3 [170]
+block: nGates Index: 8 [172]
+block: nGates Index: 56 [170]
+block: nGates Index: 39 [176]
+block: nGates Index: 12 [172]
+block: nGates Index: 5 [170]
+block: nGates Index: 62 [176]
+block: nGates Index: 92 [174]
+block: nGates Index: 49 [174]
+block: nGates Index: 1 [176]
+block: nGates Index: 87 [178]
+block: nGates Index: 50 [172]
+block: nGates Index: 40 [172]
+block: nGates Index: 42 [178]
+block: nGates Index: 17 [174]
+block: nGates Index: 76 [178]
+block: nGates Index: 98 [168]
+block: nGates Index: 33 [180]
+block: nGates Index: 11 [186]
+block: nGates Index: 31 [180]
+block: nGates Index: 27 [180]
+block: nGates Index: 16 [170]
+block: nGates Index: 21 [178]
+block: nGates Index: 35 [184]
+block: nGates Index: 23 [176]
+block: nGates Index: 26 [176]
+block: nGates Index: 86 [178]
+block: nGates Index: 88 [176]
+block: nGates Index: 43 [172]
+block: nGates Index: 22 [186]
+block: nGates Index: 51 [190]
+block: nGates Index: 60 [184]
+block: nGates Index: 53 [184]
+block: nGates Index: 38 [166]
+block: nGates Index: 59 [186]
+block: nGates Index: 63 [176]
+block: nGates Index: 95 [172]
+block: nGates Index: 44 [186]
+block: nGates Index: 47 [184]
+block: nGates Index: 24 [178]
+block: nGates Index: 94 [170]
+block: nGates Index: 9 [180]
+block: nGates Index: 83 [182]
+block: nGates Index: 34 [184]
+block: nGates Index: 78 [176]
+block: nGates Index: 79 [178]
+block: nGates Index: 90 [178]
+block: nGates Index: 37 [174]
+block: nGates Index: 19 [190]
+block: nGates Index: 84 [178]
+block: nGates Index: 108 [180]
+block: nGates Index: 15 [174]
+block: nGates Index: 55 [186]
+block: nGates Index: 91 [180]
+block: nGates Index: 46 [180]
+block: nGates Index: 10 [180]
+block: nGates Index: 74 [178]
+block: nGates Index: 114 [178]
+block: nGates Index: 61 [176]
+block: nGates Index: 70 [184]
+block: nGates Index: 14 [188]
+block: nGates Index: 120 [176]
+block: nGates Index: 85 [186]
+block: nGates Index: 67 [184]
+block: nGates Index: 80 [182]
+block: nGates Index: 106 [180]
+block: nGates Index: 6 [194]
+block: nGates Index: 2 [172]
+block: nGates Index: 126 [176]
+block: nGates Index: 30 [182]
+block: nGates Index: 69 [186]
+block: nGates Index: 103 [178]
+block: nGates Index: 57 [190]
+block: nGates Index: 124 [174]
+block: nGates Index: 13 [190]
+block: nGates Index: 58 [182]
+block: nGates Index: 71 [186]
+block: nGates Index: 77 [186]
+block: nGates Index: 36 [186]
+block: nGates Index: 119 [186]
+block: nGates Index: 100 [176]
+block: nGates Index: 117 [172]
+block: nGates Index: 65 [190]
+block: nGates Index: 115 [188]
+block: nGates Index: 72 [188]
+block: nGates Index: 20 [186]
+block: nGates Index: 73 [178]
+block: nGates Index: 101 [184]
+block: nGates Index: 29 [172]
+block: nGates Index: 127 [178]
+block: nGates Index: 18 [184]
+block: nGates Index: 32 [182]
+block: nGates Index: 123 [176]
+block: nGates Index: 97 [182]
+block: nGates Index: 111 [192]
+block: nGates Index: 75 [192]
+block: nGates Index: 121 [184]
+block: nGates Index: 110 [186]
+block: nGates Index: 99 [186]
+block: nGates Index: 104 [192]
+block: nGates Index: 107 [180]
+block: nGates Index: 66 [182]
+block: nGates Index: 125 [180]
+block: nGates Index: 25 [176]
+block: nGates Index: 102 [176]
+block: nGates Index: 113 [188]
+block: nGates Index: 96 [186]
+block: nGates Index: 82 [186]
+block: nGates Index: 54 [190]
+block: nGates Index: 93 [180]
+block: nGates Index: 45 [188]
+block: nGates Index: 89 [176]
+block: nGates Index: 109 [174]
+block: nGates Index: 68 [174]
+block: nGates Index: 122 [192]
+block: nGates Index: 118 [188]
+block: nGates Index: 116 [178]
+block: nGates Index: 4 [182]
+block: nGates Index: 52 [180]
+block: nGates Index: 48 [184]
+block: nGates Index: 64 [182]
+block: nGates Index: 41 [186]
+block: nGates Index: 0 [190]
+block: nGates Index: 112 [182]
+block: nGates Index: 105 [192]
+block: nGates Index: 128 [184]
+block: nGates Index: 129 [182]
+block: nGates Index: 139 [176]
+block: nGates Index: 136 [178]
+block: nGates Index: 143 [168]
+block: nGates Index: 140 [184]
+block: nGates Index: 152 [176]
+block: nGates Index: 137 [178]
+block: nGates Index: 132 [182]
+block: nGates Index: 148 [170]
+block: nGates Index: 145 [170]
+block: nGates Index: 133 [174]
+block: nGates Index: 164 [174]
+block: nGates Index: 138 [182]
+block: nGates Index: 154 [176]
+block: nGates Index: 165 [174]
+block: nGates Index: 135 [182]
+block: nGates Index: 160 [184]
+block: nGates Index: 198 [166]
+block: nGates Index: 131 [182]
+block: nGates Index: 157 [182]
+block: nGates Index: 161 [176]
+block: nGates Index: 134 [178]
+block: nGates Index: 147 [176]
+block: nGates Index: 162 [180]
+block: nGates Index: 155 [178]
+block: nGates Index: 208 [170]
+block: nGates Index: 189 [166]
+block: nGates Index: 142 [184]
+block: nGates Index: 149 [188]
+block: nGates Index: 180 [174]
+block: nGates Index: 185 [172]
+block: nGates Index: 141 [188]
+block: nGates Index: 130 [184]
+block: nGates Index: 169 [174]
+block: nGates Index: 156 [184]
+block: nGates Index: 146 [186]
+block: nGates Index: 175 [184]
+block: nGates Index: 167 [180]
+block: nGates Index: 171 [178]
+block: nGates Index: 153 [182]
+block: nGates Index: 196 [174]
+block: nGates Index: 163 [178]
+block: nGates Index: 206 [178]
+block: nGates Index: 168 [186]
+block: nGates Index: 200 [180]
+block: nGates Index: 177 [178]
+block: nGates Index: 193 [178]
+block: nGates Index: 151 [188]
+block: nGates Index: 183 [182]
+block: nGates Index: 150 [178]
+block: nGates Index: 184 [184]
+block: nGates Index: 179 [176]
+block: nGates Index: 217 [170]
+block: nGates Index: 187 [178]
+block: nGates Index: 229 [174]
+block: nGates Index: 211 [178]
+block: nGates Index: 174 [180]
+block: nGates Index: 159 [188]
+block: nGates Index: 166 [178]
+block: nGates Index: 170 [186]
+block: nGates Index: 213 [174]
+block: nGates Index: 201 [180]
+block: nGates Index: 173 [180]
+block: nGates Index: 158 [186]
+block: nGates Index: 181 [174]
+block: nGates Index: 144 [190]
+block: nGates Index: 176 [192]
+block: nGates Index: 186 [188]
+block: nGates Index: 195 [178]
+block: nGates Index: 192 [184]
+block: nGates Index: 209 [172]
+block: nGates Index: 182 [178]
+block: nGates Index: 221 [172]
+block: nGates Index: 207 [180]
+block: nGates Index: 240 [176]
+block: nGates Index: 178 [186]
+block: nGates Index: 172 [186]
+block: nGates Index: 228 [180]
+block: nGates Index: 214 [176]
+block: nGates Index: 202 [178]
+block: nGates Index: 188 [192]
+block: nGates Index: 220 [184]
+block: nGates Index: 235 [176]
+block: nGates Index: 215 [180]
+block: nGates Index: 218 [182]
+block: nGates Index: 191 [188]
+block: nGates Index: 194 [188]
+block: nGates Index: 223 [172]
+block: nGates Index: 204 [182]
+block: nGates Index: 233 [178]
+block: nGates Index: 190 [190]
+block: nGates Index: 219 [178]
+block: nGates Index: 238 [178]
+block: nGates Index: 222 [178]
+block: nGates Index: 205 [180]
+block: nGates Index: 203 [180]
+block: nGates Index: 227 [172]
+block: nGates Index: 231 [182]
+block: nGates Index: 197 [192]
+block: nGates Index: 199 [186]
+block: nGates Index: 230 [176]
+block: nGates Index: 232 [192]
+block: nGates Index: 239 [174]
+block: nGates Index: 224 [182]
+block: nGates Index: 210 [182]
+block: nGates Index: 245 [168]
+block: nGates Index: 212 [182]
+block: nGates Index: 237 [180]
+block: nGates Index: 226 [178]
+block: nGates Index: 216 [188]
+block: nGates Index: 243 [184]
+block: nGates Index: 244 [186]
+block: nGates Index: 225 [186]
+block: nGates Index: 241 [186]
+block: nGates Index: 234 [186]
+block: nGates Index: 236 [188]
+block: nGates Index: 249 [182]
+block: nGates Index: 251 [176]
+block: nGates Index: 252 [186]
+block: nGates Index: 242 [184]
+block: nGates Index: 253 [180]
+block: nGates Index: 255 [180]
+block: nGates Index: 248 [182]
+block: nGates Index: 246 [176]
+block: nGates Index: 247 [174]
+block: nGates Index: 254 [184]
+block: nGates Index: 250 [194]
+block: nGates Index: 280 [166]
+block: nGates Index: 256 [176]
+block: nGates Index: 265 [178]
+block: nGates Index: 270 [172]
+block: nGates Index: 257 [178]
+block: nGates Index: 260 [180]
+block: nGates Index: 288 [170]
+block: nGates Index: 259 [178]
+block: nGates Index: 261 [180]
+block: nGates Index: 267 [172]
+block: nGates Index: 268 [184]
+block: nGates Index: 277 [172]
+block: nGates Index: 264 [182]
+block: nGates Index: 278 [178]
+block: nGates Index: 258 [182]
+block: nGates Index: 279 [178]
+block: nGates Index: 269 [178]
+block: nGates Index: 294 [176]
+block: nGates Index: 266 [184]
+block: nGates Index: 289 [176]
+block: nGates Index: 272 [186]
+block: nGates Index: 293 [176]
+block: nGates Index: 311 [176]
+block: nGates Index: 295 [182]
+block: nGates Index: 285 [178]
+block: nGates Index: 276 [182]
+block: nGates Index: 286 [182]
+block: nGates Index: 263 [190]
+block: nGates Index: 262 [190]
+block: nGates Index: 324 [170]
+block: nGates Index: 274 [178]
+block: nGates Index: 303 [172]
+block: nGates Index: 299 [176]
+block: nGates Index: 273 [176]
+block: nGates Index: 292 [178]
+block: nGates Index: 309 [174]
+block: nGates Index: 305 [184]
+block: nGates Index: 317 [174]
+block: nGates Index: 283 [180]
+block: nGates Index: 271 [184]
+block: nGates Index: 296 [180]
+block: nGates Index: 300 [178]
+block: nGates Index: 321 [180]
+block: nGates Index: 284 [180]
+block: nGates Index: 287 [180]
+block: nGates Index: 282 [182]
+block: nGates Index: 315 [170]
+block: nGates Index: 301 [184]
+block: nGates Index: 290 [184]
+block: nGates Index: 281 [182]
+block: nGates Index: 337 [168]
+block: nGates Index: 304 [180]
+block: nGates Index: 275 [184]
+block: nGates Index: 312 [178]
+block: nGates Index: 332 [170]
+block: nGates Index: 320 [178]
+block: nGates Index: 318 [178]
+block: nGates Index: 328 [172]
+block: nGates Index: 313 [184]
+block: nGates Index: 310 [178]
+block: nGates Index: 297 [182]
+block: nGates Index: 291 [188]
+block: nGates Index: 302 [184]
+block: nGates Index: 325 [184]
+block: nGates Index: 327 [178]
+block: nGates Index: 322 [184]
+block: nGates Index: 316 [184]
+block: nGates Index: 298 [184]
+block: nGates Index: 331 [180]
+block: nGates Index: 306 [194]
+block: nGates Index: 336 [186]
+block: nGates Index: 338 [178]
+block: nGates Index: 335 [186]
+block: nGates Index: 308 [188]
+block: nGates Index: 340 [182]
+block: nGates Index: 348 [174]
+block: nGates Index: 314 [188]
+block: nGates Index: 351 [166]
+block: nGates Index: 323 [188]
+block: nGates Index: 329 [188]
+block: nGates Index: 352 [180]
+block: nGates Index: 347 [182]
+block: nGates Index: 307 [196]
+block: nGates Index: 346 [180]
+block: nGates Index: 356 [178]
+block: nGates Index: 319 [194]
+block: nGates Index: 333 [188]
+block: nGates Index: 354 [180]
+block: nGates Index: 342 [178]
+block: nGates Index: 334 [184]
+block: nGates Index: 339 [184]
+block: nGates Index: 353 [178]
+block: nGates Index: 345 [170]
+block: nGates Index: 326 [200]
+block: nGates Index: 330 [190]
+block: nGates Index: 349 [186]
+block: nGates Index: 341 [190]
+block: nGates Index: 364 [182]
+block: nGates Index: 355 [178]
+block: nGates Index: 381 [176]
+block: nGates Index: 368 [180]
+block: nGates Index: 350 [190]
+block: nGates Index: 357 [178]
+block: nGates Index: 360 [188]
+block: nGates Index: 361 [182]
+block: nGates Index: 362 [174]
+block: nGates Index: 344 [202]
+block: nGates Index: 377 [172]
+block: nGates Index: 363 [180]
+block: nGates Index: 343 [192]
+block: nGates Index: 370 [186]
+block: nGates Index: 366 [186]
+block: nGates Index: 371 [174]
+block: nGates Index: 372 [186]
+block: nGates Index: 365 [186]
+block: nGates Index: 374 [172]
+block: nGates Index: 376 [180]
+block: nGates Index: 373 [184]
+block: nGates Index: 358 [180]
+block: nGates Index: 382 [172]
+block: nGates Index: 369 [190]
+block: nGates Index: 378 [184]
+block: nGates Index: 367 [186]
+block: nGates Index: 359 [182]
+block: nGates Index: 380 [192]
+block: nGates Index: 379 [174]
+block: nGates Index: 383 [176]
+block: nGates Index: 375 [184]
+block: nGates Index: 384 [174]
+block: nGates Index: 388 [172]
+block: nGates Index: 385 [180]
+block: nGates Index: 386 [176]
+block: nGates Index: 393 [172]
+block: nGates Index: 391 [174]
+block: nGates Index: 392 [184]
+block: nGates Index: 389 [180]
+block: nGates Index: 396 [182]
+block: nGates Index: 401 [188]
+block: nGates Index: 430 [176]
+block: nGates Index: 404 [176]
+block: nGates Index: 402 [180]
+block: nGates Index: 408 [178]
+block: nGates Index: 387 [188]
+block: nGates Index: 412 [178]
+block: nGates Index: 400 [178]
+block: nGates Index: 403 [178]
+block: nGates Index: 416 [172]
+block: nGates Index: 414 [180]
+block: nGates Index: 428 [176]
+block: nGates Index: 394 [184]
+block: nGates Index: 395 [178]
+block: nGates Index: 409 [178]
+block: nGates Index: 397 [192]
+block: nGates Index: 390 [176]
+block: nGates Index: 419 [178]
+block: nGates Index: 410 [178]
+block: nGates Index: 411 [182]
+block: nGates Index: 406 [174]
+block: nGates Index: 427 [176]
+block: nGates Index: 435 [172]
+block: nGates Index: 407 [180]
+block: nGates Index: 417 [174]
+block: nGates Index: 422 [180]
+block: nGates Index: 415 [186]
+block: nGates Index: 405 [180]
+block: nGates Index: 426 [176]
+block: nGates Index: 398 [184]
+block: nGates Index: 429 [180]
+block: nGates Index: 432 [180]
+block: nGates Index: 418 [180]
+block: nGates Index: 420 [178]
+block: nGates Index: 436 [184]
+block: nGates Index: 421 [182]
+block: nGates Index: 449 [180]
+block: nGates Index: 441 [176]
+block: nGates Index: 431 [184]
+block: nGates Index: 446 [168]
+block: nGates Index: 448 [174]
+block: nGates Index: 444 [178]
+block: nGates Index: 425 [188]
+block: nGates Index: 447 [182]
+block: nGates Index: 443 [176]
+block: nGates Index: 413 [186]
+block: nGates Index: 434 [192]
+block: nGates Index: 433 [186]
+block: nGates Index: 457 [176]
+block: nGates Index: 424 [184]
+block: nGates Index: 450 [182]
+block: nGates Index: 452 [180]
+block: nGates Index: 399 [186]
+block: nGates Index: 423 [186]
+block: nGates Index: 439 [176]
+block: nGates Index: 461 [182]
+block: nGates Index: 440 [180]
+block: nGates Index: 438 [178]
+block: nGates Index: 442 [186]
+block: nGates Index: 437 [190]
+block: nGates Index: 464 [174]
+block: nGates Index: 445 [188]
+block: nGates Index: 465 [176]
+block: nGates Index: 451 [176]
+block: nGates Index: 469 [178]
+block: nGates Index: 455 [186]
+block: nGates Index: 462 [182]
+block: nGates Index: 456 [188]
+block: nGates Index: 454 [176]
+block: nGates Index: 468 [182]
+block: nGates Index: 459 [178]
+block: nGates Index: 480 [168]
+block: nGates Index: 453 [186]
+block: nGates Index: 458 [182]
+block: nGates Index: 492 [178]
+block: nGates Index: 472 [172]
+block: nGates Index: 463 [184]
+block: nGates Index: 466 [166]
+block: nGates Index: 460 [192]
+block: nGates Index: 477 [180]
+block: nGates Index: 478 [170]
+block: nGates Index: 481 [178]
+block: nGates Index: 470 [176]
+block: nGates Index: 473 [186]
+block: nGates Index: 475 [176]
+block: nGates Index: 467 [182]
+block: nGates Index: 483 [174]
+block: nGates Index: 485 [178]
+block: nGates Index: 482 [184]
+block: nGates Index: 499 [176]
+block: nGates Index: 495 [172]
+block: nGates Index: 488 [182]
+block: nGates Index: 504 [172]
+block: nGates Index: 484 [178]
+block: nGates Index: 474 [186]
+block: nGates Index: 471 [180]
+block: nGates Index: 479 [194]
+block: nGates Index: 493 [182]
+block: nGates Index: 497 [178]
+block: nGates Index: 498 [176]
+block: nGates Index: 496 [186]
+block: nGates Index: 476 [190]
+block: nGates Index: 503 [176]
+block: nGates Index: 489 [178]
+block: nGates Index: 500 [182]
+block: nGates Index: 490 [190]
+block: nGates Index: 491 [186]
+block: nGates Index: 494 [190]
+block: nGates Index: 506 [172]
+block: nGates Index: 505 [170]
+block: nGates Index: 487 [176]
+block: nGates Index: 486 [174]
+block: nGates Index: 501 [184]
+block: nGates Index: 502 [180]
+block: nGates Index: 507 [180]
+block: nGates Index: 509 [174]
+block: nGates Index: 508 [178]
+block: nGates Index: 510 [188]
+block: nGates Index: 511 [182]
+Gen: 0, BestCost: 2147483647
+Gen: 0, BestCost: 190
+
+Gen: 0, BestCost: 190
+Gen: 0, BestCost: 176
+
+Gen: 0, BestCost: 176
+Gen: 0, BestCost: 172
+
+Gen: 0, BestCost: 172
+Gen: 0, BestCost: 170
+
+Gen: 0, BestCost: 170
+Gen: 0, BestCost: 170
+Gen: 0, BestCost: 170
+Gen: 0, BestCost: 170
+Gen: 0, BestCost: 168
+
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 168
+Gen: 0, BestCost: 166
+
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 166
+Gen: 0, BestCost: 158
+
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Gen: 0, BestCost: 158
+Here we are in the middle of this

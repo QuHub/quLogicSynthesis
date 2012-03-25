@@ -102,6 +102,12 @@
     <ClInclude Include="constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Conductors\GeneticAlgorithmParameters.h">
+      <Filter>Conductors</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Rand.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">
@@ -126,6 +132,9 @@
     </ClCompile>
     <ClCompile Include="Synthesizers\Ternary\Cuda\cuda_debug.cpp">
       <Filter>Synthesizers\Ternary\Cuda</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\Rand.cpp">
+      <Filter>Utilities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

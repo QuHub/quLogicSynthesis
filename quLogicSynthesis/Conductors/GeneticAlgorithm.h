@@ -4,11 +4,13 @@
 #include "Synthesizers/SynthesizerCore.h"
 #include "Sequence.h"
 #include "Synthesizers/Ternary/Cuda/CudaSequence.h"
+#include "GeneticAlgorithmParameters.h"
+
 using namespace System;
 using namespace System::IO;
 
 namespace Conductor {
-  class GeneticAlgorithm : public Core, public Helper::Result {
+  class GeneticAlgorithm : public Core, public Helper::Result, public GeneticAlgorithmParameters {
   private:
     Generator::Core *m_pGenerator;
     Synthesizer::Core *m_pSynthesizer;
@@ -40,7 +42,6 @@ namespace Conductor {
     {
       for(int i=0; i<m_nPopulation; i++) {
         m_pSeq[i] = m_pGenerator->GetSequence();
-        //Helper::DumpSequence(m_pSeq[i]);
       }
     }
 
@@ -81,6 +82,41 @@ namespace Conductor {
           SaveResult(m_pSeq[i]);
         }
       }
+
+      Breed();
+      Cull();
+    }
+    // <outputs>
+    void Cull()
+    {
+      for (int i=0; i<m_nPopulation; i++) {
+        delete m_pSeq[i];
+        m_pSeq[i] = m_pSeq[i+m_nPopulation];
+      }
+    }
+
+    void Breed()
+    {
+      for (int i=0; i<m_nPopulation; i++) {
+        Sequence *p1 = Roulette();  
+        Sequence *p2 = Roulette();
+        m_pSeq[i+m_nPopulation] = m_nCrossOver == 0 ? m_pGenerator->SinglePointCrossOver(p1, p2, m_Pc) : m_pGenerator->TwoPointCrossOver(p1, p2, m_Pc);
+        m_pGenerator->Mutate(m_pSeq[i+m_nPopulation], m_Pm);
+      }
+    }
+
+    Sequence *Roulette()
+    {
+      double rnd = Rand::Double();
+      double val=0;
+
+      for (int i=0; i < m_nPopulation; i++) {
+        val += m_pSeq[i]->QuantumCost()/m_ParentTotalFitness;
+        if (rnd < val)
+          return m_pSeq[i];
+      }
+
+      return m_pSeq[m_nPopulation-1];
     }
   };
 }
