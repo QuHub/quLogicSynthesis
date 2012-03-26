@@ -6,6 +6,7 @@
 #include "Generators/Ternary/OrderedSet.h"
 #include "Synthesizers/Ternary/Basic.h"
 #include "Synthesizers/Ternary/Cuda/Basic.h"
+#include "Utilities/Rand.h"
 
 using namespace std;
 using namespace System;
@@ -36,7 +37,7 @@ int ternary()
 
 int main()
 {
-
+  Rand::Initialize();
 
   ternary();
 }

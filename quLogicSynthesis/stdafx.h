@@ -5,6 +5,7 @@
 
 #pragma once
 #include <vector>
+#include <queue>
 #include <algorithm>
 #include <iostream>
 using namespace std;
@@ -16,5 +17,4 @@ using namespace std;
 #include "Utilities/Hasse.h"
 #include "Utilities/Results.h"
 #include "Utilities/FileSrc.h"
-#include "Utilities/rand.h"
 // TODO: reference additional headers your program requires here

@@ -4,6 +4,7 @@
 
 namespace Helper {
   extern int* pOutput;
+  void Initialize();
   void DumpSequence(int* pIn, int* pOut, int nCount);
   void DumpSequence(Sequence *pSeq);
   void DumpSequence(int* pOut, int nCount);

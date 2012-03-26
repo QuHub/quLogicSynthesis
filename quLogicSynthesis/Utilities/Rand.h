@@ -1,20 +1,33 @@
 #pragma once
-#include "math.h"
 #include "windows.h"
+#include "Thread.h"
 
 namespace Rand
 {
-  extern double m_buffer[1024*1024];
-  extern int m_index;
+  public class Rand : public CThread
+  {
+  protected:
+    queue<double> m_numbers;
+    HANDLE m_hMutex;
+    bool m_forceRefill;
+  public:
+    Rand(void);
+    ~Rand();
 
-  void Init(void);
-  void TearDown(void);
-  void Fill();
-  inline double Current() {return m_buffer[m_index];}
-  inline double Prev() {return m_buffer[m_index-1];}
-  inline int  Integer(int nRange= INT_MAX) {return (int)(m_buffer[m_index-1] * nRange);}
-  inline double Double()  { Fill(); return m_buffer[m_index++];}
-  inline unsigned long Bit()      { Fill(); return (m_buffer[m_index++] < 0.5 ? 0 : 1);}
-  inline bool Truth()    { Fill(); return (m_buffer[m_index++] < 0.5 ? false : true);}
-};
+    void Fill(int fill=1000);
+    void ReFill();
+    virtual DWORD Run(LPVOID args);
+    void Rand::Extract(String^ line);
 
+    void Lock() { WaitForSingleObject(m_hMutex, INFINITE); }
+    void Release(){::ReleaseMutex(m_hMutex); }
+    double Double(); 
+  };
+
+  extern Rand *m_pRandom;
+
+  inline void Initialize() { m_pRandom = new Rand();}
+  inline double Double() {return m_pRandom->Double();}
+  inline int Integer(int range=INT_MAX) {return (int)(range*m_pRandom->Double());}
+  inline void Refill() {m_pRandom->ReFill();}
+}

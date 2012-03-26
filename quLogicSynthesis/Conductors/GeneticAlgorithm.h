@@ -5,7 +5,7 @@
 #include "Sequence.h"
 #include "Synthesizers/Ternary/Cuda/CudaSequence.h"
 #include "GeneticAlgorithmParameters.h"
-
+#include "Utilities/Rand.h"
 using namespace System;
 using namespace System::IO;
 

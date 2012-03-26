@@ -105,6 +105,9 @@
     <ClInclude Include="Conductors\GeneticAlgorithmParameters.h">
       <Filter>Conductors</Filter>
     </ClInclude>
+    <ClInclude Include="Utilities\Thread.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
     <ClInclude Include="Utilities\Rand.h">
       <Filter>Utilities</Filter>
     </ClInclude>

@@ -100,7 +100,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <AdditionalIncludeDirectories>$(SolutionDir)\QRBGLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\RandomServerLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -175,9 +175,10 @@
     <ClInclude Include="Utilities\FileSrc.h" />
     <ClInclude Include="Utilities\Hasse.h" />
     <ClInclude Include="Utilities\Helpers.h" />
-    <ClInclude Include="Utilities\Rand.h" />
     <ClInclude Include="Utilities\Results.h" />
     <ClInclude Include="Utilities\StopWatch.h" />
+    <ClInclude Include="Utilities\Thread.h" />
+    <ClInclude Include="Utilities\Rand.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc" />
