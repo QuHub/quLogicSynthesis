@@ -72,8 +72,26 @@ namespace Generator {
 
       Sequence* TwoPointCrossOver(Sequence *p1, Sequence *p2, double prob)
       {
+        int cost1 = p1->QuantumCost();
+        int cost2 = p2->QuantumCost();
 
-        return NULL;
+        Sequence *p = new Sequence(cost1 < cost2 ? *p1 : *p2);  // Best Fit
+
+        if (Rand::Double() < prob) {
+          Sequence *q = cost1 < cost2 ? p2 : p1;                // Less Fit
+
+          int nFirst = m_BandBoundary[Rand::Integer(nBands())];
+          int nSecond = m_BandBoundary[Rand::Integer(nBands())];
+
+          if(nFirst > nSecond) {
+            int tmp = nSecond;
+            nSecond = nFirst;
+            nFirst = tmp;
+          }
+
+          CopyMemory(p->m_pIn + nFirst, q->m_pIn + nFirst, (nSecond - nFirst) * sizeof(int));
+        }
+        return p;
       }
 
       void Mutate(Sequence *p1, double prob)

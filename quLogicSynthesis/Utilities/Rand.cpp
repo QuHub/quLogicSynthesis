@@ -51,6 +51,7 @@ namespace Rand
   void Rand::Fill(int fill)
   {
     Lock();
+    P("Fetching True Random Numbers from RandomServer \n");
     WebRequest^ req = WebRequest::Create("http://www.randomserver.dyndns.org/client/random.php?type=LIN&a=0&b=1&file=0&n=" + fill);
     HttpWebResponse^ resp = dynamic_cast<HttpWebResponse^>(req->GetResponse());
 

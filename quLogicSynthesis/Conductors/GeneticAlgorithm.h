@@ -25,8 +25,8 @@ namespace Conductor {
     GeneticAlgorithm(int nBits, Generator::Core *pGen, Synthesizer::Core *pSyn) {
       m_pGenerator = pGen;
       m_pSynthesizer = pSyn;
-      m_nRuns = 1;
-      m_nGenerations = 1;
+      m_nRuns = 10;
+      m_nGenerations = 3;
       m_nPopulation = NUMBER_OF_CUDA_BLOCKS;
       m_pSeq = new Sequence *[2*m_nPopulation]; // twice as many to hold children as well.
     }
@@ -43,6 +43,8 @@ namespace Conductor {
       for(int i=0; i<m_nPopulation; i++) {
         m_pSeq[i] = m_pGenerator->GetSequence();
       }
+
+      NextGeneticAlgorithmParameters();
     }
 
     void Process()
@@ -63,7 +65,10 @@ namespace Conductor {
 
     void DoGeneration(int gen)
     {
+      P(String::Format("Processing Generation: {0}", gen));
       m_ParentTotalFitness = 0;
+
+      m_pSynthesizer->Initialize();
 
       for(int i=0; i<m_nPopulation; i++)
         m_pSynthesizer->AddSequence(m_pSeq[i]);
@@ -111,7 +116,7 @@ namespace Conductor {
       double val=0;
 
       for (int i=0; i < m_nPopulation; i++) {
-        val += m_pSeq[i]->QuantumCost()/m_ParentTotalFitness;
+        val += ((double)m_pSeq[i]->QuantumCost())/m_ParentTotalFitness;
         if (rnd < val)
           return m_pSeq[i];
       }

@@ -16,6 +16,11 @@ namespace Synthesizer {
       m_Sequences.push_back(pSeq);
     }
 
+    void Initialize()
+    {
+      m_Sequences.clear();
+    }
+
     virtual void Process(){
 #ifdef _DEBUG
       for(int i=0; i<m_Sequences.size(); i++) {

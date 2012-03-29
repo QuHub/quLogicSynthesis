@@ -18,3 +18,5 @@ using namespace std;
 #include "Utilities/Results.h"
 #include "Utilities/FileSrc.h"
 // TODO: reference additional headers your program requires here
+
+#define P Helper::Print
