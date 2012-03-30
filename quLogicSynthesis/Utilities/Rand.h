@@ -7,20 +7,14 @@ namespace Rand
   public class Rand : public CThread
   {
   protected:
-    queue<double> m_numbers;
-    HANDLE m_hMutex;
-    bool m_forceRefill;
+    double m_numbers[10000];
+    int m_reader;
   public:
     Rand(void);
-    ~Rand();
 
-    void Fill(int fill=1000);
-    void ReFill();
+    void Fill();
     virtual DWORD Run(LPVOID args);
-    void Rand::Extract(String^ line);
-
-    void Lock() { WaitForSingleObject(m_hMutex, INFINITE); }
-    void Release(){::ReleaseMutex(m_hMutex); }
+    void Rand::Extract(String^ line, int index);
     double Double(); 
   };
 
@@ -29,5 +23,4 @@ namespace Rand
   inline void Initialize() { m_pRandom = new Rand();}
   inline double Double() {return m_pRandom->Double();}
   inline int Integer(int range=INT_MAX) {return (int)(range*m_pRandom->Double());}
-  inline void Refill() {m_pRandom->ReFill();}
 }

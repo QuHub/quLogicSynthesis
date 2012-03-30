@@ -15,44 +15,33 @@ using namespace System::IO;
 using namespace System;
 using namespace System::Collections;
 
+#define BufferSize  (sizeof(m_numbers) / sizeof(m_numbers[0]))
+
 namespace Rand
 {
   Rand *m_pRandom;
 
   Rand::Rand(void)
   {
-    m_hMutex = ::CreateMutexA(NULL, false, NULL);
-    Fill(100000);
-  }
-
-  Rand::~Rand()
-  {
-    ::ReleaseMutex(m_hMutex);
+    Fill();
+    m_reader = 0;
   }
 
   DWORD Rand::Run(LPVOID args) 
   { 
     while(true) {
-      if( (m_numbers.size() < 50000) || m_forceRefill) 
-          Fill();
-
-      Sleep(100);
+//      Fill();
+      Sleep(1000);
     }
 
     return true;
   }
 
-  void Rand::ReFill()
-  {
-    m_forceRefill = true;
-  }
-
   using namespace System::Runtime::InteropServices;
-  void Rand::Fill(int fill)
+  void Rand::Fill()
   {
-    Lock();
     P("Fetching True Random Numbers from RandomServer \n");
-    WebRequest^ req = WebRequest::Create("http://www.randomserver.dyndns.org/client/random.php?type=LIN&a=0&b=1&file=0&n=" + fill);
+    WebRequest^ req = WebRequest::Create("http://www.randomserver.dyndns.org/client/random.php?type=LIN&a=0&b=1&file=0&n=" + BufferSize);
     HttpWebResponse^ resp = dynamic_cast<HttpWebResponse^>(req->GetResponse());
 
     StreamReader^ reader = gcnew StreamReader(resp->GetResponseStream());
@@ -64,31 +53,23 @@ namespace Rand
     IntPtr ip = Marshal::StringToBSTR(line);
     char* str = static_cast<char*>(ip.ToPointer());
 
-    while (line)
-    {
-      Extract(line);
+    for(int i=0; i<BufferSize/2; i++) {
+      Extract(line, 2*i);
       line = reader->ReadLine();
     }
-    Release();
   }
 
   double Rand::Double()
   { 
-    if(m_numbers.size() < 100) 
-      throw "We are running out"; 
-    
-    Lock(); 
-    double n = m_numbers.front(); 
-    m_numbers.pop(); 
-    Release();
-    return n;
+    m_reader = ++m_reader % BufferSize; // circular buffer
+    return m_numbers[m_reader];
   }
 #pragma managed  // This stupid thing is necessary to be able to use regex matches.
-  void Rand::Extract(String^ line)
+  void Rand::Extract(String^ line, int index)
   {
     MatchCollection^ m = Regex::Matches(line, "(\\d.\\d*)");
-    m_numbers.push(Convert::ToDouble(m[0]->Result("$1")));
-    m_numbers.push(Convert::ToDouble(m[1]->Result("$1")));
+    m_numbers[index++] = Convert::ToDouble(m[0]->Result("$1"));
+    m_numbers[index++] = Convert::ToDouble(m[1]->Result("$1"));
   }
 
 }

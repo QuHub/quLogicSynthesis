@@ -54,7 +54,7 @@ __global__ void cuSynthesizeKernel(CudaSequence *data)
       &seq.m_cuOperation[outputIndex]
     );
   }
-  printf("block: nGates Index: %d [%d]\n", blockIdx.x, seq.m_cuGates[blockIdx.x]);
+  //printf("block: nGates Index: %d [%d]\n", blockIdx.x, seq.m_cuGates[blockIdx.x]);
 }
 
 void SynthesizeKernel(CudaSequence *pcuSeq)

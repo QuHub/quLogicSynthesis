@@ -89,9 +89,9 @@ public:
   {
     delete m_pIn;
     delete m_pOut;
-    VirtualFree(m_pControl, by(MAX_GATES),MEM_RELEASE); 
-    VirtualFree(m_pTarget, MAX_GATES,MEM_RELEASE); 
-    VirtualFree(m_pOperation, MAX_GATES,MEM_RELEASE); 
+    VirtualFree(m_pControl, 0,MEM_RELEASE); 
+    VirtualFree(m_pTarget, 0,MEM_RELEASE); 
+    VirtualFree(m_pOperation, 0,MEM_RELEASE); 
     if (m_pInputRadixBuffer != NULL)
       delete m_pInputRadixBuffer;
     if (m_pOutputRadixBuffer != NULL)
