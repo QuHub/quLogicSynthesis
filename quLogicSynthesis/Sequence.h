@@ -14,7 +14,7 @@ public:
   int  m_nGates;
   int* m_pControl;
   byte* m_pTarget;
-  byte* m_pOperation;
+  byte* m_pGates;
   int* m_pInputRadixBuffer;
   int* m_pOutputRadixBuffer;
 
@@ -29,7 +29,7 @@ public:
     m_pOut = new int[m_nTerms];
     CopyMemory(m_pControl, base.m_pControl, by(MAX_GATES));
     CopyMemory(m_pTarget, base.m_pTarget, MAX_GATES);
-    CopyMemory(m_pOperation, base.m_pOperation, MAX_GATES);
+    CopyMemory(m_pGates, base.m_pGates, MAX_GATES);
     CopyMemory(m_pIn, base.m_pIn, m_nTerms * sizeof(int));
     CopyMemory(m_pOut, base.m_pOut, m_nTerms * sizeof(int));
   }
@@ -37,7 +37,7 @@ public:
   void Init() {
     m_pInputRadixBuffer = m_pOutputRadixBuffer = NULL;
     m_pControl = (LPINT)VirtualAlloc(NULL,by(MAX_GATES), MEM_COMMIT, PAGE_READWRITE);
-    m_pOperation = (LPBYTE)VirtualAlloc(NULL,MAX_GATES, MEM_COMMIT, PAGE_READWRITE);
+    m_pGates = (LPBYTE)VirtualAlloc(NULL,MAX_GATES, MEM_COMMIT, PAGE_READWRITE);
     m_pTarget = (LPBYTE)VirtualAlloc(NULL,MAX_GATES, MEM_COMMIT, PAGE_READWRITE);
   }
 
@@ -91,7 +91,7 @@ public:
     delete m_pOut;
     VirtualFree(m_pControl, 0,MEM_RELEASE); 
     VirtualFree(m_pTarget, 0,MEM_RELEASE); 
-    VirtualFree(m_pOperation, 0,MEM_RELEASE); 
+    VirtualFree(m_pGates, 0,MEM_RELEASE); 
     if (m_pInputRadixBuffer != NULL)
       delete m_pInputRadixBuffer;
     if (m_pOutputRadixBuffer != NULL)

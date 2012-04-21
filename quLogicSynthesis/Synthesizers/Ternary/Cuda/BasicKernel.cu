@@ -3,6 +3,7 @@
 #include "CudaSequence.h"
 #include "stdio.h"
 #include "cuda_debug.h"
+#include "../../../constants.h"
 
 
 #define BIT(x,i) ((x & gcuBitMask[i]) >> 2*i)
@@ -37,25 +38,52 @@ __device__ __constant__ int gcuOpMap[3][3];
 __device__ void Process(int inTerm, int outTerm, int nBits, PINT gBitMask, PINT pControl, PBYTE pTarget, PBYTE pOperation);
 
 
+__device__ void CopySharedToGlobal(PINT pDst, PINT pSrc, int nWords)
+{
+  for (int i=0; i<nWords; i++)
+    pDst[i] = pSrc[i];
+}
+
 __global__ void cuSynthesizeKernel(CudaSequence *data)
 {
   CudaSequence seq = data[0];
   int inputIndex =  blockIdx.x * seq.m_nTerms; 
-  int outputIndex = blockIdx.x * seq.m_nMaxGates; 
-  seq.m_cuGates[blockIdx.x] = 0;
+  int outputIndex = blockIdx.x * seq.m_nMaxGates;
+  int nGates = 0;
+  int nBits = seq.m_nBits;
+
+  __shared__ int pIn[81];
+  __shared__ int pOut[81];
+  __shared__ int pControl[1*1024];
+  __shared__ BYTE pGates[1*1024];
+  __shared__ BYTE pTarget[1*1024];
 
   for(int i=0; i<seq.m_nTerms; i++) {
-    Process(seq.m_cuIn[inputIndex+i], 
-      seq.m_cuOut[inputIndex+i], 
-      seq.m_nBits,
-      &seq.m_cuGates[blockIdx.x],
-      &seq.m_cuControl[outputIndex],
-      &seq.m_cuTarget[outputIndex], 
-      &seq.m_cuOperation[outputIndex]
+    pIn[i] = seq.m_cuIn[inputIndex+i]; 
+    pOut[i] = seq.m_cuOut[inputIndex+i]; 
+  }
+
+  for(int i=0; i<seq.m_nTerms; i++) {
+    Process(pIn[i], 
+      pOut[i], 
+      nBits,
+      &nGates,
+      pControl,
+      pTarget,
+      pGates
     );
   }
+
+  for(int i=0; i<nGates; i++) {
+    CopySharedToGlobal(&seq.m_cuControl[outputIndex], pControl, nGates);
+    CopySharedToGlobal((PINT)&seq.m_cuTarget[outputIndex], (PINT)pTarget, nGates/sizeof(int));
+    CopySharedToGlobal((PINT)&seq.m_cuGates[outputIndex], (PINT)pGates, nGates/sizeof(int));
+  }
+  seq.m_cuNumGates[blockIdx.x] = nGates;
+
   //printf("block: nGates Index: %d [%d]\n", blockIdx.x, seq.m_cuGates[blockIdx.x]);
 }
+
 
 void SynthesizeKernel(CudaSequence *pcuSeq)
 {

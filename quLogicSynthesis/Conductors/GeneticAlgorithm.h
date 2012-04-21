@@ -16,17 +16,14 @@ namespace Conductor {
     Synthesizer::Core *m_pSynthesizer;
     Sequence **m_pSeq;
     int m_nPopulation;
-    int m_nRuns;
-    int m_nGenerations;
     int m_ParentTotalFitness;
     int m_BestFit;
+    bool m_fReport;
 
   public:
     GeneticAlgorithm(int nBits, Generator::Core *pGen, Synthesizer::Core *pSyn) {
       m_pGenerator = pGen;
       m_pSynthesizer = pSyn;
-      m_nRuns = 10;
-      m_nGenerations = 3;
       m_nPopulation = NUMBER_OF_CUDA_BLOCKS;
       m_pSeq = new Sequence *[2*m_nPopulation]; // twice as many to hold children as well.
     }
@@ -44,30 +41,32 @@ namespace Conductor {
         m_pSeq[i] = m_pGenerator->GetSequence();
       }
 
-      NextGeneticAlgorithmParameters();
     }
 
     void Process()
     {
       InitializePopulation();
 
-      Utility::CStopWatch s;
-      s.startTimer();
-      m_BestFit = MAXLONG;
+      while(NextGeneticAlgorithmParameters()) {
+          Utility::CStopWatch s;
+          s.startTimer();
+          m_BestFit = MAXLONG;
 
-      for(int i=0; i<m_nRuns; i++)
-        for(int g=0; g<m_nGenerations; g++)
-          DoGeneration(g);
+          for(int i=0; i<m_nRuns; i++)
+            for(int g=0; g<m_nGenerations; g++)
+              DoGeneration(g);
 
-      s.stopTimer();
-      PrintResult(1, s.getElapsedTime());
+          s.stopTimer();
+          PrintResult(1, s.getElapsedTime());
+      }
+
     }
-
     void DoGeneration(int gen)
     {
-      P(String::Format("Processing Generation: {0}", gen));
+      P(String::Format("Processing Generation: {0}\n", gen));
       m_ParentTotalFitness = 0;
 
+      m_fReport = (gen % 10) == 0;
       m_pSynthesizer->Initialize();
 
       for(int i=0; i<m_nPopulation; i++)
@@ -78,8 +77,10 @@ namespace Conductor {
       for (int i=0; i<m_nPopulation; i++) {
         int qCost = m_pSeq[i]->QuantumCost();
         m_ParentTotalFitness += qCost;
-        if ( (gen % 10) == 0)
+        if ( m_fReport ) {
           Console::Write("Gen: {0}, BestCost: {1}\n", gen, m_BestFit);
+          m_fReport = false;
+        }
 
         if (m_BestFit > qCost) {
           m_BestFit = qCost;

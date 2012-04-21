@@ -90,9 +90,9 @@ namespace Synthesizer {
         void TransferFromDevice()
         {
           // Copy input and output buffers to device
-          CS( cudaMemcpy(m_cuSeq.m_pnGates,    m_cuSeq.m_cuGates,     by(m_cuSeq.m_nSequences),  cudaMemcpyDeviceToHost) );
+          CS( cudaMemcpy(m_cuSeq.m_pnGates,    m_cuSeq.m_cuNumGates,     by(m_cuSeq.m_nSequences),  cudaMemcpyDeviceToHost) );
           CS( cudaMemcpy(m_cuSeq.m_pControl,   m_cuSeq.m_cuControl,   by(m_nTotalTransferGates), cudaMemcpyDeviceToHost) );
-          CS( cudaMemcpy(m_cuSeq.m_pOperation, m_cuSeq.m_cuOperation, m_nTotalTransferGates,     cudaMemcpyDeviceToHost) );
+          CS( cudaMemcpy(m_cuSeq.m_pGates, m_cuSeq.m_cuGates, m_nTotalTransferGates,     cudaMemcpyDeviceToHost) );
           CS( cudaMemcpy(m_cuSeq.m_pTarget,    m_cuSeq.m_cuTarget,    m_nTotalTransferGates,     cudaMemcpyDeviceToHost) );
 
           for(int i=0; i<m_cuSeq.m_nSequences; i++) {
@@ -101,10 +101,10 @@ namespace Synthesizer {
             LPBYTE pSrc = &m_cuSeq.m_pTarget   [i*MAX_GATES];
             ZeroMemory(m_Sequences[i]->m_pControl, by(nGates));
             ZeroMemory(m_Sequences[i]->m_pTarget, nGates);
-            ZeroMemory(m_Sequences[i]->m_pOperation, nGates);
+            ZeroMemory(m_Sequences[i]->m_pGates, nGates);
             CopyMemory(m_Sequences[i]->m_pControl,   &m_cuSeq.m_pControl  [i*MAX_GATES], by(nGates));
             CopyMemory(m_Sequences[i]->m_pTarget,    &m_cuSeq.m_pTarget   [i*MAX_GATES], nGates);
-            CopyMemory(m_Sequences[i]->m_pOperation, &m_cuSeq.m_pOperation[i*MAX_GATES], nGates);
+            CopyMemory(m_Sequences[i]->m_pGates, &m_cuSeq.m_pGates[i*MAX_GATES], nGates);
           }
 
         }
@@ -122,12 +122,13 @@ namespace Synthesizer {
 
         void AllocateTransferMemory()
         {
+          m_cuSeq.m_pnGates     = AllocateMemory(m_cuSeq.m_nTerms * sizeof(int));
 
           m_cuSeq.m_pIn         = AllocateMemory(by(m_nTotalTransferTerms));
           m_cuSeq.m_pOut        = AllocateMemory(by(m_nTotalTransferTerms));
-          m_cuSeq.m_pnGates     = AllocateMemory(m_cuSeq.m_nTerms * sizeof(int));
+
           m_cuSeq.m_pControl    = AllocateMemory(by(m_nTotalTransferGates));
-          m_cuSeq.m_pOperation  = (LPBYTE)AllocateMemory(m_nTotalTransferGates);
+          m_cuSeq.m_pGates  = (LPBYTE)AllocateMemory(m_nTotalTransferGates);
           m_cuSeq.m_pTarget     = (LPBYTE)AllocateMemory(m_nTotalTransferGates);
 
           size_t free_mem, total_mem;
@@ -135,12 +136,14 @@ namespace Synthesizer {
 
           P( String::Format("Before Alloc: Avail: {0} : Total: {1}", free_mem, total_mem));
           CS( cudaMalloc( (void**)&m_pcuPacket, sizeof(CudaSequence)) );
+          CS( cudaMalloc( (void**)&m_cuSeq.m_cuNumGates, m_cuSeq.m_nSequences * sizeof(int)) );
+
           CS( cudaMalloc( (void**)&m_cuSeq.m_cuIn, by(m_nTotalTransferTerms)) );
           CS( cudaMalloc( (void**)&m_cuSeq.m_cuOut, by(m_nTotalTransferTerms)) );
+
           CS( cudaMalloc( (void**)&m_cuSeq.m_cuControl,by(m_nTotalTransferGates)) );
           CS( cudaMalloc( (void**)&m_cuSeq.m_cuTarget, m_nTotalTransferGates) );
-          CS( cudaMalloc( (void**)&m_cuSeq.m_cuOperation, m_nTotalTransferGates) );
-          CS( cudaMalloc( (void**)&m_cuSeq.m_cuGates, m_cuSeq.m_nSequences * sizeof(int)) );
+          CS( cudaMalloc( (void**)&m_cuSeq.m_cuGates, m_nTotalTransferGates) );
 
           cudaMemGetInfo(&free_mem, &total_mem);
           P( String::Format("After Alloc: Avail: {0} : Total: {1}", free_mem, total_mem));
@@ -148,24 +151,28 @@ namespace Synthesizer {
 
         void FreeTransferMemory() 
         {
+          VirtualFree(m_cuSeq.m_pnGates, m_cuSeq.m_nTerms * sizeof(int), MEM_RELEASE);
+          
           VirtualFree(m_cuSeq.m_pIn, by(m_nTotalTransferTerms), MEM_RELEASE);
           VirtualFree(m_cuSeq.m_pOut, by(m_nTotalTransferTerms), MEM_RELEASE);
-          VirtualFree(m_cuSeq.m_pnGates, m_cuSeq.m_nTerms * sizeof(int), MEM_RELEASE);
+          
           VirtualFree(m_cuSeq.m_pControl, by(m_nTotalTransferGates), MEM_RELEASE);
-          VirtualFree(m_cuSeq.m_pOperation, m_nTotalTransferGates, MEM_RELEASE);
+          VirtualFree(m_cuSeq.m_pGates, m_nTotalTransferGates, MEM_RELEASE);
           VirtualFree(m_cuSeq.m_pTarget, m_nTotalTransferGates, MEM_RELEASE);
 
           size_t free_mem, total_mem;
           cudaMemGetInfo(&free_mem, &total_mem);
           P( String::Format("Before Free: Avail: {0} : Total: {1}", free_mem, total_mem));
 
+          CS( cudaFree(m_cuSeq.m_cuNumGates) );
+          CS( cudaFree(m_pcuPacket) );
+
           CS( cudaFree(m_cuSeq.m_cuIn) );
           CS( cudaFree(m_cuSeq.m_cuOut) );
+
           CS( cudaFree(m_cuSeq.m_cuTarget) );
-          CS( cudaFree(m_cuSeq.m_cuOperation) );
-          CS( cudaFree(m_cuSeq.m_cuControl) );
           CS( cudaFree(m_cuSeq.m_cuGates) );
-          CS( cudaFree(m_pcuPacket) );
+          CS( cudaFree(m_cuSeq.m_cuControl) );
 
           cudaMemGetInfo(&free_mem, &total_mem);
           P( String::Format("After Free: Avail: {0} : Total: {1}", free_mem, total_mem));

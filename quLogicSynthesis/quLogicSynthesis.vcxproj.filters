@@ -40,6 +40,9 @@
     <None Include="app.ico">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="GAParams.csv">
+      <Filter>Conductors</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">

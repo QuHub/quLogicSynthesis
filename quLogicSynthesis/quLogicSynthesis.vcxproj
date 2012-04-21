@@ -150,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.ico" />
+    <None Include="GAParams.csv" />
     <None Include="ReadMe.txt" />
     <CudaCompile Include="Synthesizers\Ternary\Cuda\BasicKernel.cu">
       <FileType>Document</FileType>

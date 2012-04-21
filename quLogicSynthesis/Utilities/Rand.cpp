@@ -30,7 +30,7 @@ namespace Rand
   DWORD Rand::Run(LPVOID args) 
   { 
     while(true) {
-//      Fill();
+      Fill();
       Sleep(1000);
     }
 
@@ -40,7 +40,7 @@ namespace Rand
   using namespace System::Runtime::InteropServices;
   void Rand::Fill()
   {
-    P("Fetching True Random Numbers from RandomServer \n");
+    Console::WriteLine("Fetching True Random Numbers from RandomServer \n");
     WebRequest^ req = WebRequest::Create("http://www.randomserver.dyndns.org/client/random.php?type=LIN&a=0&b=1&file=0&n=" + BufferSize);
     HttpWebResponse^ resp = dynamic_cast<HttpWebResponse^>(req->GetResponse());
 
