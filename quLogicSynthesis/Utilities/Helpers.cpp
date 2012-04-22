@@ -2,7 +2,7 @@
 #include "Helpers.h"
 namespace Helper {
   int* pOutput;
-
+  Utility::CStopWatch StopTimer;
 #ifdef _DEBUG
   void DumpSequence(int* pIn, int* pOut, int nCount)
   {

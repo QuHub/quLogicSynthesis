@@ -1,11 +1,14 @@
 #pragma once
 #include "Sequence.h"
 #include "Config.h"
+#include "StopWatch.h"
 
 using namespace System;
 using namespace std;
 namespace Helper {
   extern int* pOutput;
+  
+  extern Utility::CStopWatch StopTimer;
   void Initialize();
   void DumpSequence(int* pIn, int* pOut, int nCount);
   void DumpSequence(Sequence *pSeq);

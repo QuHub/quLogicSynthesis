@@ -41,8 +41,11 @@ namespace Synthesizer {
           // code, while GPU0 is used for the display.
           cudaSetDevice(device);  
           TransferToDevice();
+          P(String::Format("TransferToDevice: {0}\n", Helper::StopTimer.getElapsedTime()));
 
           SynthesizeKernel(m_pcuPacket);
+          P(String::Format("SynthesizeKernel: {0}\n", Helper::StopTimer.getElapsedTime()));
+
           //cudaThreadSynchronize();
 
           // check for error
@@ -51,8 +54,8 @@ namespace Synthesizer {
           {
             printf("My CUDA error: %s\n", cudaGetErrorString(error));
           }
-
           TransferFromDevice();
+          P(String::Format("TransferFromDevice: {0}\n", Helper::StopTimer.getElapsedTime()));
         }
 
         void InitTransferPacket()

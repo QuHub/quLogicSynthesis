@@ -24,17 +24,21 @@ namespace Utility
       QueryPerformanceFrequency( &frequency );
     }
 
-    void startTimer( ) {
+    void Start( ) {
       QueryPerformanceCounter(&timer.start);
     }
 
-    void stopTimer( ) {
+    void Stop( ) {
       QueryPerformanceCounter(&timer.stop);
     }
 
+    void Sample( ) {
+      QueryPerformanceCounter(&timer.stop);
+    }
 
     double getElapsedTime() {
       LARGE_INTEGER time;
+      Sample();
       time.QuadPart = timer.stop.QuadPart - timer.start.QuadPart;
       return LIToSecs( time) ;
     }

@@ -47,32 +47,38 @@ namespace Conductor {
     {
       InitializePopulation();
 
+      Helper::StopTimer.Start();
       while(NextGeneticAlgorithmParameters()) {
           Utility::CStopWatch s;
-          s.startTimer();
+          s.Start();
           m_BestFit = MAXLONG;
 
           for(int i=0; i<m_nRuns; i++)
             for(int g=0; g<m_nGenerations; g++)
               DoGeneration(g);
 
-          s.stopTimer();
+          s.Stop();
           PrintResult(1, s.getElapsedTime());
+          P(String::Format("NextGeneticAlgorithmParameter: {0}\n", Helper::StopTimer.getElapsedTime()));
       }
-
     }
     void DoGeneration(int gen)
     {
-      P(String::Format("Processing Generation: {0}\n", gen));
+      P(String::Format("\nProcessing Generation: {0}\n", gen));
       m_ParentTotalFitness = 0;
 
       m_fReport = (gen % 10) == 0;
       m_pSynthesizer->Initialize();
 
+      P(String::Format("Initialize: {0}\n", Helper::StopTimer.getElapsedTime()));
+
       for(int i=0; i<m_nPopulation; i++)
         m_pSynthesizer->AddSequence(m_pSeq[i]);
 
+      P(String::Format("AddSequence: {0}\n", Helper::StopTimer.getElapsedTime()));
       m_pSynthesizer->Process();
+
+      P(String::Format("Process: {0}\n", Helper::StopTimer.getElapsedTime()));
 
       for (int i=0; i<m_nPopulation; i++) {
         int qCost = m_pSeq[i]->QuantumCost();
@@ -89,8 +95,11 @@ namespace Conductor {
         }
       }
 
+      P(String::Format("QuantumCost: {0}\n", Helper::StopTimer.getElapsedTime()));
       Breed();
       Cull();
+
+      P(String::Format("Breed/Cull: {0}\n", Helper::StopTimer.getElapsedTime()));
     }
     // <outputs>
     void Cull()
