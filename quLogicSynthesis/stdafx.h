@@ -22,6 +22,5 @@ using namespace std;
 #ifdef _DEBUG
   #define P(x) Helper::Print(x)
 #else
-  #define P(x) Helper::Print(x)
-  //#define P(x)
+  #define P(x)
 #endif

@@ -26,12 +26,13 @@ public:
     m_nTerms = base.m_nTerms;
     m_nGates = base.m_nGates;
     m_pIn = new int[m_nTerms];
-    m_pOut = new int[m_nTerms];
-    CopyMemory(m_pControl, base.m_pControl, by(MAX_GATES));
-    CopyMemory(m_pTarget, base.m_pTarget, MAX_GATES);
-    CopyMemory(m_pGates, base.m_pGates, MAX_GATES);
+//    m_pOut = new int[m_nTerms];
+    // Again, we don't need to copy these on the Copy Constructor...
+//    CopyMemory(m_pControl, base.m_pControl, by(MAX_GATES));
+//    CopyMemory(m_pTarget, base.m_pTarget, MAX_GATES);
+//    CopyMemory(m_pGates, base.m_pGates, MAX_GATES);
     CopyMemory(m_pIn, base.m_pIn, m_nTerms * sizeof(int));
-    CopyMemory(m_pOut, base.m_pOut, m_nTerms * sizeof(int));
+//    CopyMemory(m_pOut, base.m_pOut, m_nTerms * sizeof(int));
   }
 
   void Init() {

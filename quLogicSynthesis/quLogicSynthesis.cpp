@@ -14,7 +14,7 @@ using namespace System;
 #define FILE_PATTERN "Ternary\\hwt"
 int ternary()
 {
-  for (int nBits=4; nBits<=4; nBits++) {
+  for (int nBits=5; nBits<=5; nBits++) {
     Config::SetRadix(3, nBits);
 
     int* pOut;

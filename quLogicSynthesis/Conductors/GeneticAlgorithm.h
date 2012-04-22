@@ -9,6 +9,9 @@
 using namespace System;
 using namespace System::IO;
 
+
+#define ROLETTE_SIZE (sizeof(m_RoletteWheel)/sizeof(m_RoletteWheel[0]))
+
 namespace Conductor {
   class GeneticAlgorithm : public Core, public Helper::Result, public GeneticAlgorithmParameters {
   private:
@@ -19,6 +22,7 @@ namespace Conductor {
     int m_ParentTotalFitness;
     int m_BestFit;
     bool m_fReport;
+    int m_RoletteWheel[1000];
 
   public:
     GeneticAlgorithm(int nBits, Generator::Core *pGen, Synthesizer::Core *pSyn) {
@@ -58,7 +62,7 @@ namespace Conductor {
               DoGeneration(g);
 
           s.Stop();
-          PrintResult(1, s.getElapsedTime());
+          //PrintResult(1, s.getElapsedTime());
           P(String::Format("NextGeneticAlgorithmParameter: {0}\n", Helper::StopTimer.getElapsedTime()));
       }
     }
@@ -91,15 +95,15 @@ namespace Conductor {
         if (m_BestFit > qCost) {
           m_BestFit = qCost;
           Console::WriteLine("Gen: {0}, BestCost: {1}\n", gen, m_BestFit);
-          SaveResult(m_pSeq[i]);
+          //SaveResult(m_pSeq[i]);
         }
       }
 
       P(String::Format("QuantumCost: {0}\n", Helper::StopTimer.getElapsedTime()));
       Breed();
+      P(String::Format("Breed: {0}\n", Helper::StopTimer.getElapsedTime()));
       Cull();
-
-      P(String::Format("Breed/Cull: {0}\n", Helper::StopTimer.getElapsedTime()));
+      P(String::Format("Cull: {0}\n", Helper::StopTimer.getElapsedTime()));
     }
     // <outputs>
     void Cull()
@@ -110,8 +114,25 @@ namespace Conductor {
       }
     }
 
+    void InitializeRoletteWheel()
+    {
+      double scale = (double)ROLETTE_SIZE/(double)m_ParentTotalFitness;
+      int total = 0;
+
+      int index = 0;
+      for (int i=0; i<m_nPopulation; i++) {
+        total += m_pSeq[i]->QuantumCost();
+        int last = Math::Round(total * scale);
+        while(index < last && index < ROLETTE_SIZE)
+          m_RoletteWheel[index++] = i;
+
+        index = last;
+      }
+    }
+
     void Breed()
     {
+      InitializeRoletteWheel();
       for (int i=0; i<m_nPopulation; i++) {
         Sequence *p1 = Roulette();  
         Sequence *p2 = Roulette();
@@ -122,16 +143,8 @@ namespace Conductor {
 
     Sequence *Roulette()
     {
-      double rnd = Rand::Double();
-      double val=0;
-
-      for (int i=0; i < m_nPopulation; i++) {
-        val += ((double)m_pSeq[i]->QuantumCost())/m_ParentTotalFitness;
-        if (rnd < val)
-          return m_pSeq[i];
-      }
-
-      return m_pSeq[m_nPopulation-1];
+      int rnd = Rand::Integer(ROLETTE_SIZE - 1);
+      return m_pSeq[m_RoletteWheel[rnd]];
     }
   };
 }

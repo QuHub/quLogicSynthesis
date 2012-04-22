@@ -67,6 +67,7 @@ namespace Generator {
 
           CopyMemory(p->m_pIn + nFirst, q->m_pIn + nFirst, (nTerms() - nFirst) * sizeof(int));
         }
+        p->GenerateOutput(m_pOut);
         return p;
       }
 
@@ -91,6 +92,7 @@ namespace Generator {
 
           CopyMemory(p->m_pIn + nFirst, q->m_pIn + nFirst, (nSecond - nFirst) * sizeof(int));
         }
+        p->GenerateOutput(m_pOut);
         return p;
       }
 
