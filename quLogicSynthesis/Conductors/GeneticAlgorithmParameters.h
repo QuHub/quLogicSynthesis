@@ -25,6 +25,11 @@ namespace Conductor
       delete m_sr;
     }
 
+    String^ GeneticParametersForDisplay()
+    {
+      return String::Format("#Generations: {0}, #Runs: {1}, Pm: {2}, Pc: {3}, Crossover: {4}", m_nGenerations, m_nRuns, m_Pm, m_Pc, m_nCrossOver);
+    }
+
     bool NextGeneticAlgorithmParameters()
     {
       String ^s;

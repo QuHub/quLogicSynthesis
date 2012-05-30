@@ -20,7 +20,7 @@ namespace Rand
 
   extern Rand *m_pRandom;
 
-  inline void Initialize() { m_pRandom = new Rand();}
+  inline void Initialize() { m_pRandom = new Rand(); m_pRandom->Start(NULL);}
   inline double Double() {return m_pRandom->Double();}
   inline int Integer(int range=INT_MAX) {return (int)(range*m_pRandom->Double());}
 }

@@ -31,9 +31,10 @@ namespace Rand
   { 
     while(true) {
       Fill();
-      Sleep(1000);
+      Sleep(10);
     }
 
+    Console::WriteLine("Why am I exiting");
     return true;
   }
 
@@ -50,8 +51,6 @@ namespace Rand
     line = reader->ReadLine();
 
     line = reader->ReadLine();
-    IntPtr ip = Marshal::StringToBSTR(line);
-    char* str = static_cast<char*>(ip.ToPointer());
 
     for(int i=0; i<BufferSize/2; i++) {
       Extract(line, 2*i);

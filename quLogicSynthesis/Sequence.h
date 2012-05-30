@@ -20,19 +20,19 @@ public:
 
   Sequence(){Init();}
 
+  // Copy Constructor
   Sequence(const Sequence& base) {
     Init();
     m_nBits = base.m_nBits;
     m_nTerms = base.m_nTerms;
     m_nGates = base.m_nGates;
     m_pIn = new int[m_nTerms];
-//    m_pOut = new int[m_nTerms];
-    // Again, we don't need to copy these on the Copy Constructor...
-//    CopyMemory(m_pControl, base.m_pControl, by(MAX_GATES));
-//    CopyMemory(m_pTarget, base.m_pTarget, MAX_GATES);
-//    CopyMemory(m_pGates, base.m_pGates, MAX_GATES);
+    m_pOut = new int[m_nTerms];
     CopyMemory(m_pIn, base.m_pIn, m_nTerms * sizeof(int));
-//    CopyMemory(m_pOut, base.m_pOut, m_nTerms * sizeof(int));
+    CopyMemory(m_pOut, base.m_pOut, m_nTerms * sizeof(int));
+    CopyMemory(m_pControl, base.m_pControl, by(m_nGates));
+    CopyMemory(m_pGates, base.m_pGates, by(m_nGates));
+    CopyMemory(m_pTarget, base.m_pTarget, by(m_nGates));
   }
 
   void Init() {
@@ -40,6 +40,9 @@ public:
     m_pControl = (LPINT)VirtualAlloc(NULL,by(MAX_GATES), MEM_COMMIT, PAGE_READWRITE);
     m_pGates = (LPBYTE)VirtualAlloc(NULL,MAX_GATES, MEM_COMMIT, PAGE_READWRITE);
     m_pTarget = (LPBYTE)VirtualAlloc(NULL,MAX_GATES, MEM_COMMIT, PAGE_READWRITE);
+
+    if (m_pControl == NULL || m_pGates == NULL || m_pTarget == NULL)
+      throw("One of these is null: m_pControl: m_pGates:  m_pTarget:");
   }
 
   void GenerateOutput(int* pOut)

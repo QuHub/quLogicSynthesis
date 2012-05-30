@@ -1,4 +1,5 @@
 #pragma once
+using namespace std;
 
 namespace Config {
   class Core {
@@ -7,6 +8,7 @@ namespace Config {
     int m_Radix;
     int m_RadixMask;
     int m_nBits;
+    string m_FunctionName;
 
     Core(int nBits) {
       m_nBits = nBits;
@@ -43,6 +45,5 @@ namespace Config {
   int RadixBits();
   int Bits();
   int RadixMask();
-  static int Date= 23;
   static int NumberOfCudaBlocks = 100;
 }

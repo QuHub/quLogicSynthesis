@@ -52,6 +52,7 @@ namespace Conductor {
       InitializePopulation();
 
       Helper::StopTimer.Start();
+      int iteration = 0;
       while(NextGeneticAlgorithmParameters()) {
           Utility::CStopWatch s;
           s.Start();
@@ -62,7 +63,7 @@ namespace Conductor {
               DoGeneration(g);
 
           s.Stop();
-          //PrintResult(1, s.getElapsedTime());
+          PrintResult(iteration++, GeneticParametersForDisplay(), s.getElapsedTime());
           P(String::Format("NextGeneticAlgorithmParameter: {0}\n", Helper::StopTimer.getElapsedTime()));
       }
     }
@@ -95,7 +96,7 @@ namespace Conductor {
         if (m_BestFit > qCost) {
           m_BestFit = qCost;
           Console::WriteLine("Gen: {0}, BestCost: {1}\n", gen, m_BestFit);
-          //SaveResult(m_pSeq[i]);
+          SaveResult(m_pSeq[i]);
         }
       }
 

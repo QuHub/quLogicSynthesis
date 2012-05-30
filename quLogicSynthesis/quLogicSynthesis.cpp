@@ -3,6 +3,7 @@
 #include "stdafx.h"
 #include "Winbase.h"
 #include "Conductors/GeneticAlgorithm.h"
+#include "Conductors/Ternary/PassThrough.h"
 #include "Generators/Ternary/OrderedSet.h"
 #include "Synthesizers/Ternary/Basic.h"
 #include "Synthesizers/Ternary/Cuda/Basic.h"
@@ -12,15 +13,49 @@ using namespace std;
 using namespace System;
 
 #define FILE_PATTERN "Ternary\\hwt"
-int ternary()
+int GATernary();
+int TestTernary();
+
+int main()
 {
-  for (int nBits=5; nBits<=5; nBits++) {
+  GATernary();
+}
+
+int TestTernary()
+{
+  for (int nBits=4; nBits<=6; nBits++) {
     Config::SetRadix(3, nBits);
 
     int* pOut;
     Utility::FileSrc fs(nBits, FILE_PATTERN + Convert::ToString(nBits));
 
     while (pOut = fs.Next() ) {
+      Console::WriteLine("Processing Next Sequence");
+      Helper::pOutput = pOut;
+      Console::WriteLine("Function: " + fs.Name);
+      Synthesizer::Core *pSyn = new Synthesizer::Ternary::Cuda::Basic(nBits);
+      Generator::Core *pGen = new Generator::Ternary::OrderedSet(nBits, pOut);
+      Conductor::Core *pAlgo = new Conductor::PassThrough(nBits, pGen, pSyn);
+      pAlgo->Process();
+      delete pSyn;
+      delete pGen;
+      delete pAlgo;
+    }
+  }
+  return 0;
+}
+
+int GATernary()
+{
+  Rand::Initialize();
+  for (int nBits=4; nBits<=6; nBits++) {
+    Config::SetRadix(3, nBits);
+
+    int* pOut;
+    Utility::FileSrc fs(nBits, FILE_PATTERN + Convert::ToString(nBits));
+
+    while (pOut = fs.Next() ) {
+      Console::WriteLine("Processing Next Sequence");
       Helper::pOutput = pOut;
       Console::WriteLine("Function: " + fs.Name);
       Synthesizer::Core *pSyn = new Synthesizer::Ternary::Cuda::Basic(nBits);
@@ -35,9 +70,3 @@ int ternary()
   return 0;
 }
 
-int main()
-{
-  Rand::Initialize();
-
-  ternary();
-}

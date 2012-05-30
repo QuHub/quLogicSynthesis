@@ -114,6 +114,12 @@
     <ClInclude Include="Utilities\Rand.h">
       <Filter>Utilities</Filter>
     </ClInclude>
+    <ClInclude Include="Conductors\Ternary\PassThrough.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\StringConvertor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">

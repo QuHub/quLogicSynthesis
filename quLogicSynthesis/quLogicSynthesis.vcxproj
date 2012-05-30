@@ -160,6 +160,7 @@
     <ClInclude Include="Conductors\ConductorCore.h" />
     <ClInclude Include="Conductors\GeneticAlgorithm.h" />
     <ClInclude Include="Conductors\GeneticAlgorithmParameters.h" />
+    <ClInclude Include="Conductors\Ternary\PassThrough.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="Generators\GeneratorCore.h" />
     <ClInclude Include="Generators\Ternary\OrderedSet.h" />
@@ -178,6 +179,7 @@
     <ClInclude Include="Utilities\Helpers.h" />
     <ClInclude Include="Utilities\Results.h" />
     <ClInclude Include="Utilities\StopWatch.h" />
+    <ClInclude Include="Utilities\StringConvertor.h" />
     <ClInclude Include="Utilities\Thread.h" />
     <ClInclude Include="Utilities\Rand.h" />
   </ItemGroup>

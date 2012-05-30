@@ -7,6 +7,7 @@
 using namespace System::IO;
 using namespace System;
 using namespace std;
+using namespace System::Runtime::InteropServices;
 
 namespace Helper {
   class Result
@@ -22,13 +23,20 @@ namespace Helper {
       m_pSeq = new Sequence(*seq);
     }
 
-    void PrintResult(int iteration, double Time)
+    void PrintResult(int iteration, String^ Description, double Time)
     {
       char szTmp[1024];
 
-      Directory::CreateDirectory( String::Format("..\\SaveData\\{0}-bits\\{1}", m_pSeq->m_nBits, Config::Date));
-      sprintf(szTmp, "../SaveData/%d-bits/%d/%d-iteration.qsy", m_pSeq->m_nBits, Config::Date, iteration);
+      String^ today = DateTime::Now.ToShortDateString();
+
+      Directory::CreateDirectory( String::Format("..\\SaveData\\{0}-bits\\{1}", m_pSeq->m_nBits, today));
+      sprintf(szTmp, "../SaveData/%d-bits/%s/%d-iteration.qsy", m_pSeq->m_nBits, today, iteration);
       ofstream fs(szTmp);
+      IntPtr ip = Marshal::StringToHGlobalAnsi(Description);
+      char* str = static_cast<char*>(ip.ToPointer());
+      fs << "Genetic Parameters: " << str << endl;
+      fs << "Time To Synthesize: " << Time << endl;
+      fs << "Radix: " << Config::Radix() << endl;
       fs << "Bit Count: " << m_pSeq->m_nBits << endl;
       fs << "Quantum Cost: " << m_pSeq->QuantumCost() << endl;
 
@@ -64,8 +72,9 @@ namespace Helper {
         fs << Helper::InRadixDigits(m_pSeq->m_pControl[i]) << " | ";
         fs.fill(' ');
         fs.width(5);
-        fs << m_pSeq->m_pTarget[i] << " | ";
+        fs << (int)m_pSeq->m_pTarget[i] << " | ";
         fs.width(2);
+        fs << gates[(int)m_pSeq->m_pGates[i]] << endl;
       }
       fs.close();
     }
