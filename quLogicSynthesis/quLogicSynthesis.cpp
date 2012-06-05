@@ -23,7 +23,7 @@ int main()
 
 int TestTernary()
 {
-  for (int nBits=4; nBits<=6; nBits++) {
+  for (int nBits=5; nBits<=6; nBits++) {
     Config::SetRadix(3, nBits);
 
     int* pOut;
@@ -48,7 +48,7 @@ int TestTernary()
 int GATernary()
 {
   Rand::Initialize();
-  for (int nBits=4; nBits<=6; nBits++) {
+  for (int nBits=5; nBits<=6; nBits++) {
     Config::SetRadix(3, nBits);
 
     int* pOut;
