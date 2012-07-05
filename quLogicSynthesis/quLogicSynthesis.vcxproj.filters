@@ -120,6 +120,12 @@
     <ClInclude Include="Utilities\StringConvertor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Generators\Ternary\PassThrough.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Generators\Ternary\NaturalOrder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">

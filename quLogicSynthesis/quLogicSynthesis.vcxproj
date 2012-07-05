@@ -163,7 +163,9 @@
     <ClInclude Include="Conductors\Ternary\PassThrough.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="Generators\GeneratorCore.h" />
+    <ClInclude Include="Generators\Ternary\NaturalOrder.h" />
     <ClInclude Include="Generators\Ternary\OrderedSet.h" />
+    <ClInclude Include="Generators\Ternary\PassThrough.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Sequence.h" />
     <ClInclude Include="stdafx.h" />
