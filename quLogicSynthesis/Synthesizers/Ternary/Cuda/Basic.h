@@ -97,24 +97,28 @@ namespace Synthesizer {
           // Copy input and output buffers to device
           CS( cudaMemcpy(m_cuSeq.m_pnGates,    m_cuSeq.m_cuNumGates,     by(m_cuSeq.m_nSequences),  cudaMemcpyDeviceToHost) );
 
+#ifdef _DEBUG
           // Transfers back from Cuda are expensive, and there is really no need to copy the entire set of data back, we 
           // just need the number of quantum gates which currently represents the quantum cost.  In the case we use 
           // a different quantum cost, we should return that.
 
-          //CS( cudaMemcpy(m_cuSeq.m_pControl,   m_cuSeq.m_cuControl,   by(m_nTotalTransferGates), cudaMemcpyDeviceToHost) );
-          //CS( cudaMemcpy(m_cuSeq.m_pGates, m_cuSeq.m_cuGates, m_nTotalTransferGates,     cudaMemcpyDeviceToHost) );
-          //CS( cudaMemcpy(m_cuSeq.m_pTarget,    m_cuSeq.m_cuTarget,    m_nTotalTransferGates,     cudaMemcpyDeviceToHost) );
+          CS( cudaMemcpy(m_cuSeq.m_pControl,   m_cuSeq.m_cuControl,   by(m_nTotalTransferGates), cudaMemcpyDeviceToHost) );
+          CS( cudaMemcpy(m_cuSeq.m_pGates, m_cuSeq.m_cuGates, m_nTotalTransferGates,     cudaMemcpyDeviceToHost) );
+          CS( cudaMemcpy(m_cuSeq.m_pTarget,    m_cuSeq.m_cuTarget,    m_nTotalTransferGates,     cudaMemcpyDeviceToHost) );
 
+#endif         
           for(int i=0; i<m_cuSeq.m_nSequences; i++) {
             int nGates = m_Sequences[i]->m_nGates = m_cuSeq.m_pnGates[i];
-          //  LPBYTE pDst = m_Sequences[i]->m_pTarget;
-          //  LPBYTE pSrc = &m_cuSeq.m_pTarget   [i*MAX_GATES];
-          //  ZeroMemory(m_Sequences[i]->m_pControl, by(nGates));
-           // ZeroMemory(m_Sequences[i]->m_pTarget, nGates);
-           // ZeroMemory(m_Sequences[i]->m_pGates, nGates);
-           // CopyMemory(m_Sequences[i]->m_pControl,   &m_cuSeq.m_pControl  [i*MAX_GATES], by(nGates));
-           // CopyMemory(m_Sequences[i]->m_pTarget,    &m_cuSeq.m_pTarget   [i*MAX_GATES], nGates);
-           // CopyMemory(m_Sequences[i]->m_pGates, &m_cuSeq.m_pGates[i*MAX_GATES], nGates);
+#ifdef _DEBUG
+            LPBYTE pDst = m_Sequences[i]->m_pTarget;
+            LPBYTE pSrc = &m_cuSeq.m_pTarget   [i*MAX_GATES];
+            ZeroMemory(m_Sequences[i]->m_pControl, by(nGates));
+            ZeroMemory(m_Sequences[i]->m_pTarget, nGates);
+            ZeroMemory(m_Sequences[i]->m_pGates, nGates);
+            CopyMemory(m_Sequences[i]->m_pControl,   &m_cuSeq.m_pControl  [i*MAX_GATES], by(nGates));
+            CopyMemory(m_Sequences[i]->m_pTarget,    &m_cuSeq.m_pTarget   [i*MAX_GATES], nGates);
+            CopyMemory(m_Sequences[i]->m_pGates, &m_cuSeq.m_pGates[i*MAX_GATES], nGates);
+#endif
           }
 
         }

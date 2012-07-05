@@ -58,11 +58,11 @@ __global__ void cuSynthesizeKernel(CudaSequence *data)
   int nGates = 0;
   int nBits = seq.m_nBits;
 
-  __shared__ int pIn[243];
-  __shared__ int pOut[243];
-  __shared__ int pControl[3*1024];
-  __shared__ BYTE pGates[3*1024];
-  __shared__ BYTE pTarget[3*1024];
+  __shared__ int pIn[729];
+  __shared__ int pOut[729];
+  __shared__ int pControl[5*1024];
+  __shared__ BYTE pGates[5*1024];
+  __shared__ BYTE pTarget[5*1024];
 
   for(int i=0; i<seq.m_nTerms; i++) {
     pIn[i] = seq.m_cuIn[inputIndex+i]; 
@@ -82,11 +82,13 @@ __global__ void cuSynthesizeKernel(CudaSequence *data)
 
   __syncthreads();
 
+#ifdef _DEBUG
   for(int i=0; i<nGates; i++) {
     CopySharedToGlobal(&seq.m_cuControl[outputIndex], pControl, nGates);
     CopySharedBytesToGlobal(&seq.m_cuTarget[outputIndex], pTarget, nGates);
     CopySharedBytesToGlobal(&seq.m_cuGates[outputIndex], pGates, nGates);
   }
+#endif
   seq.m_cuNumGates[threadIdx.x] = nGates;
 
   //printf("block: nGates Index: %d [%d]\n", blockIdx.x, seq.m_cuGates[blockIdx.x]);
