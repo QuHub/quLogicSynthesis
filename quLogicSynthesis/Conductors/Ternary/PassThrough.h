@@ -1,5 +1,5 @@
 #pragma once
-#include "../ConductorCore.h"
+#include "ConductorCore.h"
 #include "Generators/GeneratorCore.h"
 #include "Synthesizers/SynthesizerCore.h"
 #include "Sequence.h"

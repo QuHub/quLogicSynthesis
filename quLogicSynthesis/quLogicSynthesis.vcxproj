@@ -142,6 +142,9 @@
     </CudaCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Reference Include="MathNet.Numerics, Version=2011.4.17.0, Culture=neutral, PublicKeyToken=cd8b63ad3d691a37">
+      <HintPath>bin\MathNet.Numerics.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -150,6 +153,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.ico" />
+    <None Include="bin\MathNet.Numerics.dll" />
+    <None Include="bin\zlib.net.dll" />
     <None Include="GAParams.csv" />
     <None Include="ReadMe.txt" />
     <CudaCompile Include="Synthesizers\Ternary\Cuda\BasicKernel.cu">
@@ -157,10 +162,14 @@
     </CudaCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Conductors\ConductorCore.h" />
-    <ClInclude Include="Conductors\GeneticAlgorithm.h" />
-    <ClInclude Include="Conductors\GeneticAlgorithmParameters.h" />
+    <ClInclude Include="Conductors\Ternary\ConductorCore.h" />
+    <ClInclude Include="Conductors\Ternary\CudaCore.h" />
+    <ClInclude Include="Conductors\Ternary\Factory.h" />
+    <ClInclude Include="Conductors\Ternary\GeneticAlgorithm.h" />
+    <ClInclude Include="Conductors\Ternary\GeneticAlgorithmParameters.h" />
     <ClInclude Include="Conductors\Ternary\PassThrough.h" />
+    <ClInclude Include="Conductors\Ternary\RandomAlgorithm.h" />
+    <ClInclude Include="Conductors\Ternary\ShuffleAlgorithm.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="Generators\GeneratorCore.h" />
     <ClInclude Include="Generators\Ternary\OrderedSet.h" />
@@ -175,7 +184,7 @@
     <ClInclude Include="Utilities\Config.h" />
     <ClInclude Include="Utilities\ConfigTernary.h" />
     <ClInclude Include="Utilities\FileSrc.h" />
-    <ClInclude Include="Utilities\Hasse.h" />
+    <ClInclude Include="Generators\Ternary\Hasse.h" />
     <ClInclude Include="Utilities\Helpers.h" />
     <ClInclude Include="Utilities\Results.h" />
     <ClInclude Include="Utilities\StopWatch.h" />
@@ -188,6 +197,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="Conductors\Ternary\Factory.cpp" />
     <ClCompile Include="quLogicSynthesis.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

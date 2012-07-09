@@ -43,6 +43,8 @@
     <None Include="GAParams.csv">
       <Filter>Conductors</Filter>
     </None>
+    <None Include="bin\MathNet.Numerics.dll" />
+    <None Include="bin\zlib.net.dll" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -50,12 +52,6 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Conductors\GeneticAlgorithm.h">
-      <Filter>Conductors</Filter>
-    </ClInclude>
-    <ClInclude Include="Conductors\ConductorCore.h">
-      <Filter>Conductors</Filter>
     </ClInclude>
     <ClInclude Include="Generators\GeneratorCore.h">
       <Filter>Generators</Filter>
@@ -74,9 +70,6 @@
     </ClInclude>
     <ClInclude Include="Synthesizers\Ternary\Basic.h">
       <Filter>Synthesizers\Ternary</Filter>
-    </ClInclude>
-    <ClInclude Include="Utilities\Hasse.h">
-      <Filter>Utilities</Filter>
     </ClInclude>
     <ClInclude Include="Utilities\Config.h">
       <Filter>Utilities</Filter>
@@ -105,9 +98,6 @@
     <ClInclude Include="constants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Conductors\GeneticAlgorithmParameters.h">
-      <Filter>Conductors</Filter>
-    </ClInclude>
     <ClInclude Include="Utilities\Thread.h">
       <Filter>Utilities</Filter>
     </ClInclude>
@@ -118,6 +108,30 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Utilities\StringConvertor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Conductors\Ternary\ConductorCore.h">
+      <Filter>Conductors</Filter>
+    </ClInclude>
+    <ClInclude Include="Conductors\Ternary\GeneticAlgorithmParameters.h">
+      <Filter>Conductors</Filter>
+    </ClInclude>
+    <ClInclude Include="Conductors\Ternary\GeneticAlgorithm.h">
+      <Filter>Conductors</Filter>
+    </ClInclude>
+    <ClInclude Include="Generators\Ternary\Hasse.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Conductors\Ternary\RandomAlgorithm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Conductors\Ternary\ShuffleAlgorithm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Conductors\Ternary\CudaCore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Conductors\Ternary\Factory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -147,6 +161,9 @@
     </ClCompile>
     <ClCompile Include="Utilities\Rand.cpp">
       <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Conductors\Ternary\Factory.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

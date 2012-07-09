@@ -1,6 +1,5 @@
 #pragma once
-#include "stdafx.h"
-#include "Sequence.h"
+#include "../../Sequence.h"
 
 namespace Generator {
   class Core {
@@ -9,5 +8,6 @@ namespace Generator {
     virtual Sequence* SinglePointCrossOver(Sequence *p1, Sequence *p2, double prob){return NULL;};
     virtual Sequence* TwoPointCrossOver(Sequence *p1, Sequence *p2, double prob){return NULL;};
     virtual void Mutate(Sequence *p1, double prob){};
+    virtual void ReleaseSequences(){};
   };
 }

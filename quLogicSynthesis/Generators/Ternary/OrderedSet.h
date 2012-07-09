@@ -1,6 +1,6 @@
 #pragma once
 #include "../GeneratorCore.h"
-#include "Utilities/Hasse.h"
+#include "Generators/Ternary/Hasse.h"
 #include "Utilities/Rand.h"
 
 namespace Generator {
@@ -52,6 +52,10 @@ namespace Generator {
         return pSeq;
       }
 
+      void ReleaseSequences()
+      {
+        m_pSequences.clear();
+      }
 
       Sequence* SinglePointCrossOver(Sequence *p1, Sequence *p2, double prob)
       {
