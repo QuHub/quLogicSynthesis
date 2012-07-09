@@ -64,23 +64,23 @@ __global__ void cuSynthesizeKernel(CudaSequence *data)
   __shared__ BYTE pGates[5*1024];
   __shared__ BYTE pTarget[5*1024];
 
-  for(int j=0; j<1000; j++) {
-      for(int i=0; i<seq.m_nTerms; i++) {
-        pIn[i] = seq.m_cuIn[inputIndex+i]; 
-        pOut[i] = seq.m_cuOut[inputIndex+i]; 
-      }
 
-      for(int i=0; i<seq.m_nTerms; i++) {
-        Process(pIn[i], 
-          pOut[i], 
-          nBits,
-          &nGates,
-          pControl,
-          pTarget,
-          pGates
-        );
-      }
+  for(int i=0; i<seq.m_nTerms; i++) {
+    pIn[i] = seq.m_cuIn[inputIndex+i]; 
+    pOut[i] = seq.m_cuOut[inputIndex+i]; 
   }
+
+  for(int i=0; i<seq.m_nTerms; i++) {
+    Process(pIn[i], 
+      pOut[i], 
+      nBits,
+      &nGates,
+      pControl,
+      pTarget,
+      pGates
+    );
+  }
+
   __syncthreads();
 
 #ifdef _DEBUG
@@ -102,7 +102,8 @@ void SynthesizeKernel(CudaSequence *pcuSeq, int nSequences)
   CS( cudaMemcpyToSymbol(gcuBitMask, gBitMask, sizeof(gBitMask)) );
   CS( cudaMemcpyToSymbol(gcuTernaryOps, gTernaryOps, sizeof(gTernaryOps)) );
   CS( cudaMemcpyToSymbol(gcuOpMap, gOpMap, sizeof(gOpMap)) );
-  cuSynthesizeKernel<<<1, nSequences>>>(pcuSeq);
+  for (int i=0; i<1000; i++)
+      cuSynthesizeKernel<<<1, nSequences>>>(pcuSeq);
 }
 
 __device__ int Propagate(int outTerm, PINT pControl, PBYTE pTarget, PBYTE pOperation, int nGates)
