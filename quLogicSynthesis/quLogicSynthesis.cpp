@@ -15,16 +15,17 @@ using namespace System;
 
 #define FILE_PATTERN "Ternary\\hwt"
 int GATernary();
-int TestTernary();
+int PassThrough();
 int RandomAlgorithm();
 
 int main()
 {
-  RandomAlgorithm();
+  //RandomAlgorithm();
+  PassThrough();
 //  GATernary();
 }
 
-int TestTernary()
+int PassThrough()
 {
   for (int nBits=5; nBits<=6; nBits++) {
     Config::SetRadix(3, nBits);

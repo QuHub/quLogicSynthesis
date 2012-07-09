@@ -64,22 +64,23 @@ __global__ void cuSynthesizeKernel(CudaSequence *data)
   __shared__ BYTE pGates[5*1024];
   __shared__ BYTE pTarget[5*1024];
 
-  for(int i=0; i<seq.m_nTerms; i++) {
-    pIn[i] = seq.m_cuIn[inputIndex+i]; 
-    pOut[i] = seq.m_cuOut[inputIndex+i]; 
-  }
+  for(int j=0; j<1000; j++) {
+      for(int i=0; i<seq.m_nTerms; i++) {
+        pIn[i] = seq.m_cuIn[inputIndex+i]; 
+        pOut[i] = seq.m_cuOut[inputIndex+i]; 
+      }
 
-  for(int i=0; i<seq.m_nTerms; i++) {
-    Process(pIn[i], 
-      pOut[i], 
-      nBits,
-      &nGates,
-      pControl,
-      pTarget,
-      pGates
-    );
+      for(int i=0; i<seq.m_nTerms; i++) {
+        Process(pIn[i], 
+          pOut[i], 
+          nBits,
+          &nGates,
+          pControl,
+          pTarget,
+          pGates
+        );
+      }
   }
-
   __syncthreads();
 
 #ifdef _DEBUG
