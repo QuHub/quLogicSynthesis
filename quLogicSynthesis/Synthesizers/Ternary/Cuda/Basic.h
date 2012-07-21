@@ -29,6 +29,8 @@ namespace Synthesizer {
         }
 
         ~Device() {
+          Console::WriteLine("~Device");
+          cudaSetDevice(m_device);  
           FreeTransferMemory();
         }
 
@@ -206,6 +208,7 @@ namespace Synthesizer {
 
         ~Basic()
         {
+          Console::WriteLine("~Basic");
           delete m_pDev[0];
           delete m_pDev[1];
         }
