@@ -10,6 +10,7 @@ namespace Conductor {
   public:
     HANDLE m_hMutex;
     HANDLE m_hEvent;
+    DWORD m_threadId;
     DWORD Run(LPVOID arg);
     Factory();
   };

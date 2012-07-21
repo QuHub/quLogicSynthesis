@@ -19,47 +19,40 @@ namespace Conductor {
   public:
     Generator::Core *m_pGenerator;
     Synthesizer::Core *m_pSynthesizer;
-    Sequence *m_pSeq;
-    HANDLE *m_phMutex;
+    Sequence **m_pSeq;
+    int m_nSequences;
 
   public:
     Shuffle(int nBits, Generator::Core *pGen, Synthesizer::Core *pSyn) {
       m_pGenerator = pGen;
       m_pSynthesizer = pSyn;
+      m_nSequences = 2 * NUM_CUDA_BLOCKS;
+      m_pSeq = new Sequence *[m_nSequences];  // two devices
     }
 
     ~Shuffle() {
+      for(int i=0; i<sizeof(m_pSeq)/sizeof(m_pSeq[0]); i++)
+        delete m_pSeq[i];
+
       delete m_pSeq;
+    }
+
+    void InitializePopulation()
+    {
+      for(int i=0; i<m_nSequences; i++) {
+        m_pSeq[i] = m_pGenerator->GetSequence();
+      }
     }
 
     void Process()
     {
-      // Launch Factory for generating sequences.
-      Factory factory1, factory2;
-      factory1.Start(this);
-      Sleep(1000);
-      //factory2.Start(this);
+      InitializePopulation();
 
-      // Launch two threads (one for each core)
-      CudaCore core1, core2;
+      //m_pSynthesizer->Initialize();
+      //m_pSynthesizer->AddSequence(m_pSeq);
+      //m_pSynthesizer->Process();
 
-      core1.Start(&factory1);
-
-      for(int i=0; i<NUM_RUNS; i++) {
-        Sleep(10000);
-        //core2.Start(&factory2);
-      }
-
-      Helper::StopTimer.Start();
-      Utility::CStopWatch s;
-      s.Start();
-      m_pSynthesizer->Initialize();
-      m_pSynthesizer->AddSequence(m_pSeq);
-      m_pSynthesizer->Process();
-
-      s.Stop();
-      SaveResult(m_pSeq);
-      PrintResult(0, "Shuffle", s.getElapsedTime());
+      //SaveResult(m_pSeq);
     }
   };
 }

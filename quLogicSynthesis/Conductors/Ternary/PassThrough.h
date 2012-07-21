@@ -36,7 +36,9 @@ namespace Conductor {
       Utility::CStopWatch s;
       s.Start();
       m_pSynthesizer->Initialize();
-      m_pSynthesizer->AddSequence(m_pSeq);
+      for (int i=0; i<1024; i++) {
+          m_pSynthesizer->AddSequence(m_pSeq);
+      }
       m_pSynthesizer->Process();
 
       s.Stop();

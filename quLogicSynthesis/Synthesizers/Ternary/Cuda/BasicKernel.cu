@@ -58,14 +58,13 @@ __global__ void cuSynthesizeKernel(CudaSequence *data)
   int nGates = 0;
   int nBits = seq.m_nBits;
 
-  for (int j=0; j<100; j++) {
   __shared__ int pIn[729];
   __shared__ int pOut[729];
   __shared__ int pControl[5*1024];
   __shared__ BYTE pGates[5*1024];
   __shared__ BYTE pTarget[5*1024];
 
-
+  for (int j=0; j<100; j++) {
   for(int i=0; i<seq.m_nTerms; i++) {
     pIn[i] = seq.m_cuIn[inputIndex+i]; 
     pOut[i] = seq.m_cuOut[inputIndex+i]; 
@@ -81,9 +80,9 @@ __global__ void cuSynthesizeKernel(CudaSequence *data)
       pGates
     );
   }
+  }
 
   __syncthreads();
-  }
 
 #ifdef _DEBUG
   for(int i=0; i<nGates; i++) {
@@ -98,14 +97,17 @@ __global__ void cuSynthesizeKernel(CudaSequence *data)
 }
 
 
-void SynthesizeKernel(CudaSequence *pcuSeq, int nSequences)
+void SynthesizeKernel(int device, CudaSequence *pcuSeq, int nSequences)
 {
   // Constants are scoped to a file, and cannot use extern..
-  CS( cudaMemcpyToSymbol(gcuBitMask, gBitMask, sizeof(gBitMask)) );
-  CS( cudaMemcpyToSymbol(gcuTernaryOps, gTernaryOps, sizeof(gTernaryOps)) );
-  CS( cudaMemcpyToSymbol(gcuOpMap, gOpMap, sizeof(gOpMap)) );
+  CS(device, cudaMemcpyToSymbol(gcuBitMask, gBitMask, sizeof(gBitMask)) );
+  CS(device, cudaMemcpyToSymbol(gcuTernaryOps, gTernaryOps, sizeof(gTernaryOps)) );
+  CS(device, cudaMemcpyToSymbol(gcuOpMap, gOpMap, sizeof(gOpMap)) );
   printf("nSequences (Cuda Cores): %d\n", nSequences);
-  cuSynthesizeKernel<<<1, nSequences>>>(pcuSeq);
+  //for(int j=0; j<100; j++) {
+      cuSynthesizeKernel<<<1, nSequences>>>(pcuSeq);
+  //    cudaDeviceSynchronize();
+  //}
 }
 
 __device__ int Propagate(int outTerm, PINT pControl, PBYTE pTarget, PBYTE pOperation, int nGates)

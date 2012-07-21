@@ -15,6 +15,7 @@ using namespace System::IO;
 
 namespace Utility {
   public ref class FileSrc {
+    bool m_eos;
     UINT m_nCount;
     int m_nFiles, m_nSequence, m_nBits, m_nTerms;
     array<String^, 1>^ m_Files;
@@ -39,6 +40,7 @@ namespace Utility {
 
       m_sr = gcnew StreamReader(files[0]);
       m_pInput = new int[m_nTerms];
+      m_eos = false;
     }
 
     ~FileSrc()
@@ -50,10 +52,12 @@ namespace Utility {
     PINT Next()
     {
       String ^s;
-      if(m_sr->Peek() >= 0)
-        s = m_sr->ReadLine();
-      else
-        return NULL;
+     
+      if(m_eos) return NULL;
+      Console::WriteLine("EOS: {0}", m_eos);
+
+      s = m_sr->ReadLine();
+      m_eos = m_sr->EndOfStream;
 
       array<String^>^ list = s->Split(' ');
       PINT p = m_pInput;

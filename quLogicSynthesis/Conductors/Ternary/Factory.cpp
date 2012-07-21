@@ -7,6 +7,7 @@
 #include "ShuffleAlgorithm.h"
 #include "Factory.h"
 
+
 namespace Conductor {
     Factory::Factory()
     {
@@ -17,22 +18,32 @@ namespace Conductor {
     DWORD Factory::Run(LPVOID arg)
     {
       Shuffle * pAlgo = (Shuffle *)arg;
-
+      // We want to own the Mutex before we let the main thread kick off the CUDA cores
       WaitForSingleObject(m_hMutex, INFINITE);
+      SetEvent(m_hEvent);  
 
-      while(true) {
-        Sequence* sequences[NUM_CUDA_BLOCKS];
-        for(int i=0; i<NUM_CUDA_BLOCKS; i++)  
-          sequences[i] = pAlgo->m_pGenerator->GetSequence();
+      m_threadId = GetCurrentThreadId();
+      Console::WriteLine("Factory[{0}]:: Got Mutex", m_threadId);
 
-        Console::WriteLine("Factory:: Generated Sequences");
-        ReleaseMutex(m_hMutex);
-        Console::WriteLine("Factory:: Waiting for Trigger");
-        WaitForSingleObject(m_hEvent, INFINITE);
-        Console::WriteLine("Factory:: Waiting for Mutex");
-        WaitForSingleObject(m_hMutex, INFINITE);
-        Console::WriteLine("Factory:: Releaseing Sequences");
-        pAlgo->m_pGenerator->ReleaseSequences();
+      int j=0;
+      try
+      {
+          while(j++<100) {
+           Sequence* sequences[NUM_CUDA_BLOCKS];
+           for(int i=0; i<100; i++)  {
+             sequences[i] = pAlgo->m_pGenerator->GetSequence();
+           }
+
+           pAlgo->m_pGenerator->ReleaseSequences();
+          }
       }
+      catch (SEHException^ e)
+      {
+        Console::WriteLine("Memory exception");
+      	
+      }
+      ReleaseMutex(m_hMutex);
+      Console::WriteLine("Factory[{0}]:: Releasing Mutex", m_threadId);
+      return 0;
     }
 }

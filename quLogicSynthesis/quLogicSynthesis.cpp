@@ -27,6 +27,7 @@ int main()
 
 int PassThrough()
 {
+  Console::WriteLine("PassThrough Algorithm");
   for (int nBits=5; nBits<=6; nBits++) {
     Config::SetRadix(3, nBits);
 
@@ -34,7 +35,7 @@ int PassThrough()
     Utility::FileSrc fs(nBits, FILE_PATTERN + Convert::ToString(nBits));
 
     while (pOut = fs.Next() ) {
-      Console::WriteLine("Processing Next Sequence");
+      Console::WriteLine("\n\n\nProcessing Next Sequence");
       Helper::pOutput = pOut;
       Console::WriteLine("Function: " + fs.Name);
       Synthesizer::Core *pSyn = new Synthesizer::Ternary::Cuda::Basic(nBits);
@@ -52,14 +53,16 @@ int PassThrough()
 int RandomAlgorithm()
 {
   Rand::Initialize();
+  Console::WriteLine("Shuffle Algorithm");
   for (int nBits=6; nBits<=6; nBits++) {
     Config::SetRadix(3, nBits);
 
     int* pOut;
     Utility::FileSrc fs(nBits, FILE_PATTERN + Convert::ToString(nBits));
 
+    Console::WriteLine("Am I really here again?");
     while (pOut = fs.Next() ) {
-      Console::WriteLine("Processing Next Sequence");
+      Console::WriteLine("Am I really here again? Processing Next Sequence: {0}  {1}", pOut[0], nBits);
       Helper::pOutput = pOut;
       Console::WriteLine("Function: " + fs.Name);
       Synthesizer::Core *pSyn = new Synthesizer::Ternary::Cuda::Basic(nBits);
@@ -76,6 +79,7 @@ int RandomAlgorithm()
 int GATernary()
 {
   Rand::Initialize();
+  Console::WriteLine("Genetic Algorithm");
   for (int nBits=5; nBits<=6; nBits++) {
     Config::SetRadix(3, nBits);
 

@@ -17,13 +17,14 @@ namespace Conductor {
     DWORD Run(LPVOID args)
     {
       Factory *factory = (Factory *)args;
+      DWORD threadId = factory->m_threadId;
 
       while(true) {
-        Console::WriteLine("CudaCore:: Waiting for Mutex");
+        Console::WriteLine("CudaCore[{0}]:: Waiting for Mutex", threadId);
         WaitForSingleObject(factory->m_hMutex, INFINITE);
-        Console::WriteLine("CudaCore:: Setting Trigger");
+        Console::WriteLine("CudaCore[{0}]:: Got Mutex", threadId);
         SetEvent(factory->m_hEvent);
-        Console::WriteLine("CudaCore:: Releasing Mutex");
+        Console::WriteLine("CudaCore[{0}]:: Releaseing Mutex", threadId);
         ReleaseMutex(factory->m_hMutex);
       }
     }

@@ -19,6 +19,8 @@ using namespace std;
 #include "Utilities/FileSrc.h"
 // TODO: reference additional headers your program requires here
 
+#define PP(x) Helper::Print(x)
+
 #ifdef _DEBUG
   #define P(x) Helper::Print(x)
 #else
