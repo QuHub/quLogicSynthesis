@@ -8,10 +8,7 @@ namespace Synthesizer {
   public:
     Core() {}
     Core(int nBits) { m_nBits = nBits; }
-    ~Core(){
-      for (int i=0; i<m_Sequences.size(); i++)
-        delete m_Sequences[i];
-    }
+    virtual ~Core(){}
     void AddSequence(Sequence *pSeq){ m_Sequences.push_back(pSeq); }
     void Initialize() { m_Sequences.clear(); }
 
