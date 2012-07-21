@@ -29,7 +29,7 @@ namespace Helper {
 
       String^ today = DateTime::Now.ToShortDateString();
 
-      Directory::CreateDirectory( String::Format("..\\SaveData\\{0}-bits\\{1}", m_pSeq->m_nBits, today));
+      Directory::CreateDirectory( String::Format("..\\SaveData\\{0}-bits\\{1}", m_pSeq->m_nBits, today->Replace("/", "-")));
       sprintf(szTmp, "../SaveData/%d-bits/%s/%d-iteration.qsy", m_pSeq->m_nBits, today, iteration);
       ofstream fs(szTmp);
       IntPtr ip = Marshal::StringToHGlobalAnsi(Description);
