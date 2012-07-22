@@ -13,7 +13,7 @@ namespace Synthesizer {
       class Device: public Core {
         bool m_initialized;
         CudaSequence *m_pcuSeq;
-        CudaSequence* m_pcuPacket;
+        float* m_pcuPacket;
         int m_nTotalTransferTerms;
         int m_nTotalTransferGates;
         int m_nSequences;
@@ -27,7 +27,6 @@ namespace Synthesizer {
           m_device = device;
           m_nSequences = nSequences;
           m_initialized = false;
-          CS(m_device, cudaStreamCreate(&m_stream));
         }
 
         ~Device() {
@@ -35,6 +34,33 @@ namespace Synthesizer {
           cudaStreamDestroy(m_stream);
           cudaSetDevice(m_device);  
           FreeTransferMemory();
+        }
+
+
+        void Initialize() 
+        { 
+          m_Sequences.clear(); 
+          cudaSetDevice(m_device);  
+          cudaDeviceProp deviceProp;
+          cudaGetDeviceProperties(&deviceProp, m_device);
+          cudaSetDeviceFlags(cudaDeviceMapHost);
+          AllocatePinnedMemory();
+        }
+
+        void AllocatePinnedMemory()
+        {
+          CS(m_device, cudaHostAlloc(&m_pcuSeq, sizeof(CudaSequence), cudaHostAllocMapped));
+          InitTransferPacket();
+
+          CS(m_device, cudaHostAlloc(&m_pcuSeq->m_pnGates, bytes(m_pcuSeq->m_nSequences), cudaHostAllocMapped));
+          CS(m_device, cudaHostAlloc(&m_pcuSeq->m_pIn,     bytes(m_nTotalTransferTerms), cudaHostAllocMapped));
+          CS(m_device, cudaHostAlloc(&m_pcuSeq->m_pOut,    bytes(m_nTotalTransferTerms), cudaHostAllocMapped));
+
+          // Map CPU addresses to device addresses
+          CS(m_device, cudaHostGetDevicePointer((void **)&m_pcuPacket, (void *)m_pcuSeq, 0));
+          CS(m_device, cudaHostGetDevicePointer((void **)&m_pcuSeq->m_cuNumGates, (void *)m_pcuSeq->m_pnGates, 0));
+          CS(m_device, cudaHostGetDevicePointer((void **)&m_pcuSeq->m_cuIn, (void *)m_pcuSeq->m_pIn, 0));
+          CS(m_device, cudaHostGetDevicePointer((void **)&m_pcuSeq->m_cuOut, (void *)m_pcuSeq->m_pOut, 0));
         }
 
         void Process()
@@ -46,7 +72,7 @@ namespace Synthesizer {
           TransferToDevice();
           P(String::Format("{0}: TransferToDevice", Helper::StopTimer.getElapsedTime()));
 
-          SynthesizeKernel(m_device, m_stream, m_pcuPacket, m_pcuSeq->m_nSequences);
+//          SynthesizeKernel(m_device, m_stream, m_pcuPacket, m_pcuSeq->m_nSequences);
           PP(String::Format("{0}: SynthesizeKernel\n", Helper::StopTimer.getElapsedTime()));
         }
 
@@ -65,9 +91,6 @@ namespace Synthesizer {
 
         void InitTransferPacket()
         {
-          if(m_initialized) return;
-
-          m_pcuSeq = (CudaSequence*)AllocateMemory(sizeof(CudaSequence));
           m_nTerms = m_pcuSeq->m_nTerms = Helper::BitsToTerms(m_nBits);
           m_pcuSeq->m_nBits = m_nBits;
           m_pcuSeq->m_nSequences = m_nSequences;
@@ -75,9 +98,6 @@ namespace Synthesizer {
 
           m_nTotalTransferTerms = m_nTerms  * m_pcuSeq->m_nSequences;
           m_nTotalTransferGates = MAX_GATES * m_pcuSeq->m_nSequences; 
-
-          AllocateTransferMemory();
-          m_initialized = true;
         }
 
         void TransferToDevice()
@@ -88,28 +108,28 @@ namespace Synthesizer {
           CS(m_device, cudaMemcpyAsync(m_pcuPacket, m_pcuSeq, sizeof(CudaSequence), cudaMemcpyHostToDevice, m_stream) );
 
           for(int i=0; i<m_pcuSeq->m_nSequences; i++) {
-            CopyMemory(&m_pcuSeq->m_pIn[i*m_nTerms],  m_Sequences[i]->InputForRadix(),  by(m_nTerms) );
-            CopyMemory(&m_pcuSeq->m_pOut[i*m_nTerms], m_Sequences[i]->OutputForRadix(), by(m_nTerms) );
+            CopyMemory(&m_pcuSeq->m_pIn[i*m_nTerms],  m_Sequences[i]->InputForRadix(),  bytes(m_nTerms) );
+            CopyMemory(&m_pcuSeq->m_pOut[i*m_nTerms], m_Sequences[i]->OutputForRadix(), bytes(m_nTerms) );
           }
 
           P(String::Format("Before cudaMemcpy: {0}\n", Helper::StopTimer.getElapsedTime()));
-          CS(m_device, cudaMemcpyAsync(m_pcuSeq->m_cuIn,  m_pcuSeq->m_pIn,  by(m_nTotalTransferTerms), cudaMemcpyHostToDevice, m_stream ));
+          CS(m_device, cudaMemcpyAsync(m_pcuSeq->m_cuIn,  m_pcuSeq->m_pIn,  bytes(m_nTotalTransferTerms), cudaMemcpyHostToDevice, m_stream ));
 
           P(String::Format("After cudaMemcpy: {0}\n", Helper::StopTimer.getElapsedTime()));
-          CS(m_device, cudaMemcpyAsync(m_pcuSeq->m_cuOut, m_pcuSeq->m_pOut, by(m_nTotalTransferTerms), cudaMemcpyHostToDevice, m_stream ));
+          CS(m_device, cudaMemcpyAsync(m_pcuSeq->m_cuOut, m_pcuSeq->m_pOut, bytes(m_nTotalTransferTerms), cudaMemcpyHostToDevice, m_stream ));
         }
 
         void TransferFromDevice()
         {
           // Copy input and output buffers to device
-          CS(m_device, cudaMemcpyAsync(m_pcuSeq->m_pnGates,    m_pcuSeq->m_cuNumGates,     by(m_pcuSeq->m_nSequences),  cudaMemcpyDeviceToHost, m_stream) );
+          CS(m_device, cudaMemcpyAsync(m_pcuSeq->m_pnGates,    m_pcuSeq->m_cuNumGates,     bytes(m_pcuSeq->m_nSequences),  cudaMemcpyDeviceToHost, m_stream) );
 
 #ifdef _DEBUG
           // Transfers back from Cuda are expensive, and there is really no need to copy the entire set of data back, we 
           // just need the number of quantum gates which currently represents the quantum cost.  In the case we use 
           // a different quantum cost, we should return that.
 
-          CS(m_device, cudaMemcpyAsync(m_pcuSeq->m_pControl,   m_pcuSeq->m_cuControl,   by(m_nTotalTransferGates), cudaMemcpyDeviceToHost, m_stream) );
+          CS(m_device, cudaMemcpyAsync(m_pcuSeq->m_pControl,   m_pcuSeq->m_cuControl,   bytes(m_nTotalTransferGates), cudaMemcpyDeviceToHost, m_stream) );
           CS(m_device, cudaMemcpyAsync(m_pcuSeq->m_pGates, m_pcuSeq->m_cuGates, m_nTotalTransferGates,     cudaMemcpyDeviceToHost, m_stream) );
           CS(m_device, cudaMemcpyAsync(m_pcuSeq->m_pTarget,    m_pcuSeq->m_cuTarget,    m_nTotalTransferGates,     cudaMemcpyDeviceToHost, m_stream) );
 
@@ -119,10 +139,10 @@ namespace Synthesizer {
 #ifdef _DEBUG
             LPBYTE pDst = m_Sequences[i]->m_pTarget;
             LPBYTE pSrc = &m_pcuSeq->m_pTarget   [i*MAX_GATES];
-            ZeroMemory(m_Sequences[i]->m_pControl, by(nGates));
+            ZeroMemory(m_Sequences[i]->m_pControl, bytes(nGates));
             ZeroMemory(m_Sequences[i]->m_pTarget, nGates);
             ZeroMemory(m_Sequences[i]->m_pGates, nGates);
-            CopyMemory(m_Sequences[i]->m_pControl,   &m_pcuSeq->m_pControl  [i*MAX_GATES], by(nGates));
+            CopyMemory(m_Sequences[i]->m_pControl,   &m_pcuSeq->m_pControl  [i*MAX_GATES], bytes(nGates));
             CopyMemory(m_Sequences[i]->m_pTarget,    &m_pcuSeq->m_pTarget   [i*MAX_GATES], nGates);
             CopyMemory(m_Sequences[i]->m_pGates, &m_pcuSeq->m_pGates[i*MAX_GATES], nGates);
 #endif
@@ -134,7 +154,7 @@ namespace Synthesizer {
         {
           float* ptr;
 //          LPVOID ptr = VirtualAlloc(NULL,size , MEM_COMMIT, PAGE_READWRITE);
-          CS(m_device, cudaMallocHost(&ptr, size);
+          CS(m_device, cudaMallocHost(&ptr, size));
           //if (ptr == NULL) {
           //  DWORD err= GetLastError();
           //  throw("Error Allocating Memory");
@@ -147,10 +167,10 @@ namespace Synthesizer {
         {
           m_pcuSeq->m_pnGates     = AllocateMemory(m_pcuSeq->m_nSequences * sizeof(int));
 
-          m_pcuSeq->m_pIn         = AllocateMemory(by(m_nTotalTransferTerms));
-          m_pcuSeq->m_pOut        = AllocateMemory(by(m_nTotalTransferTerms));
+          m_pcuSeq->m_pIn         = AllocateMemory(bytes(m_nTotalTransferTerms));
+          m_pcuSeq->m_pOut        = AllocateMemory(bytes(m_nTotalTransferTerms));
 
-          m_pcuSeq->m_pControl    = AllocateMemory(by(m_nTotalTransferGates));
+          m_pcuSeq->m_pControl    = AllocateMemory(bytes(m_nTotalTransferGates));
           m_pcuSeq->m_pGates  = (LPBYTE)AllocateMemory(m_nTotalTransferGates);
           m_pcuSeq->m_pTarget     = (LPBYTE)AllocateMemory(m_nTotalTransferGates);
 
@@ -161,10 +181,10 @@ namespace Synthesizer {
           CS(m_device, cudaMalloc( (void**)&m_pcuPacket, sizeof(CudaSequence)) );
           CS(m_device, cudaMalloc( (void**)&m_pcuSeq->m_cuNumGates, m_pcuSeq->m_nSequences * sizeof(int)) );
 
-          CS(m_device, cudaMalloc( (void**)&m_pcuSeq->m_cuIn, by(m_nTotalTransferTerms)) );
-          CS(m_device, cudaMalloc( (void**)&m_pcuSeq->m_cuOut, by(m_nTotalTransferTerms)) );
+          CS(m_device, cudaMalloc( (void**)&m_pcuSeq->m_cuIn, bytes(m_nTotalTransferTerms)) );
+          CS(m_device, cudaMalloc( (void**)&m_pcuSeq->m_cuOut, bytes(m_nTotalTransferTerms)) );
 
-          CS(m_device, cudaMalloc( (void**)&m_pcuSeq->m_cuControl,by(m_nTotalTransferGates)) );
+          CS(m_device, cudaMalloc( (void**)&m_pcuSeq->m_cuControl,bytes(m_nTotalTransferGates)) );
           CS(m_device, cudaMalloc( (void**)&m_pcuSeq->m_cuTarget, m_nTotalTransferGates) );
           CS(m_device, cudaMalloc( (void**)&m_pcuSeq->m_cuGates, m_nTotalTransferGates) );
 
@@ -218,6 +238,12 @@ namespace Synthesizer {
           Console::WriteLine("~Basic");
           delete m_pDev[0];
           delete m_pDev[1];
+        }
+
+        void Initialize()
+        {
+          m_pDev[0]->Initialize();
+          m_pDev[1]->Initialize();
         }
 
         void Process()

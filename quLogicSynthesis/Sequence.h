@@ -30,14 +30,14 @@ public:
     m_pOut = new int[m_nTerms];
     CopyMemory(m_pIn, base.m_pIn, m_nTerms * sizeof(int));
     CopyMemory(m_pOut, base.m_pOut, m_nTerms * sizeof(int));
-    CopyMemory(m_pControl, base.m_pControl, by(m_nGates));
-    CopyMemory(m_pGates, base.m_pGates, by(m_nGates));
-    CopyMemory(m_pTarget, base.m_pTarget, by(m_nGates));
+    CopyMemory(m_pControl, base.m_pControl, bytes(m_nGates));
+    CopyMemory(m_pGates, base.m_pGates, bytes(m_nGates));
+    CopyMemory(m_pTarget, base.m_pTarget, bytes(m_nGates));
   }
 
   void Init() {
     m_pInputRadixBuffer = m_pOutputRadixBuffer = NULL;
-    m_pControl = (LPINT)VirtualAlloc(NULL,by(MAX_GATES), MEM_COMMIT, PAGE_READWRITE);
+    m_pControl = (LPINT)VirtualAlloc(NULL,bytes(MAX_GATES), MEM_COMMIT, PAGE_READWRITE);
     m_pGates = (LPBYTE)VirtualAlloc(NULL,MAX_GATES, MEM_COMMIT, PAGE_READWRITE);
     m_pTarget = (LPBYTE)VirtualAlloc(NULL,MAX_GATES, MEM_COMMIT, PAGE_READWRITE);
 
