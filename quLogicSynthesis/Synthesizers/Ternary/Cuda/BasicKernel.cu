@@ -97,17 +97,14 @@ __global__ void cuSynthesizeKernel(CudaSequence *data)
 }
 
 
-void SynthesizeKernel(int device, CudaSequence *pcuSeq, int nSequences)
+void SynthesizeKernel(int device, cudaStream_t stream, CudaSequence *pcuSeq, int nSequences)
 {
   // Constants are scoped to a file, and cannot use extern..
-  CS(device, cudaMemcpyToSymbol(gcuBitMask, gBitMask, sizeof(gBitMask)) );
-  CS(device, cudaMemcpyToSymbol(gcuTernaryOps, gTernaryOps, sizeof(gTernaryOps)) );
-  CS(device, cudaMemcpyToSymbol(gcuOpMap, gOpMap, sizeof(gOpMap)) );
+  CS(device, cudaMemcpyToSymbolAsync(gcuBitMask, gBitMask, sizeof(gBitMask), 0, cudaMemcpyHostToDevice, stream ) );
+  CS(device, cudaMemcpyToSymbolAsync(gcuTernaryOps, gTernaryOps, sizeof(gTernaryOps), 0, cudaMemcpyHostToDevice, stream) );
+  CS(device, cudaMemcpyToSymbolAsync(gcuOpMap, gOpMap, sizeof(gOpMap)), 0, cudaMemcpyHostToDevice, stream );
   printf("nSequences (Cuda Cores): %d\n", nSequences);
-  //for(int j=0; j<100; j++) {
-      cuSynthesizeKernel<<<1, nSequences>>>(pcuSeq);
-  //    cudaDeviceSynchronize();
-  //}
+  cuSynthesizeKernel<<<1, nSequences, 0, stream>>>(pcuSeq);
 }
 
 __device__ int Propagate(int outTerm, PINT pControl, PBYTE pTarget, PBYTE pOperation, int nGates)

@@ -28,7 +28,7 @@ int main()
 int PassThrough()
 {
   Console::WriteLine("PassThrough Algorithm");
-  for (int nBits=5; nBits<=6; nBits++) {
+  for (int nBits=5; nBits<=5; nBits++) {
     Config::SetRadix(3, nBits);
 
     int* pOut;
