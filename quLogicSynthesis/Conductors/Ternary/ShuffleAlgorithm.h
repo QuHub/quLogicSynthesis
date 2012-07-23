@@ -6,7 +6,6 @@
 #include "../../Synthesizers/Ternary/Cuda/CudaSequence.h"
 #include "../../Utilities/Rand.h"
 #include "../../Utilities/Thread.h"
-#include "CudaCore.h"
 
 using namespace System;
 using namespace System::IO;
@@ -27,32 +26,40 @@ namespace Conductor {
       m_pGenerator = pGen;
       m_pSynthesizer = pSyn;
       m_nSequences = 2 * NUM_CUDA_BLOCKS;
-      m_pSeq = new Sequence *[m_nSequences];  // two devices
     }
 
     ~Shuffle() {
-      for(int i=0; i<sizeof(m_pSeq)/sizeof(m_pSeq[0]); i++)
-        delete m_pSeq[i];
-
-      delete m_pSeq;
-    }
-
-    void InitializePopulation()
-    {
-      for(int i=0; i<m_nSequences; i++) {
-        m_pSeq[i] = m_pGenerator->GetSequence();
-      }
     }
 
     void Process()
     {
-      InitializePopulation();
+      int bestCost = MAXINT;
+      Sequence *pSeq;
 
-      //m_pSynthesizer->Initialize();
-      //m_pSynthesizer->AddSequence(m_pSeq);
-      //m_pSynthesizer->Process();
+      Helper::StopTimer.Start();
+      Utility::CStopWatch s;
+      s.Start();
+      m_pSynthesizer->Initialize();
+      for (int j=0; j<512; j++) {
+        Console::Write("Batch: {0}\r", j);
+        m_pGenerator->ReleaseSequences();
+        m_pSynthesizer->m_Sequences.clear();
+        for (int i=0; i<1024; i++) {
+          m_pSynthesizer->AddSequence(m_pGenerator->GetSequence());
+        }
+        m_pSynthesizer->Process();
+        m_pSynthesizer->PostProcess();
 
-      //SaveResult(m_pSeq);
+        for(int i=0; i<1024; i++) {
+          int nGates = m_pSynthesizer->m_Sequences[i]->m_nGates;
+          if (bestCost > nGates) {
+              bestCost = nGates;
+              SaveResult(m_pSynthesizer->m_Sequences[i]);
+          }
+        }
+      }
+      s.Stop();
+      PrintResult(0, "PassThrough", s.getElapsedTime());
     }
   };
 }

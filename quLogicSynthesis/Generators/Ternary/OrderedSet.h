@@ -57,8 +57,6 @@ namespace Generator {
         for(int i=0; i<m_pSequences.size(); i++)
           delete m_pSequences[i];
         m_pSequences.clear();
-
-        Console::WriteLine("Number of sequences{0}: ", m_pSequences.size());
       }
 
       Sequence* SinglePointCrossOver(Sequence *p1, Sequence *p2, double prob)

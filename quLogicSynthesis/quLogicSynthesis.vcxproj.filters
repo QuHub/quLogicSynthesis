@@ -128,12 +128,6 @@
     <ClInclude Include="Conductors\Ternary\ShuffleAlgorithm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Conductors\Ternary\CudaCore.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Conductors\Ternary\Factory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">
@@ -161,9 +155,6 @@
     </ClCompile>
     <ClCompile Include="Utilities\Rand.cpp">
       <Filter>Utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="Conductors\Ternary\Factory.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

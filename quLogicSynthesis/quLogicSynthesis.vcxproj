@@ -163,8 +163,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Conductors\Ternary\ConductorCore.h" />
-    <ClInclude Include="Conductors\Ternary\CudaCore.h" />
-    <ClInclude Include="Conductors\Ternary\Factory.h" />
     <ClInclude Include="Conductors\Ternary\GeneticAlgorithm.h" />
     <ClInclude Include="Conductors\Ternary\GeneticAlgorithmParameters.h" />
     <ClInclude Include="Conductors\Ternary\PassThrough.h" />
@@ -197,7 +195,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
-    <ClCompile Include="Conductors\Ternary\Factory.cpp" />
     <ClCompile Include="quLogicSynthesis.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

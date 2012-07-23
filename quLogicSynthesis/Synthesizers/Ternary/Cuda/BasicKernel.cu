@@ -64,7 +64,6 @@ __global__ void cuSynthesizeKernel(CudaSequence *data)
   __shared__ BYTE pGates[5*1024];
   __shared__ BYTE pTarget[5*1024];
 
-  for (int j=0; j<100; j++) {
   for(int i=0; i<seq.m_nTerms; i++) {
     pIn[i] = seq.m_cuIn[inputIndex+i]; 
     pOut[i] = seq.m_cuOut[inputIndex+i]; 
@@ -80,31 +79,23 @@ __global__ void cuSynthesizeKernel(CudaSequence *data)
       pGates
     );
   }
-  }
 
   __syncthreads();
 
-#ifdef _DEBUG
-  for(int i=0; i<nGates; i++) {
-    CopySharedToGlobal(&seq.m_cuControl[outputIndex], pControl, nGates);
-    CopySharedBytesToGlobal(&seq.m_cuTarget[outputIndex], pTarget, nGates);
-    CopySharedBytesToGlobal(&seq.m_cuGates[outputIndex], pGates, nGates);
-  }
-#endif
   seq.m_cuNumGates[threadIdx.x] = nGates;
 
   //printf("block: nGates Index: %d [%d]\n", blockIdx.x, seq.m_cuGates[blockIdx.x]);
 }
 
 
-void SynthesizeKernel(int device, cudaStream_t stream, CudaSequence *pcuSeq, int nSequences)
+void SynthesizeKernel(int device, float *pcuSeq, int nSequences)
 {
   // Constants are scoped to a file, and cannot use extern..
-  CS(device, cudaMemcpyToSymbolAsync(gcuBitMask, gBitMask, sizeof(gBitMask), 0, cudaMemcpyHostToDevice, stream ) );
-  CS(device, cudaMemcpyToSymbolAsync(gcuTernaryOps, gTernaryOps, sizeof(gTernaryOps), 0, cudaMemcpyHostToDevice, stream) );
-  CS(device, cudaMemcpyToSymbolAsync(gcuOpMap, gOpMap, sizeof(gOpMap)), 0, cudaMemcpyHostToDevice, stream );
-  printf("nSequences (Cuda Cores): %d\n", nSequences);
-  cuSynthesizeKernel<<<1, nSequences, 0, stream>>>(pcuSeq);
+  CS(device, cudaMemcpyToSymbol(gcuBitMask, gBitMask, sizeof(gBitMask), 0, cudaMemcpyHostToDevice ) );
+  CS(device, cudaMemcpyToSymbol(gcuTernaryOps, gTernaryOps, sizeof(gTernaryOps), 0, cudaMemcpyHostToDevice) );
+  CS(device, cudaMemcpyToSymbol(gcuOpMap, gOpMap, sizeof(gOpMap)), 0, cudaMemcpyHostToDevice);
+  //printf("nSequences (Cuda Cores): %d\n", nSequences);
+  cuSynthesizeKernel<<<1, nSequences, 0>>>((CudaSequence*)pcuSeq);
 }
 
 __device__ int Propagate(int outTerm, PINT pControl, PBYTE pTarget, PBYTE pOperation, int nGates)

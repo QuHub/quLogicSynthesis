@@ -20,15 +20,15 @@ int RandomAlgorithm();
 
 int main()
 {
-  //RandomAlgorithm();
-  PassThrough();
+  RandomAlgorithm();
+  //PassThrough();
 //  GATernary();
 }
 
 int PassThrough()
 {
   Console::WriteLine("PassThrough Algorithm");
-  for (int nBits=5; nBits<=5; nBits++) {
+  for (int nBits=5; nBits<=6; nBits++) {
     Config::SetRadix(3, nBits);
 
     int* pOut;
@@ -60,11 +60,9 @@ int RandomAlgorithm()
     int* pOut;
     Utility::FileSrc fs(nBits, FILE_PATTERN + Convert::ToString(nBits));
 
-    Console::WriteLine("Am I really here again?");
     while (pOut = fs.Next() ) {
-      Console::WriteLine("Am I really here again? Processing Next Sequence: {0}  {1}", pOut[0], nBits);
       Helper::pOutput = pOut;
-      Console::WriteLine("Function: " + fs.Name);
+      Console::WriteLine("\n\nFunction: " + fs.Name);
       Synthesizer::Core *pSyn = new Synthesizer::Ternary::Cuda::Basic(nBits);
       Generator::Core *pGen = new Generator::Ternary::OrderedSet(nBits, pOut);
       Conductor::Core *pAlgo = new Conductor::Shuffle(nBits, pGen, pSyn);

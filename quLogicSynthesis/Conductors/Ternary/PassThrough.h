@@ -36,11 +36,14 @@ namespace Conductor {
       Utility::CStopWatch s;
       s.Start();
       m_pSynthesizer->Initialize();
+      for (int j=0; j<512; j++) {
+        m_pSynthesizer->m_Sequences.clear();
       for (int i=0; i<1024; i++) {
           m_pSynthesizer->AddSequence(m_pSeq);
       }
       m_pSynthesizer->Process();
-
+      m_pSynthesizer->PostProcess();
+      }
       s.Stop();
       SaveResult(m_pSeq);
       PrintResult(0, "PassThrough", s.getElapsedTime());
